@@ -18,7 +18,6 @@ export default animateText;
  *   </>
  * );
  * ``` 
- *
  * 
  * @param initial the initial state of the text
  * @param final the final state of the text

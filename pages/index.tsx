@@ -8,6 +8,8 @@ import { useState } from "react"
 const firaCode = Fira_Code({ subsets: ["latin"] })
 
 export default function Home() {
+  const [text, setText] = useState("Hello!")
+
   return (
     <>
       <Head>
@@ -17,7 +19,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${firaCode.className}`}>
-        <h1>Hello!</h1>
+        <h1 onClick={
+          () => {
+            animateText(text, "Goodbye!", { onFrame: setText })
+          }
+        }>{text}</h1>
       </main>
     </>
   )
