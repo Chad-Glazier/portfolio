@@ -59,9 +59,8 @@ export default function Nav() {
         {
           otherPages
             .map((page, i) => (
-              <div className={styles.navItem}>
+              <div key={page} className={styles.navItem}>
                 <Link
-                  key={page}
                   href={pageUrls.get(page) ?? ""}
                   className={styles.navItem}
                   onClick={e => {
