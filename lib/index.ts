@@ -1,5 +1,10 @@
-import animateText from "./functions/animateText";
+import { animateText, animateTextSwap } from "./functions/animateText";
+import Layout from "./components/Layout";
+import Nav from "./components/Nav";
 
 export {
-  animateText
+  animateText,
+  animateTextSwap,
+  Layout,
+  Nav
 };

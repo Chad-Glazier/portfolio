@@ -1,23 +1,55 @@
-export default animateText;
+export {
+  animateText,
+  animateTextSwap
+}
+
+/**
+ * Animates two strings from one to the other. The `options.onFrame` callback will
+ * be called, passing each frame of the animation. The first string is the frame that
+ * corresponds to the first string passed to this function, and the second string is
+ * the frame that corresponds to the second string passed to this function.
+ * 
+ * @param stringA string to animate from
+ * @param stringB other string to animate from
+ * @param options 
+ */
+function animateTextSwap(
+  stringA: string,
+  stringB: string,
+  options?: Partial<{
+    duration: number;
+    easing: (progress: number) => number;
+    onFrame: (stringAFrame: string, stringBFrame: string) => void;
+    onComplete: () => void;
+    framesPerSecond: number;
+  }>
+) {
+  const duration = options?.duration || 400;
+  const easing = options?.easing || (x => x);
+  const onFrame = options?.onFrame || (() => {});
+  const onComplete = options?.onComplete || (() => {});
+  const framesPerSecond = options?.framesPerSecond || 30;
+
+  const frameDuration = 1000 / framesPerSecond;
+  const progressPerFrame = 1 / (duration / 1000 * framesPerSecond);
+  let progress = progressPerFrame;
+
+  const interval = setInterval(() => {
+    if (progress >= 1) {
+      clearInterval(interval);
+      onFrame(stringA, stringB);
+      onComplete();
+      return;
+    }
+    const frameA = getFrame(stringA, stringB, easing(progress));
+    const frameB = getFrame(stringB, stringA, easing(progress));
+    onFrame(frameA, frameB);
+    progress += progressPerFrame;
+  }, frameDuration);
+}
 
 /**
  * Animates text from one string to another.
- * 
- * @example
- * ```tsx
- * const [text, setText] = useState("Hello World!");
- * 
- * return (
- *   <>
- *     <h1>{text}</h1>
- *     <button 
- *       onClick={() => animateText(text, "Goodbye World!", { onFrame: setText })}
- *     >
- *      Say Goodbye!
- *     </button>
- *   </>
- * );
- * ``` 
  * 
  * @param initial the initial state of the text
  * @param final the final state of the text

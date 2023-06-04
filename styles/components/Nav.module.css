@@ -1,0 +1,75 @@
+.nav {
+  --active-height: var(--theme-nav-height);
+  height: var(--active-height);
+  
+  background-color: var(--theme-nav-background-color);
+  color: var(--theme-nav-color);
+  text-transform: uppercase;
+  font-size: calc(var(--theme-nav-height) * 4 / 5);
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.activePageContainer {
+  position: fixed;
+  width: 100%;
+  height: var(--active-height);
+  z-index: 10;
+
+  color: inherit;
+  background-color: inherit;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media (max-width: 450px) {
+  .activePageContainer {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+}
+
+.activePageContainer *:hover {
+  cursor: pointer;
+}
+
+.inactivePages {
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+
+  color: inherit;
+  background-color: inherit;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all 500ms ease-in-out;
+}
+
+.inactivePages.closed {
+  top: calc(-3 * var(--active-height));
+}
+
+.inactivePages.open {
+  top: var(--active-height);
+}
+
+.navItem {
+  transition: all 300ms;
+}
+
+.navItem:hover {
+  transform: translateX(10px);
+}
+
+.hamburger {
+
+}
