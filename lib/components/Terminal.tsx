@@ -1,8 +1,8 @@
 import styles from "@/styles/components/Terminal.module.css";
 import theme from "@/styles/theme";
 import { Fira_Code } from "next/font/google";
-import { useEffect, useState, useRef } from "react";
-import { DoublyLinkedList } from "@/lib";
+import { useState, useRef } from "react";
+import { DoublyLinkedList, animateText } from "@/lib";
 
 const firaCode = Fira_Code({
   subsets: [ "latin" ]
@@ -23,8 +23,7 @@ export default function Terminal({
 }) {
   let history = useRef<null | DoublyLinkedList<string>>(null);
   const [output, setOutput] = useState(
-    `
-  .       __         .                                  /
+` .       __         .                                  /
   /       |    ___   |     ___    __.  , _ , _     ___  |
   |       |  .'   \`  |   .'   \` .'   \ |' \`|' \`. .'   \` |
   |  /\   /  |----'  |   |      |    | |   |   | |----' |
@@ -35,7 +34,6 @@ Enter \`help\` for a list of commands.
 `
   );
   const [input, setInput] = useState("");
-
   const ctrlKeyPressed = useRef(false);
 
   return (
@@ -59,6 +57,7 @@ Enter \`help\` for a list of commands.
             onNavigate,
             close       
           });
+
           setOutput(prev => {
             return prev + "\n" + "> " + input + (newOutput ? `\n${newOutput}` : "");
           });
@@ -73,7 +72,7 @@ Enter \`help\` for a list of commands.
           setInput("");
           setTimeout(() => {
             const $output = document.getElementById("output");
-            $output!.scrollTop = $output?.scrollHeight! + 100;          
+            $output!.scrollTop = $output?.scrollHeight! + 500;          
           }, 0);
         }}
       >
@@ -214,10 +213,12 @@ function evaluateCommand(
       return commands.ls([context.currentPage, ...context.otherPages], flags, args);
     case "cd":
       return commands.cd([context.currentPage, ...context.otherPages], args, context.onNavigate);
+    case "help":
+      return commands.help();
     case "exit":
       context.close();
       return "exiting";
-    case "":
+      case "":
       return commands.error.noCommand();
     default:
       return commands.error.unrecognizedCommand(command);
@@ -229,9 +230,9 @@ const commands = {
     return "/" + currentPage.toLowerCase();
   },
   ls(pages: string[], flags: string[], args: string[]): string {
-    if (flags.some(flag => flag == "l") || flags.some(flag => flag == "long")) {
+    if (flags.some(flag => flag == "l")) {
       return pages
-        .map(page => `drwxr-xr-x chad-glazier ` + page.toLowerCase())
+        .map(page => `${page == "github" ? "l" : "d"}rwxr-xr-x ${page == "github" ? "github.com  " : "chad-glazier"} ` + page.toLowerCase())
         .join("\n");
     }
     return pages
@@ -255,6 +256,25 @@ const commands = {
       return "";
     }
     return `Unknown page \`${args[0]}\``;
+  },
+  help(): string {
+    return [
+      "Available commands:",
+      "\t`ls`: list the available pages.",
+      "\t      The `-l` flag reveals more information",
+      "\t      about the file.",
+      "\t`pwd`: print the full name of the current page.",
+      "\t`cd <pagename>`: open the named page. ",
+      "\t`exit`: exit the terminal",
+      "",
+      "Special key inputs:",
+      "\tCtrl + l: clear the terminal",
+      "\tTab: autocomplete a page name",
+      "\tUp and Down Arrows: select from a previously",
+      "\tentered command",
+      "\tEscape Key: exit the terminal",
+      ""
+    ].join("\n");
   },
   error: {
     unrecognizedCommand(command: string): string {

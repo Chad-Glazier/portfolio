@@ -52,9 +52,13 @@ export default function Nav({
       <Terminal 
         show={showTerminal}
         pageName={activePage}
-        otherPageNames={otherPages}
+        otherPageNames={[...otherPages, "github"]}
         close={() => setShowTerminal(false)}
         onNavigate={(newPage) => {
+          if (newPage == "github") {
+            window.open("https://github.com/Chad-Glazier", "_blank");
+            return;
+          }
           newPage = capitalize(newPage);
           if (inAnimation.current) {
             return;

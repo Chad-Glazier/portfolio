@@ -85,6 +85,7 @@ function animateText(
     onFrame: (frame: string) => void;
     onComplete: () => void;
     framesPerSecond: number;
+    prefix: string;
   }>
 ) {
   const duration = options?.duration || 400;
@@ -92,6 +93,7 @@ function animateText(
   const onFrame = options?.onFrame || (() => {});
   const onComplete = options?.onComplete || (() => {});
   const framesPerSecond = options?.framesPerSecond || 60;
+  const prefix = options?.prefix || "";
 
   const frameDuration = 1000 / framesPerSecond;
   const progressPerFrame = 1 / (duration / 1000 * framesPerSecond);
@@ -105,7 +107,7 @@ function animateText(
       return;
     }
     const frame = getFrame(initial, final, easing(progress));
-    onFrame(frame);
+    onFrame(prefix + frame);
     progress += progressPerFrame;
   }, frameDuration);
 }
