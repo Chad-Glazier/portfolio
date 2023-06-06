@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Fira_Code } from "next/font/google";
 import Terminal from "./Terminal";
 import { useRouter } from "next/router";
+import theme from "@/styles/theme";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -176,6 +177,7 @@ export default function Nav({
             className={
               styles.terminalIcon
               + ` ${showTerminal ? styles.active : styles.inactive}`
+              + ` ${theme.get(activePage)?.terminalIcon}`
             }
             onClick={() => setShowTerminal(prev => !prev)}
             height={40}

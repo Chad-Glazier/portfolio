@@ -16,3 +16,8 @@
   background-color: rgba(0, 0, 0, 0.8);
   color: #8f8;
 }
+
+.terminalIcon {
+  background-color: #8f8;
+  transition: all 1000ms;
+}
