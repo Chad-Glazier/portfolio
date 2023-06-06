@@ -1,0 +1,56 @@
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  transition: all 600ms;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.backdrop.closed {
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.terminal {
+  width: min(calc(100vw - 2rem), 1000px);
+  height: min(calc(100vh - 4rem), 500px);
+  position: fixed;
+  top: calc(-1 * min(calc(100vh - 4rem), 500px));
+  left: calc(50vw);
+  transition: all 600ms;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+
+  padding: 1rem;
+  border: 2px solid darkgreen;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.terminal.show {
+  top: 50vh;
+}
+
+.output {
+  flex-grow: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.input {
+  background-color: inherit;
+  color: inherit;
+  border: 2px solid darkgreen;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.input:focus {
+  border: 2px solid lightgreen;
+}

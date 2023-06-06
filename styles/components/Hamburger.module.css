@@ -1,5 +1,5 @@
 .hamburger {
-  --size: var(--theme-nav-height);
+  --size: var(--nav-height);
   padding: 1.2rem 1rem;
   margin-left: -0.5rem;
 
@@ -15,8 +15,7 @@
 .hamburger .bar {
   width: 100%;
   height: 4px;
-  background-color: var(--theme-nav-color);
-  transition: all 300ms ease-in-out;
+  transition: all 400ms ease-in-out;
 }
 
 .hamburger.open .bar:first-of-type {
@@ -25,7 +24,6 @@
 
 .hamburger.open .bar:nth-of-type(2) {
   transform: rotate(-45deg);
-  height: 5px;
 }
 
 .hamburger.open .bar:last-of-type {

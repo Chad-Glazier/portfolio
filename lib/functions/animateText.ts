@@ -4,22 +4,43 @@ export {
 }
 
 /**
- * Animates two strings from one to the other. The `options.onFrame` callback will
- * be called, passing each frame of the animation. The first string is the frame that
- * corresponds to the first string passed to this function, and the second string is
- * the frame that corresponds to the second string passed to this function.
+ * Animates two strings from one to the other. Unlike the `animateText` function,
+ * this one will generate frames for both strings.
  * 
  * @param stringA string to animate from
  * @param stringB other string to animate from
- * @param options 
+ * @param options specify the options to apply
+ * 
+ * 
  */
 function animateTextSwap(
   stringA: string,
   stringB: string,
   options?: Partial<{
+    /** 
+     * the duration of the animation in milliseconds 
+     * 
+     * @default 400
+    */
     duration: number;
+    /** 
+     * An easing function that takes in the progress, which ranges from 0 to 1, 
+     * and should return a value that is also in the range of 0 to 1.
+     * 
+     * @default x => x // linear
+     */
     easing: (progress: number) => number;
+    /**
+     * A function that is invoked every time a new frame is generated (the frequency
+     * can be specified by `framesPerSecond`).
+     * 
+     * @param stringAFrame the next frame for the first string argument.
+     * @param stringBFrame the next frame for the second string argument.
+     */
     onFrame: (stringAFrame: string, stringBFrame: string) => void;
+    /**
+     * A function that is invoked only once, when the animation is complete.
+     */
     onComplete: () => void;
     framesPerSecond: number;
   }>

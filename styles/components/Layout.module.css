@@ -1,0 +1,6 @@
+.main {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+  min-width: 100vw;
+  transition: all 1000ms ease-in-out;
+}

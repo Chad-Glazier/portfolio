@@ -1,0 +1,18 @@
+.hamburger {
+  background-color: #222;
+}
+
+.nav {
+  color: #222;
+  background-color: #eee;
+}
+
+.main {
+  color: #222;
+  background-color: #eee;
+}
+
+.terminal {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #8f8;
+}

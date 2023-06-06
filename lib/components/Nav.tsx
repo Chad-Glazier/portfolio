@@ -4,16 +4,27 @@ import Head from "next/head";
 import { useEffect, useState, useRef } from "react";
 import { animateTextSwap } from "@/lib";
 import Hamburger from "./Hamburger";
+import Image from "next/image";
+import { Fira_Code } from "next/font/google";
+import Terminal from "./Terminal";
+import { useRouter } from "next/router";
 
-// map the page names to their urls.
+const firaCode = Fira_Code({ subsets: ["latin"] });
+
 const pageUrls = new Map<string, string>();
 pageUrls.set("Home", "/");
 pageUrls.set("Projects", "/projects");
 pageUrls.set("Education", "/education");
 pageUrls.set("Contact", "/contact");
 
-export default function Nav() {
-  const [activePage, setActivePage] = useState<string>("----");
+export default function Nav({
+  onChange,
+  className
+}: {
+  onChange?: (newPage: string) => void;
+  className?: string;
+}) {
+  const [activePage, setActivePage] = useState<string>("--");
   const [otherPages, setOtherPages] = useState<string[]>([
     "Projects",
     "Education",
@@ -22,6 +33,8 @@ export default function Nav() {
   ]);
   const [open, setOpen] = useState(false);
   const inAnimation = useRef(false);
+  const [showTerminal, setShowTerminal] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     let initialPage = window.location.pathname.substring(1);
@@ -30,22 +43,71 @@ export default function Nav() {
     }
     initialPage = capitalize(initialPage);
     setActivePage(initialPage);
+    onChange && onChange(initialPage);
     setOtherPages(prev => prev.filter(page => page !== initialPage));
   }, []);
 
   return (
     <>
+      <Terminal 
+        show={showTerminal}
+        pageName={activePage}
+        otherPageNames={otherPages}
+        close={() => setShowTerminal(false)}
+        onNavigate={(newPage) => {
+          newPage = capitalize(newPage);
+          if (inAnimation.current) {
+            return;
+          }
+          setOpen(false);
+          onChange && onChange(newPage);
+          inAnimation.current = true;
+          const initialTargetPage = newPage || "Home";
+          const initialActivePage = activePage;
+          animateTextSwap(
+            initialTargetPage,
+            initialActivePage,
+            {
+              duration: 500,
+              onFrame(newTargetPage, newActivePage) {
+                setActivePage(newActivePage);
+                setOtherPages(prev => prev.map((_, idx) => {
+                  if (idx === otherPages.indexOf(newPage || "Home"))
+                    return newTargetPage;
+                  return prev[idx];
+                }));                          
+              },
+              onComplete() {
+                setActivePage(initialTargetPage);
+                setOtherPages(prev => prev.map((_, idx) => {
+                  if (idx === otherPages.indexOf(newPage || "Home"))
+                    return initialActivePage;
+                  return prev[idx];
+                }))
+                inAnimation.current = false;
+              }
+            }
+          );          
+          router.push("/" + newPage.toLowerCase());
+        }}
+      />
       <Head>
         <title>{activePage}</title>
       </Head>
-      <nav className={styles.nav}>
+      <nav 
+        className={
+          styles.nav 
+          + " " + firaCode.className 
+          + " " + (className ? className : "")
+        }
+      >
         <div 
           className={styles.activePageContainer}
         >
           <span
             onClick={() => setOpen(prev => !prev)}
           >
-            <Hamburger open={open} />
+            <Hamburger open={open} pageName={activePage} />
           </span>
           <span
             onClick={() => setOpen(prev => !prev)}
@@ -69,6 +131,7 @@ export default function Nav() {
                       return;
                     }
                     setOpen(false);
+                    onChange && onChange(page);
                     inAnimation.current = true;
                     const initialTargetPage = page;
                     const initialActivePage = activePage;
@@ -104,7 +167,20 @@ export default function Nav() {
             ))
         }    
         </div>
-
+        {
+          <Image
+            className={
+              styles.terminalIcon
+              + ` ${showTerminal ? styles.active : styles.inactive}`
+            }
+            onClick={() => setShowTerminal(prev => !prev)}
+            height={40}
+            width={40}
+            alt={"Open Terminal"}
+            src={"/terminal.png"}
+            title={"Click here to open the terminal!"}
+          />
+        }
       </nav>    
     </>
   );

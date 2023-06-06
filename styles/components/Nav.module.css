@@ -1,24 +1,42 @@
 .nav {
-  --active-height: var(--theme-nav-height);
+  --active-height: var(--nav-height);
   height: var(--active-height);
   
-  background-color: var(--theme-nav-background-color);
-  color: var(--theme-nav-color);
   text-transform: uppercase;
-  font-size: calc(var(--theme-nav-height) * 4 / 5);
+  font-size: calc(var(--active-height) * 4 / 5);
   
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding-left: 10px;
+
+  transition: all 1000ms ease-in-out;
+}
+
+.terminalIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 11;
+  border: 1px solid darkgreen;
+  border-radius: 5px;
+  transition: all 400ms;
+  background-color: darkgreen;
+}
+
+.terminalIcon:hover, .terminalIcon.active {
+  cursor: pointer;
+  border: 1px solid lightgreen;
+  background-color: lightgreen;
+  transform: scale(1.05);
 }
 
 .activePageContainer {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: var(--active-height);
   z-index: 10;
+  padding-left: 5px;
 
   color: inherit;
   background-color: inherit;
@@ -28,7 +46,11 @@
   align-items: center;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 620px) {
+  .terminalIcon {
+    display: none;
+  }
+
   .activePageContainer {
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -41,10 +63,11 @@
 }
 
 .inactivePages {
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 9;
 
+  padding-left: 10px;
   color: inherit;
   background-color: inherit;
 
@@ -55,7 +78,7 @@
 }
 
 .inactivePages.closed {
-  top: calc(-3 * var(--active-height));
+  top: calc(-3.5 * var(--active-height));
 }
 
 .inactivePages.open {
@@ -68,8 +91,4 @@
 
 .navItem:hover {
   transform: translateX(10px);
-}
-
-.hamburger {
-
 }
