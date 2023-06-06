@@ -21,7 +21,7 @@ export default function Hamburger({
       {Array(3).fill(0).map((_, i) => (
         <div
           key={i}
-          className={styles.bar + " " + (theme.get(pageName) ?? theme.get("Home")).hamburger}
+          className={styles.bar + " " + (theme.get(pageName) ?? theme.get("Home"))!.hamburger}
         ></div>
       ))}
     </div>

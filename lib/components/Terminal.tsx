@@ -46,7 +46,7 @@ Enter \`help\` for a list of commands.
         className={
           styles.terminal
           + ` ${show ? styles.show : styles.hide}`
-          + ` ${(theme.get(pageName) ?? theme.get("Home")).terminal}`
+          + ` ${(theme.get(pageName) ?? theme.get("Home"))!.terminal}`
           + ` ${firaCode.className}`
         }
         onSubmit={e => {

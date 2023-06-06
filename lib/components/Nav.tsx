@@ -46,7 +46,7 @@ export default function Nav({
     setActivePage(initialPage);
     onChange && onChange(initialPage);
     setOtherPages(prev => prev.filter(page => page !== initialPage));
-  }, []);
+  }, [onChange]);
 
   return (
     <>

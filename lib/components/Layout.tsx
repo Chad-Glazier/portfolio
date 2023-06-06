@@ -15,7 +15,7 @@ export default function Layout({
   className?: string;
 }) {
   const [pageName, setPageName] = useState("--");
-  const pageTheme = theme.get(pageName) ?? theme.get("Home");
+  const pageTheme = (theme.get(pageName) ?? theme.get("Home"))!;
 
   return (
     <>
