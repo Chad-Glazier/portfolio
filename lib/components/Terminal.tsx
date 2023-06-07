@@ -53,7 +53,7 @@ Enter \`help\` for a list of commands.
           e.preventDefault();
           let newOutput = processCommand(input, {
             currentPage: pageName,
-            otherPages: otherPageNames,
+            otherPages: [...otherPageNames],
             onNavigate,
             close       
           });

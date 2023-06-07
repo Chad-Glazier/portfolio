@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import Head from "next/head";
 import Nav from "./Nav";
 import layoutStyle from "@/styles/components/Layout.module.css";
@@ -15,6 +15,7 @@ export default function Layout({
   className?: string;
 }) {
   const [pageName, setPageName] = useState("--");
+  const onChangeHandler = useCallback((newPage: string) => setPageName(newPage), []);
   const pageTheme = (theme.get(pageName) ?? theme.get("Home"))!;
 
   return (
@@ -24,7 +25,7 @@ export default function Layout({
       </Head>
       <Nav 
         className={pageTheme.nav}
-        onChange={(newPage) => setPageName(newPage)} 
+        onChange={onChangeHandler} 
       />
       <main className={
         layoutStyle.main 

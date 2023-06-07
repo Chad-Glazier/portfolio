@@ -58,7 +58,7 @@ function animateTextSwap(
   const interval = setInterval(() => {
     if (progress >= 1) {
       clearInterval(interval);
-      onFrame(stringA, stringB);
+      onFrame(stringB, stringA);
       onComplete();
       return;
     }

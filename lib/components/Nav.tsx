@@ -43,10 +43,49 @@ export default function Nav({
       initialPage = "home";
     }
     initialPage = capitalize(initialPage);
-    setActivePage(initialPage);
     onChange && onChange(initialPage);
+    setActivePage(prev => initialPage);
     setOtherPages(prev => prev.filter(page => page !== initialPage));
   }, [onChange]);
+
+  function swapActive(
+    newPage: string
+  ) {
+    if (newPage == "github") {
+      window.open("https://github.com/Chad-Glazier", "_blank");
+      return;
+    }
+    if (inAnimation.current) {
+      return;
+    }
+    const targetIndex = otherPages.indexOf(capitalize(newPage) || "Home");
+    if (targetIndex == -1) {
+      console.error(`${newPage} is not a valid target. Current state's \`otherPages\`:`);
+      console.error(otherPages);
+      return;
+    }
+    inAnimation.current = true;
+    const initialTargetPage = otherPages[targetIndex];
+    const initialActivePage = activePage;
+    animateTextSwap(
+      initialTargetPage,
+      initialActivePage,
+      {
+        duration: 500,
+        onFrame(newTargetPage, newActivePage) {
+          setActivePage(prev => newActivePage);
+          setOtherPages(prev => 
+            prev.map((el, i) => i == targetIndex ? newTargetPage :  el)
+          )                       
+        },
+        onComplete() {
+          inAnimation.current = false;
+        }
+      }
+    );
+    setOpen(false);
+    onChange && onChange(initialTargetPage);
+  }
 
   return (
     <>
@@ -56,44 +95,10 @@ export default function Nav({
         otherPageNames={[...otherPages, "github"]}
         close={() => setShowTerminal(false)}
         onNavigate={(newPage) => {
-          if (newPage == "github") {
-            window.open("https://github.com/Chad-Glazier", "_blank");
-            return;
-          }
-          newPage = capitalize(newPage);
-          if (inAnimation.current) {
-            return;
-          }
-          setOpen(false);
-          onChange && onChange(newPage);
-          inAnimation.current = true;
-          const initialTargetPage = newPage || "Home";
-          const initialActivePage = activePage;
-          animateTextSwap(
-            initialTargetPage,
-            initialActivePage,
-            {
-              duration: 500,
-              onFrame(newTargetPage, newActivePage) {
-                setActivePage(newActivePage);
-                setOtherPages(prev => prev.map((_, idx) => {
-                  if (idx === otherPages.indexOf(newPage || "Home"))
-                    return newTargetPage;
-                  return prev[idx];
-                }));                          
-              },
-              onComplete() {
-                setActivePage(initialTargetPage);
-                setOtherPages(prev => prev.map((_, idx) => {
-                  if (idx === otherPages.indexOf(newPage || "Home"))
-                    return initialActivePage;
-                  return prev[idx];
-                }))
-                inAnimation.current = false;
-              }
-            }
-          );          
-          router.push("/" + newPage.toLowerCase());
+          swapActive(newPage); 
+          if (newPage != "github") {
+            router.push("/" + newPage.toLowerCase());
+          }        
         }}
       />
       <Head>
@@ -125,7 +130,7 @@ export default function Nav({
         >
         {
           otherPages
-            .map((page, i) => (
+            .map((page, index) => (
               <div key={page} className={styles.navItem}>
                 <Link
                   href={pageUrls.get(page) ?? ""}
@@ -133,37 +138,8 @@ export default function Nav({
                   onClick={e => {
                     if (inAnimation.current) {
                       e.preventDefault();
-                      return;
                     }
-                    setOpen(false);
-                    onChange && onChange(page);
-                    inAnimation.current = true;
-                    const initialTargetPage = page;
-                    const initialActivePage = activePage;
-                    animateTextSwap(
-                      initialTargetPage,
-                      initialActivePage,
-                      {
-                        duration: 500,
-                        onFrame(newTargetPage, newActivePage) {
-                          setActivePage(newActivePage);
-                          setOtherPages(prev => prev.map((_, idx) => {
-                            if (idx === i)
-                              return newTargetPage;
-                            return prev[idx];
-                          }));                          
-                        },
-                        onComplete() {
-                          setActivePage(initialTargetPage);
-                          setOtherPages(prev => prev.map((_, idx) => {
-                            if (idx === i)
-                              return initialActivePage;
-                            return prev[idx];
-                          }))
-                          inAnimation.current = false;
-                        }
-                      }
-                    );
+                    swapActive(page);
                   }}
                 >
                   {page}
