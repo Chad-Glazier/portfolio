@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import Nav from "./Nav";
 import layoutStyle from "@/styles/components/Layout.module.css";

@@ -1,7 +1,7 @@
 import styles from "@/styles/components/Terminal.module.css";
 import theme from "@/styles/theme";
 import { Fira_Code } from "next/font/google";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { DoublyLinkedList, animateText } from "@/lib";
 
 const firaCode = Fira_Code({
@@ -35,6 +35,11 @@ Enter \`help\` for a list of commands.
   );
   const [input, setInput] = useState("");
   const ctrlKeyPressed = useRef(false);
+  useEffect(() => {
+    if (show) {
+      document.getElementById("terminal-input")!.focus();
+    }
+  }, [show]);
 
   return (
     <div className={styles.backdrop + " " + (show ? "" : styles.closed)} onClick={close}>

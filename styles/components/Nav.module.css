@@ -11,6 +11,7 @@
   width: 100%;
 
   transition: all 1000ms ease-in-out;
+  z-index: 100;
 }
 
 .terminalIcon {
@@ -29,6 +30,25 @@
   border: 1px solid lightgreen;
   background-color: lightgreen;
   transform: scale(1.05);
+}
+
+.terminalIcon.neverClicked {
+  animation: breathe 2.5s infinite linear;
+}
+
+@keyframes breathe {
+  0%   { 
+    background-color: green;
+    transform: scale(1);
+  }
+  50%  { 
+    background-color: #afa;
+    transform: scale(1.05); 
+  }
+  100% { 
+    background-color: green;
+    transform: scale(1); 
+  }
 }
 
 .activePageContainer {

@@ -4,7 +4,7 @@
 
 .nav {
   color: #eee;
-  background-color: #222;
+  background-color: #111;
 }
 
 .main {
@@ -12,3 +12,19 @@
   background-color: #222;
 }
 
+.project .description a {
+  transition: all 400ms;
+}
+
+.project a:hover {
+  color: #aaa;
+}
+
+.project {
+  border: 2px solid #444;
+  background-color: #111;
+}
+
+.project .deleteButton div:before, .project .deleteButton div:after {
+  background-color: #fff;
+}

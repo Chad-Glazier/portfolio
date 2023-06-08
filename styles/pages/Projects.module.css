@@ -1,0 +1,86 @@
+.projects {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.project {
+  width: min(calc(100vw - 2rem), 1000px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.5);
+  transition: all 600ms;
+  position: relative;
+}
+
+.project.collapsed {
+  gap: 1rem;
+  flex-direction: column;
+  width: min(calc(100vw - 2rem), 500px);
+}
+
+.project.collapsed:hover {
+  cursor: pointer;
+}
+
+.project.collapsed .description {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.project h1 {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+.demo {
+  aspect-ratio: 16 / 9;
+  width: calc(100% - 100px);
+  height: auto;
+  object-fit: cover;
+  background-color: transparent;
+  transition: all 600ms;
+}
+
+.project.collapsed .demo {
+  width: 100%;
+}
+
+.description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.1rem;
+  transition: all 600ms;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.project a {
+  transition: all 400ms;
+  text-decoration: underline;
+}
+
+.description li {
+  margin-left: 1rem;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 3px;
+  right: -25px;
+  transition: all 600ms;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}

@@ -36,6 +36,7 @@ export default function Nav({
   const inAnimation = useRef(false);
   const [showTerminal, setShowTerminal] = useState(false);
   const router = useRouter();
+  const [terminalHasBeenClicked, setTerminalHasBeenClicked] = useState(false);
 
   useEffect(() => {
     let initialPage = window.location.pathname.substring(1);
@@ -102,7 +103,7 @@ export default function Nav({
         }}
       />
       <Head>
-        <title>{activePage}</title>
+        <title>{`Chad Glazier | ${activePage == "Resume" ? "Resumé" : activePage}`}</title>
       </Head>
       <nav 
         className={
@@ -122,7 +123,7 @@ export default function Nav({
           <span
             onClick={() => setOpen(prev => !prev)}
           >
-            {activePage}  
+            {activePage == "Resume" ? "Resumé" : activePage}  
           </span>
         </div>
         <div 
@@ -142,7 +143,7 @@ export default function Nav({
                     swapActive(page);
                   }}
                 >
-                  {page}
+                  {page == "Resume" ? "Resumé" : page}
                 </Link>
               </div>
             ))
@@ -154,10 +155,14 @@ export default function Nav({
               styles.terminalIcon
               + ` ${showTerminal ? styles.active : styles.inactive}`
               + ` ${theme.get(activePage)?.terminalIcon}`
+              + ` ${terminalHasBeenClicked ? "" : styles.neverClicked}`
             }
-            onClick={() => setShowTerminal(prev => !prev)}
+            onClick={() => {
+              setShowTerminal(prev => !prev);
+              setTerminalHasBeenClicked(true);
+            }}
             height={40}
-            width={40}
+            width={50}
             alt={"Open Terminal"}
             src={"/terminal.png"}
             title={"Click here to open the terminal!"}
