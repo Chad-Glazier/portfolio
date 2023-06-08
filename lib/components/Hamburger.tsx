@@ -1,5 +1,6 @@
 import styles from "@/styles/components/Hamburger.module.css";
 import theme from "@/styles/theme";
+import { useEffect, useState } from "react";
 
 export default function Hamburger({
   open,
@@ -10,6 +11,14 @@ export default function Hamburger({
   pageName: string;
   className?: string
 }) {
+  const [lastValidPage, setLastValidPage] = useState("Home");
+
+  useEffect(() => {
+    if (theme.get(pageName) !== undefined) {
+      setLastValidPage(pageName);
+    }
+  }, [pageName])
+
   return (
     <div 
       className={
@@ -21,7 +30,7 @@ export default function Hamburger({
       {Array(3).fill(0).map((_, i) => (
         <div
           key={i}
-          className={styles.bar + " " + (theme.get(pageName) ?? theme.get("Home"))!.hamburger}
+          className={styles.bar + " " + theme.get(lastValidPage)!.hamburger}
         ></div>
       ))}
     </div>

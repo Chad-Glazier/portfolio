@@ -6,6 +6,6 @@ const theme = new Map<string, Record<string, string>>();
 theme.set("Home", light);
 theme.set("Contact", dark);
 theme.set("Projects", dark);
-theme.set("Education", dark);
+theme.set("Resume", dark);
 
 export default theme;
