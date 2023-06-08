@@ -2,7 +2,7 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
+  z-index: 101;
   transition: all 600ms;
   background-color: rgba(0, 0, 0, 0.5);
 }
