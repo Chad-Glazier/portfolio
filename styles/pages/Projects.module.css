@@ -42,7 +42,7 @@
 
 .demo {
   aspect-ratio: 16 / 9;
-  width: calc(100% - 100px);
+  width: calc(100% - 2rem);
   height: auto;
   object-fit: cover;
   background-color: transparent;
