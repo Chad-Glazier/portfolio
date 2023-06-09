@@ -3,4 +3,5 @@
   min-height: 100vh;
   min-width: 100vw;
   transition: all 1000ms ease-in-out;
+  background-image: url("/noise.svg");
 }

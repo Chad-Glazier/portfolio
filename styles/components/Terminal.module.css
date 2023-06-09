@@ -24,6 +24,7 @@
 
   padding: 1rem;
   border: 2px solid darkgreen;
+  border-radius: 10px;
   animation: breathAccent 3s infinite;
   box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
   background-color: rgba(0, 0, 0, 0.95);

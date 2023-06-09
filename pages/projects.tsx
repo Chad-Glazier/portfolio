@@ -135,7 +135,7 @@ export default function Projects() {
           <div className={styles.description}>
             <h2>Preface</h2>
             <p>
-              I will preface this by pointing out that this project isn&apos;t by any means intended to be a performant or
+              I will first point out that this project isn&apos;t by any means intended to be a performant or
               genuinely useful library; in fact, the idea of programming objects in Lisp is a makes me a 
               little nauseous. However, it was a fun project that forced me to go out of my comfort zone
               and consider some of the finer details of OOP and Lisp.
@@ -145,7 +145,7 @@ export default function Projects() {
               This project originally started as an assignment for one of my courses, where we
               were tasked with implementing a rudimentary accumulator machine in an object-oriented
               way while using Scheme. Since Scheme (like all dialects of Lisp) is a functional language,
-              implementing any sort of objects is verbose and complex, relying on the state of closures
+              implementing any sort of object is verbose and complex, relying on the state of closures
               instead of structs or other complex datatypes conveniently included in most languages.
             </p>
             <Image

@@ -7,6 +7,18 @@
   gap: 2rem;
 }
 
+@media (max-height: 600px) {
+  .page {
+    padding-top: 5vh;
+  }
+}
+
+@media (max-height: 740px) and (min-width: 800px) {
+  .page {
+    flex-direction: row;
+  }
+}
+
 .headshot {
   border-radius: 100%;
 }
