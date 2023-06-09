@@ -9,7 +9,6 @@ const styles = mergeStyles(theme.get("Contact")!, pageStyles);
 export default function Contact() {
   return (
     <article className={styles.page}>
-      <h1>Contact</h1>
       <Image
         className={styles.headshot}
         src="/headshot.jpg"
@@ -17,6 +16,34 @@ export default function Contact() {
         width={300}
         alt="A picture of me!"
       />
+      <section
+        className={styles.socials}
+      >
+        <Link
+          href="https://www.linkedin.com/in/chad-glazier-4b585a257?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BiTFTt1cyT7OFkyvs9OdR2g%3D%3D"
+          target="_blank"
+        >
+          <Image
+            className={styles.linkedInLink}
+            src="/linkedin.png"
+            alt="Click here to visit my LinkedIn Page!"
+            width={30}
+            height={30}
+          />          
+        </Link>
+        <Link
+          href="https://github.com/Chad-Glazier"
+          target="_blank"
+        >
+          <Image
+            className={styles.githubLink}
+            src="/github.png"
+            alt="Click here to visit my Github!"
+            width={30}
+            height={30}
+          />          
+        </Link>
+      </section>
       <table className={styles.contactInfo}>
         <tr>
           <th>Email</th>

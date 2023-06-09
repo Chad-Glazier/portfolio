@@ -7,14 +7,17 @@
   background-color: #111;
 }
 
-.nav .activePageContainer {
+.nav:not(.open) .activePageContainer {
   border-bottom: 2px solid #116;
   animation: breathAccent 4s infinite;
   box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);
 }
 
-.nav.open {
-  box-shadow: 0px 0px 10rem 2rem rgba(158, 61, 255, 1);
+.nav.open .inactivePages {
+  background-color: #111;
+  border-bottom: 2px solid #116;
+  animation: breathAccent 4s infinite;
+  box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);
 }
 
 .main {
@@ -56,4 +59,8 @@
   100% {
     border-color: #116;
   }
+}
+
+.contactInfo th, .contactInfo td {
+  animation: breathAccent 4s infinite;
 }

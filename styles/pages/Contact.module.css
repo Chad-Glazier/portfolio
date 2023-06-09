@@ -1,8 +1,51 @@
 .page {
-  display: grid; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10vh;
+  gap: 2rem;
 }
 
 .headshot {
   border-radius: 100%;
 }
 
+.contactInfo {
+  border-collapse: collapse;
+  font-size: 1.1rem;
+}
+
+.contactInfo th, .contactInfo td {
+  border-bottom: 2px solid grey;
+  padding: 1rem;
+}
+
+.contactInfo th {
+  text-transform: uppercase;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.githubLink {
+  border-radius: 100%;
+  border: 1px solid transparent;
+}
+
+.linkedInLink {
+  border-radius: 5px;
+}
+
+.githubLink, .linkedInLink {
+  transition: all 400ms;
+}
+
+.githubLink:hover, .linkedInLink:hover {
+  background-color: #fff;
+}

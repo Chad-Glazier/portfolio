@@ -7,15 +7,15 @@
   background-color: #eee;
 }
 
-.nav .activePageContainer {
+.nav:not(.open) .activePageContainer {
   border-bottom: 2px solid #026;
   animation: breathAccent 4s infinite;
-  transition: all 200ms ease-in-out;
-  box-shadow: 0px 0px 2rem 2px rgba(0, 255, 234, 0.5);
 }
 
-.nav.open {
-  box-shadow: 0px 0px 10rem 7rem rgba(61, 226, 255, 1);
+.nav.open .inactivePages {
+  border-bottom: 2px solid #026;
+  animation: breathAccent 4s infinite;
+  background-color: #eee;
 }
 
 .main {
@@ -66,4 +66,9 @@
   100% {
     border-color: #026;
   }
+}
+
+
+.contactInfo th, .contactInfo td {
+  animation: breathAccent 4s infinite;
 }
