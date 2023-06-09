@@ -24,7 +24,6 @@ export default function Layout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Nav 
-        className={pageTheme.nav}
         onChange={onChangeHandler} 
       />
       <main className={

@@ -1,28 +1,46 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: cetner;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.sectionHeading {
+  padding-top: 2.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  width: min(calc(100% - 1rem), 1000px);
+}
+
 .projects {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .project {
-  width: min(calc(100vw - 2rem), 1100px);
+  width: min(calc(100vw), 1100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.5);
   transition: all 600ms;
   position: relative;
 }
 
 .project.collapsed {
+  border-width: 3px;
   gap: 1rem;
   flex-direction: column;
-  width: min(calc(100vw - 2rem), 500px);
+  width: min(calc(100vw - 2rem), 600px);
+  transition: all 400ms;
+  gap: 0;
 }
 
 .project.collapsed:hover {
@@ -35,18 +53,22 @@
   overflow: hidden;
 }
 
+.project.collapsed h1 {
+  font-size: 1.8rem;
+}
+
 .project h1 {
   font-size: 2.2rem;
   text-align: center;
 }
 
 .demo {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8.6;
   width: calc(100% - 2rem);
   height: auto;
   object-fit: cover;
   background-color: transparent;
-  transition: all 600ms;
+  transition: all 0ms;
 }
 
 .project.collapsed .demo {
@@ -59,7 +81,7 @@
   flex-direction: column;
   gap: 1rem;
   font-size: 1.1rem;
-  transition: all 600ms;
+  transition: all 0ms;
   padding: 0 1rem 1rem 1rem;
 }
 
@@ -79,8 +101,28 @@
   transition: all 600ms;
 }
 
+@media (max-width: 1200px) {
+  .deleteButton {
+    right: 10px;
+  }
+}
+
 .links {
   display: flex;
   flex-direction: row;
   gap: 2rem;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.project .codeExample {
+  height: auto;
+  width: min(400px, calc(100% - 1rem));
+  object-fit: contain;
+  padding-left: 2rem;
 }

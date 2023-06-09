@@ -7,9 +7,19 @@
   background-color: #111;
 }
 
+.nav .activePageContainer {
+  border-bottom: 2px solid #116;
+  animation: breathAccent 4s infinite;
+  box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);
+}
+
+.nav.open {
+  box-shadow: 0px 0px 10rem 2rem rgba(158, 61, 255, 1);
+}
+
 .main {
   color: #eee;
-  background-color: #222;
+  background: #111;
 }
 
 .project .description a {
@@ -21,10 +31,29 @@
 }
 
 .project {
-  border: 2px solid #444;
   background-color: #111;
+  border-top: 3px solid #116;
+  border-bottom: 3px solid #116;
+  animation: breathAccent 4s infinite;
+  background-color: #222;
+}
+
+.project.collapsed:hover {
+  box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);
 }
 
 .project .deleteButton div:before, .project .deleteButton div:after {
   background-color: #fff;
+}
+
+@keyframes breathAccent {
+  0% { 
+    border-color: #116;
+  }
+  50% {
+    border-color: #aaf;
+  }
+  100% {
+    border-color: #116;
+  }
 }

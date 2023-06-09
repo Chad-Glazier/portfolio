@@ -35,7 +35,7 @@ export default function mergeStyles(
 ): Record<string, string> {
   if (styleObjects.length === 0) return {};
 
-  let mergedStyles: Record<string, string> = styleObjects[0];
+  let mergedStyles: Record<string, string> = Object.assign({}, styleObjects[0]);
 
   styleObjects.slice(1).map(obj => {
     Object.keys(obj).map(key => {

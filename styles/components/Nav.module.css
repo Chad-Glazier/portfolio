@@ -29,25 +29,22 @@
   cursor: pointer;
   border: 1px solid lightgreen;
   background-color: lightgreen;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-.terminalIcon.neverClicked {
-  animation: breathe 2.5s infinite linear;
+.terminalIcon:not(:hover):not(.active) {
+  animation: breathe 3s infinite linear;
 }
 
 @keyframes breathe {
   0%   { 
-    background-color: green;
-    transform: scale(1);
+    background-color: #393;
   }
   50%  { 
     background-color: #afa;
-    transform: scale(1.05); 
   }
   100% { 
-    background-color: green;
-    transform: scale(1); 
+    background-color: #393;
   }
 }
 
@@ -89,12 +86,12 @@
 
   padding-left: 10px;
   color: inherit;
-  background-color: inherit;
+  background-color: transparent;
 
   display: flex;
   flex-direction: column;
 
-  transition: top 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .inactivePages.closed {

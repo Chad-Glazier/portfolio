@@ -2,7 +2,7 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 101;
+  z-index: 200;
   transition: all 600ms;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -16,17 +16,17 @@
   width: min(calc(100vw - 2rem), 1000px);
   height: min(calc(100vh - 4rem), 500px);
   position: fixed;
-  top: calc(-1 * min(calc(100vh - 4rem), 500px));
+  bottom: calc(-1 * min(calc(100vh - 4rem), 500px));
   left: calc(50vw);
   transition: all 600ms;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
   z-index: 11;
 
   padding: 1rem;
   border: 2px solid darkgreen;
-  border-radius: 1rem;
+  animation: breathAccent 3s infinite;
   box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   color: #8f8;
 
   display: flex;
@@ -35,7 +35,7 @@
 }
 
 .terminal.show {
-  top: 50vh;
+  bottom: 50vh;
 }
 
 .output {
@@ -55,4 +55,16 @@
 
 .input:focus {
   border: 2px solid lightgreen;
+}
+
+@keyframes breathAccent {
+  0% { 
+    border-color: #161;
+  }
+  50% {
+    border-color: #afa;
+  }
+  100% {
+    border-color: #161;
+  }
 }

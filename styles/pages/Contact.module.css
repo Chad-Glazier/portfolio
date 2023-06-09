@@ -1,0 +1,8 @@
+.page {
+  display: grid; 
+}
+
+.headshot {
+  border-radius: 100%;
+}
+

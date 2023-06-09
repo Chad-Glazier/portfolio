@@ -7,6 +7,17 @@
   background-color: #eee;
 }
 
+.nav .activePageContainer {
+  border-bottom: 2px solid #026;
+  animation: breathAccent 4s infinite;
+  transition: all 200ms ease-in-out;
+  box-shadow: 0px 0px 2rem 2px rgba(0, 255, 234, 0.5);
+}
+
+.nav.open {
+  box-shadow: 0px 0px 10rem 7rem rgba(61, 226, 255, 1);
+}
+
 .main {
   color: #222;
   background-color: #eee;
@@ -17,14 +28,42 @@
 }
 
 .project a:hover {
-  color: #444;
-}
-
-.project {
-  background-color: #aaa;
-  border: 2px solid #444;
+  color: #666;
 }
 
 .project .deleteButton {
   background-color: #222;
+}
+
+.project {
+  font-weight: 500;
+  color: #111;
+  background-color: #fff;
+  border-top: 3px solid #026;
+  border-bottom: 3px solid #026;
+  animation: breathAccent 4s infinite;
+}
+
+.project.collapsed:hover {
+  box-shadow: 0px 0px 2rem 2px rgba(0, 247, 255, 0.5);
+}
+
+.project .deleteButton {
+  background-color: transparent;
+}
+
+.project .deleteButton div:before, .project .deleteButton div:after {
+  background-color: #000;
+}
+
+@keyframes breathAccent {
+  0% { 
+    border-color: #026;
+  }
+  50% {
+    border-color: #5af;
+  }
+  100% {
+    border-color: #026;
+  }
 }

@@ -1,4 +1,4 @@
-import styles from "@/styles/components/Nav.module.css";
+import componentStyles from "@/styles/components/Nav.module.css";
 import Link from "next/link";
 import Head from "next/head";
 import { useEffect, useState, useRef } from "react";
@@ -9,6 +9,7 @@ import { Fira_Code } from "next/font/google";
 import Terminal from "./Terminal";
 import { useRouter } from "next/router";
 import theme from "@/styles/theme";
+import mergeStyles from "../functions/mergeStyles";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
@@ -47,7 +48,10 @@ export default function Nav({
     onChange && onChange(initialPage);
     setActivePage(prev => initialPage);
     setOtherPages(prev => prev.filter(page => page !== initialPage));
+    setStyles(mergeStyles(componentStyles, theme.get(initialPage)!));
   }, [onChange]);
+
+  const [styles, setStyles] = useState(mergeStyles(componentStyles, theme.get("Home")!));
 
   function swapActive(
     newPage: string
@@ -68,6 +72,7 @@ export default function Nav({
     inAnimation.current = true;
     const initialTargetPage = otherPages[targetIndex];
     const initialActivePage = activePage;
+    setStyles(mergeStyles(componentStyles, theme.get(initialTargetPage)!))
     animateTextSwap(
       initialTargetPage,
       initialActivePage,
@@ -108,6 +113,7 @@ export default function Nav({
       <nav 
         className={
           styles.nav 
+          + " " + (open ? styles.open : "")
           + " " + firaCode.className 
           + " " + (className ? className : "")
         }
@@ -135,7 +141,7 @@ export default function Nav({
               <div key={page} className={styles.navItem}>
                 <Link
                   href={pageUrls.get(page) ?? ""}
-                  className={styles.navItem}
+                  // className={styles.navItem}
                   onClick={e => {
                     if (inAnimation.current) {
                       e.preventDefault();
