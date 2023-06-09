@@ -27,7 +27,7 @@
 
 .main {
   color: #eee;
-  background: #111;
+  background: #000;
 }
 
 .project .description a {
@@ -68,4 +68,20 @@
 
 .contactInfo th, .contactInfo td {
   animation: breathAccent 4s infinite;
+}
+
+.project .button {
+  background-color: #111;
+  color: #fff;
+  border-color: 2px solid #444;
+}
+
+.project .button:hover {
+  background-color: #333;
+  color: #eee;
+  border-color: #000;
+}
+
+.project .technologies th, .project .technologies td {
+  border-color: #666;
 }

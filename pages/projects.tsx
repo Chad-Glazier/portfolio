@@ -41,32 +41,21 @@ export default function Projects() {
           {exhibitSiteExpanded &&
             <div className={styles.links}>
               <Link
+                className={styles.button + " " + styles.sourceCode}
                 href="https://github.com/Chad-Glazier/exhibit-site#readme"
                 target="_blank"
               >
-                Open on Github
+                Source Code
               </Link> 
               <Link
+                className={styles.button + " " + styles.liveSite}
                 href="https://exhibit-site.vercel.app/"
                 target="_blank"
               >
-                Visit the Site
+                See Live
               </Link>
             </div>
           }
-          <div className={styles.description}>
-            <p>
-              This website was created for the Greater Vernon Museum &amp;
-              Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
-              and they tasked me with creating a simpler content-management system that was more
-              specific to their needs.
-            </p>
-            <p>
-              At the time of writing, the website is not yet fully deployed but you can still
-              visit it at the link above. Since the backend of the CMS is meant for museum staff
-              only, I&apos;ve included the video below to demonstrate the system.
-            </p>
-          </div>
           {!exhibitSiteExpanded ?
             <Image
               width={600}
@@ -87,6 +76,57 @@ export default function Projects() {
               className={styles.demo}
             />            
           }
+          <hr />
+          <div className={styles.description}>
+            <p>
+              This website was created for the Greater Vernon Museum &amp;
+              Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
+              and they tasked me with creating a simpler content-management system that was more
+              specific to their needs.
+            </p>
+            <p>
+              At the time of writing, the website is not yet fully deployed but you can still
+              visit it at the link above. Since the backend of the CMS is meant for museum staff
+              only, I&apos;ve included the video above to demonstrate the system.
+            </p>
+            <p style={{ width: "100%" }}>
+              Below is a list of the technologies used in this project.
+            </p>
+            <table className={styles.technologies}>
+              <thead>
+                <tr>
+                  <th>Technology</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>NextJS / React</td>
+                  <td>The core framework</td>
+                </tr>
+                <tr>
+                  <td>TypeScript</td>
+                  <td>TypeScript&apos;s blue logo looks way nicer than JavaScript&apos;s yellow one.</td>
+                </tr>
+                <tr>
+                  <td>MySQL & Prisma</td>
+                  <td>The database system</td>
+                </tr>
+                <tr>
+                  <td>Lexical</td>
+                  <td>The framework used to create the rich text editors</td>
+                </tr>
+                <tr>
+                  <td>Cloudflare R2</td>
+                  <td>Third-party web service to store image uploads</td>
+                </tr>
+                <tr>
+                  <td>Zod</td>
+                  <td>Runtime type validation, especially for communication between the client and Rest API</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
       <h1 className={styles.sectionHeading}>
@@ -125,10 +165,11 @@ export default function Projects() {
           {accumulatorMachineExpanded &&
             <div className={styles.links}>
               <Link
+                className={styles.button + " " + styles.sourceCode}
                 href="https://github.com/Chad-Glazier/r5rs-accumulator-machine"
                 target="_blank"
               >
-                Open on Github
+                Source Code
               </Link> 
             </div>
           }
@@ -172,7 +213,7 @@ export default function Projects() {
             />
             <em>
               You might also notice that the first example, with the explicit closure, doesn&apos;t include
-              any type-checking or input validation of any sort, while the second example (using the library)
+              any type-checking, input validation, or access modification of any sort, while the second example (using the library)
               includes both. If the pure R5RS example were a true analogy, it would be twice as verbose as it
               already is.
             </em>

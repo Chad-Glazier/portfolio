@@ -1,26 +1,28 @@
 .hamburger {
-  background-color: #222;
+  background-color: #eee;
 }
 
 .nav {
-  color: #222;
-  background-color: #fff;
+  color: #eee;
+  background: #080820;
 }
 
 .nav .activePageContainer {
-  border-bottom: 2px solid #026;
+  background: #124;
+  border-bottom: 2px solid #000;
   animation: breathAccent 4s infinite;
 }
 
 .nav .inactivePages {
-  border-bottom: 2px solid #026;
+  background-color: #001;
+  border-bottom: 2px solid #000;
   animation: breathAccent 4s infinite;
-  background-color: #fff;
+  background: #124;
 }
 
 .main {
-  color: #222;
-  background: #fff;
+  color: #eee;
+  background: #080820;
 }
 
 .project .description a {
@@ -32,13 +34,13 @@
 }
 
 .project .deleteButton {
-  background-color: #222;
+  background-color: #eee;
 }
 
 .project {
   font-weight: 500;
   color: #111;
-  background-color: #fff;
+  background-color: #aaf;
   border-top: 3px solid #026;
   border-bottom: 3px solid #026;
   animation: breathAccent 4s infinite;
@@ -67,7 +69,6 @@
     border-color: #026;
   }
 }
-
 
 .contactInfo th, .contactInfo td {
   animation: breathAccent 4s infinite;

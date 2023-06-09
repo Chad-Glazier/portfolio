@@ -8,8 +8,9 @@ const styles = mergeStyles(theme.get("Resume")!, pageStyles);
 export default function Resume() {
   return (
     <article className={styles.page}>
-      <h1 className={styles.heading}>Resume</h1>
-
+      <section>
+        
+      </section>
     </article>
   )
 }

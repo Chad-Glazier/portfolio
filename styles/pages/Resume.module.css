@@ -1,0 +1,10 @@
+.page {
+  background-image: url("/grid.svg");
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-color: inherit;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
