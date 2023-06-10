@@ -39,11 +39,10 @@
 }
 
 .project {
-  background-color: #111;
+  background-color: transparent;
   border-top: 3px solid #116;
   border-bottom: 3px solid #116;
   animation: breathAccent 4s infinite;
-  background-color: #222;
 }
 
 .project.collapsed:hover {
@@ -71,15 +70,16 @@
 }
 
 .project .button {
-  background-color: #111;
-  color: #fff;
-  border-color: 2px solid #444;
+  background-color: transparent;
+  color: #aaa;
+  border-color: 2px solid #aaa;
+  border-radius: 5px;
 }
 
 .project .button:hover {
-  background-color: #333;
-  color: #eee;
-  border-color: #000;
+  border-radius: 0;
+  color: #fff;
+  border-color: #fff;
 }
 
 .project .technologies th, .project .technologies td {

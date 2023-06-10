@@ -1,8 +1,8 @@
 .page {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
   padding-bottom: 2rem;
   padding-left: 10%;
@@ -19,11 +19,24 @@
 .projects {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
   width: min(calc(100vw - 2rem), 1200px);
+}
+
+.project {
+  width: min(calc(100vw - 2rem), 1100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  transition: all 600ms;
+  position: relative;
+  border-radius: 0;
 }
 
 @media (max-width: 1200px) {
@@ -38,6 +51,11 @@
     justify-content: center;
     align-items: center;
   }
+
+  .project {
+    padding: 1rem 0;
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 700px) {
@@ -45,19 +63,6 @@
     padding-left: 0;
     padding-right: 0;
   };
-}
-
-.project {
-  width: min(calc(100vw - 2rem), 1100px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  transition: all 600ms;
-  position: relative;
-  border-radius: 0;
 }
 
 .project.collapsed {
@@ -162,10 +167,6 @@
 .description h2 {
   width: 100%;
   text-align: left;
-}
-
-.project:not(.collapsed) {
-  padding-left: 2rem;
 }
 
 .project .codeExample {
