@@ -108,7 +108,7 @@ const contentSlides = [
         {
           name: "HTML5 & CSS3",
           urls: ["/html5.svg", "/css3.svg", "/css-modules.svg"],
-          description: "In the past I've had a slight bias towards back-end work, so I'm not a wizard with the UI markup languages. However, I do have a solid grasp on their fundamentals and I look forward to learning more advanced techniques."
+          description: "I wouldn't consider myself a wizard with UI markup languages, but I do have a solid grasp on the fundamentals and I enjoy pushing limits with them. It might be controversial to say, but I actually enjoy writing CSS."
         },
         {
           name: "Other Backend Languages",
