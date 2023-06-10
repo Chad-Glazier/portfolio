@@ -1,10 +1,211 @@
 .page {
-  background-image: url("/grid.svg");
-  background-attachment: fixed;
-  background-repeat: repeat;
-  background-color: inherit;
+  height: calc(100vh - var(--nav-height));
+  width: 100%;
 
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls .arrowButton {
+  flex-grow: 1;
+  height: 100%;
+  background-color: transparent;
+  border-top-style: solid;
+  border-bottom-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  border-width: 1px;
+}
+
+.controls .arrowButton:last-of-type {
+  border-left-style: solid;
+}
+
+.controls .arrowButton:hover {
+  cursor: pointer;
+}
+
+.controls .arrowButton {
+  border-color: #aaa;
+  transition: all 400ms;
+}
+
+.controls .arrowButton:hover {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.controls .arrowButton .arrowImage {
+  transition: all 400ms;
+}
+
+.controls .arrowButton:first-of-type:hover .arrowImage {
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+.controls .arrowButton:last-of-type:hover .arrowImage {
+  margin-left: 10px;
+  margin-right: -10px;
+}
+
+.content {
+  flex-grow: 1;
+  position: relative
+}
+
+.contentSlide {
+  height: calc(100vh - 100px - var(--nav-height));
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 5fr;
+
+  position: absolute;
+  transition: 600ms all;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.contentSlide[data-status="left"] {
+  transform: translateX(-100vw);
+}
+
+.contentSlide[data-status="right"] {
+  transform: translateX(100vw);
+}
+
+.contentHeading {
+  grid-column: span 2;
+  grid-row: span 1;
+
+  padding: 2rem;
+
+  font-size: 3rem;
+  text-align: left;
+  text-transform: uppercase;
+
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #aaa;
+}
+
+.contentImage {
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+  object-position: right;
+
+  border-right-style: solid;
+  border-width: 1px;
+  border-color: #aaa;
+}
+
+.contentDescription {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.references {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 800px;
+}
+
+.reference {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.education {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 800px;
+}
+
+.education > h1 {
+  font-size: 1.8rem;
+}
+
+.educationSubsection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  padding-left: 1rem;
+}
+
+.educationSubsection h1 {
+  font-size: 1.4rem;
+}
+
+.educationSubsection a,
+.reference a 
+{
+  color: #aaa;
+  transition: all 400ms;
+}
+
+.educationSubsection a:hover,
+.reference a:hover 
+{
+  color: #fff;
+  text-decoration: underline;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  max-width: 800px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 800px) or (max-height: 800px) {
+  .contentSlide {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr 1fr;
+  }
+
+  .contentImage {
+    display: none;
+  }
 }

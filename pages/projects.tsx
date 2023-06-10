@@ -177,9 +177,9 @@ export default function Projects() {
             <h2>Preface</h2>
             <p>
               I will first point out that this project isn&apos;t by any means intended to be a performant or
-              genuinely useful library; in fact, the idea of programming objects in Lisp is a makes me a 
-              little nauseous. However, it was a fun project that forced me to go out of my comfort zone
-              and consider some of the finer details of OOP and Lisp.
+              genuinely useful library. Rather, it was an exploratory problem to put myself into the
+              shoes of those programmers who were writing Lisp before OOP even existed. It was a fun project that forced me to go out of my comfort zone
+              and seriously consider the underlying implementation of objects.
             </p>
             <h2>The Problem</h2>
             <p>
@@ -195,14 +195,16 @@ export default function Projects() {
               alt="the most beautiful code you've ever seen"
               width={400}
               height={1000}
+              priority={true}
             />
             <h2>The Solution</h2>
             <p>
-              My personal goals with this task quickly outgrew the scope of the actual assignment,
-              and I decided that instead of just implementing a bunch of closures by hand to represent
-              the components of an accumulator machine, I would create a library for R5RS (the specification
+              My personal goals with this task quickly outgrew the scope of the actual assignment;
+              I decided right away that instead of just implementing a bunch of closures by hand to represent
+              the components of an accumulator machine, I would rather create a library for R5RS (the specification
               of Scheme that we were using) that made implementing such closures simple and somewhat
-              syntactically familiar to non-Lisp programmers.
+              syntactically familiar to non-Lisp programmers. The snippet below is an example from the 
+              end result.
             </p>
             <Image
               className={styles.codeExample}
@@ -210,6 +212,7 @@ export default function Projects() {
               alt="a bunch of ugly code"
               width={400}
               height={1000}
+              priority={true}
             />
             <em>
               You might also notice that the first example, with the explicit closure, doesn&apos;t include
