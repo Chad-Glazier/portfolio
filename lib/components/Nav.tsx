@@ -15,7 +15,7 @@ const firaCode = Fira_Code({ subsets: ["latin"] });
 
 const pageUrls = new Map<string, string>();
 pageUrls.set("Home", "/");
-pageUrls.set("Projects", "/projects");
+pageUrls.set("Portfolio", "/portfolio");
 pageUrls.set("Resume", "/resume");
 pageUrls.set("Contact", "/contact");
 
@@ -28,7 +28,7 @@ export default function Nav({
 }) {
   const [activePage, setActivePage] = useState<string>("--");
   const [otherPages, setOtherPages] = useState<string[]>([
-    "Projects",
+    "Portfolio",
     "Resume",
     "Contact",
     "Home"

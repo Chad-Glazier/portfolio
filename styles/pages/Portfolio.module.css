@@ -16,7 +16,7 @@
   width: min(calc(100% - 1rem), 1000px);
 }
 
-.projects {
+.portfolio {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +47,7 @@
     align-items: center;
   }
 
-  .projects {
+  .portfolio {
     justify-content: center;
     align-items: center;
   }

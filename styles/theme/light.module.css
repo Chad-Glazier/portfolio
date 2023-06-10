@@ -10,12 +10,13 @@
 .nav .activePageContainer {
   border-bottom: 2px solid #026;
   animation: breathAccent 4s infinite;
+  background: #fff;
 }
 
 .nav .inactivePages {
   border-bottom: 2px solid #026;
   animation: breathAccent 4s infinite;
-  background-color: #fff;
+  backdrop-filter: blur(10px);
 }
 
 .main {

@@ -4,7 +4,7 @@
 
 .nav {
   color: #eee;
-  background-color: #111;
+  background: #000;
 }
 
 .nav .activePageContainer {
@@ -19,7 +19,7 @@
 }
 
 .nav .inactivePages {
-  background-color: #111;
+  backdrop-filter: blur(5px);
   border-bottom: 2px solid #116;
   animation: breathAccent 4s infinite;
   box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);

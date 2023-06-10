@@ -27,7 +27,8 @@
   border-radius: 10px;
   animation: breathAccent 3s infinite;
   box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
   color: #8f8;
 
   display: flex;

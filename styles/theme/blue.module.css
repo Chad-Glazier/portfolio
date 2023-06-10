@@ -8,16 +8,15 @@
 }
 
 .nav .activePageContainer {
-  background: #124;
   border-bottom: 2px solid #000;
   animation: breathAccent 4s infinite;
+  background: #080820;
 }
 
 .nav .inactivePages {
-  background-color: #001;
   border-bottom: 2px solid #000;
   animation: breathAccent 4s infinite;
-  background: #124;
+  backdrop-filter: blur(10px);
 }
 
 .main {

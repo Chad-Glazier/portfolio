@@ -1,15 +1,15 @@
 import mergeStyles from "@/lib/functions/mergeStyles";
-import pageStyles from "@/styles/pages/Projects.module.css";
+import pageStyles from "@/styles/pages/Portfolio.module.css";
 import theme from "@/styles/theme";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { DeleteButton } from "@/lib";
 
-const themeStyles = theme.get("Projects")!;
+const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
 
-export default function Projects() {
+export default function Portfolio() {
   const [exhibitSiteExpanded, setExhibitSiteExpanded] = useState(false);
   const [accumulatorMachineExpanded, setAccumulatorMachineExpanded] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Projects() {
       <h1 className={styles.sectionHeading}>
         Projects for Clients
       </h1>
-      <section className={styles.projects}>
+      <section className={styles.portfolio}>
         <div 
           className={
             styles.project
@@ -132,7 +132,7 @@ export default function Projects() {
       <h1 className={styles.sectionHeading}>
         Personal Projects
       </h1>
-      <section className={styles.projects}>
+      <section className={styles.portfolio}>
       <div 
           className={
             styles.project
