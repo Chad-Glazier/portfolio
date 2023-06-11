@@ -1,5 +1,5 @@
 import styles from "@/styles/components/Hamburger.module.css";
-import theme from "@/styles/theme";
+import theme from "@/styles/themes";
 import { useEffect, useState } from "react";
 
 export default function Hamburger({
@@ -11,7 +11,7 @@ export default function Hamburger({
   pageName: string;
   className?: string
 }) {
-  const [lastValidPage, setLastValidPage] = useState("Home");
+  const [lastValidPage, setLastValidPage] = useState("Intro");
 
   useEffect(() => {
     if (theme.get(pageName) !== undefined) {

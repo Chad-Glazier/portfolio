@@ -1,13 +1,13 @@
 import mergeStyles from "@/lib/functions/mergeStyles";
-import pageStyles from "@/styles/pages/Resume.module.css";
-import theme from "@/styles/theme";
+import pageStyles from "@/styles/pages/Skills.module.css";
+import theme from "@/styles/themes";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 
-const styles = mergeStyles(theme.get("Resume")!, pageStyles);
+const styles = mergeStyles(theme.get("Skills")!, pageStyles);
 
-export default function Resume() {
+export default function Skills() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -81,8 +81,8 @@ function Skill({
         key={url}
         src={url}
         alt="icon"
-        height={url == "/css-modules.svg" ? 50 : 30}
-        width={url == "/next.svg" || url == "/css-modules.svg" ? 50 : url == "/scheme.svg" ? 20 : 30}
+        height={url == "/css-modules.svg" || url == "/mysql.svg" ? 50 : 30}
+        width={url == "/next.svg" || url == "/css-modules.svg" || url == "/mysql.svg" ? 50 : url == "/scheme.svg" ? 20 : 30}
         priority={true}
       />)}
     </div>    
@@ -96,14 +96,20 @@ const contentSlides = [
     image: {
       url: "/laptop.jpg",
       alt: "nerd stuff",
-      title: "Photo by Mohammad Rahmani at https://unsplash.com/@afgprogrammer"
+      title: "Photo by Mohammad Rahmani at https://unsplash.com/@afgprogrammer",
+      fix: "right"
     },
     description: <div className={styles.skills}>
       {[
         {
           name: "JavaScript / TypeScript",
-          urls: ["/ts.svg", "/js.svg", "/react.svg", "/next.svg", "/prisma.svg", "/zod.svg", "/express.svg", "/jquery.svg"],
-          description: "JavaScript was my first language, and the one I'm most familiar with. As far as frameworks and libraries are concerned, I have experience with React, Zod, Prisma, Express, Next, and a little bit of jQuery."
+          urls: ["/ts.svg", "/js.svg", "/node.png", "/react.svg", "/next.svg", "/zod.svg", "/express.svg", "/jquery.svg"],
+          description: "JavaScript was my first language, and the one I'm most familiar with; I have experience using it in both back-end and front-end runtimes. As far as frameworks and libraries are concerned, I have experience with React, Zod, Express, Next, and a little bit of jQuery."
+        },
+        {
+          name: "Relational Databases",
+          urls: ["/prisma.svg", "/mysql.svg", "/oracle.svg", "/sqlite.svg"],
+          description: "I have used multiple kinds of SQL databases, including MySQL, SQLite3, and Oracle PL/SQL. I am comfortable writing raw SQL queries or using an ORM like Prisma."
         },
         {
           name: "HTML5 & CSS3",
@@ -123,7 +129,8 @@ const contentSlides = [
     image: {
       url: "/books.jpg",
       alt: "Books!",
-      title: "Photo by Susan Q Yin at https://unsplash.com/@syinq"
+      title: "Photo by Susan Q Yin at https://unsplash.com/@syinq",
+      fix: "right"
     },
     description: <div className={styles.education}>
       <h1>Formal Education</h1>
@@ -148,7 +155,7 @@ const contentSlides = [
           href="https://eloquentjavascript.net/"
           target="_blank"
         >
-          Link to the Book by Marijn Haverbeke
+          Book by Marijn Haverbeke
         </Link>
         <p>
           Before starting my studies at Okanagan College, I read the book &quot;Eloquent JavaScript&quot;
@@ -165,7 +172,7 @@ const contentSlides = [
           Pleasant Valley Secondary School
         </Link>
         <p>
-          In highschool I took a couple of courses for programming, which were taught with C#.
+          In highschool I took a couple of courses for programming which were taught with C#.
         </p>
       </section>
     </div>
@@ -173,7 +180,8 @@ const contentSlides = [
   {
     heading: "References",
     image: {
-      url: "/crosswalk.jpg",
+      fix: "left",
+      url: "/wizard.png",
       alt: "An image of people crossing a street from a bird's eye view",
       title: "Photo by Ryoji Iwata Yin at https://unsplash.com/@ryoji__iwata"
     },
@@ -191,19 +199,6 @@ const contentSlides = [
           a number of Computer Science courses.
         </p>
       </div>
-      <div className={styles.reference}>
-        <h1>Monique Richoux</h1>
-        <Link
-          href="mailto:mrichoux@telus.net"
-          target="_blank"
-        >
-          mrichoux@telus.net
-        </Link>
-        <p>
-          Monique Richoux is a family friend and someone I&apos;ve done odd
-          jobs for in the past.
-        </p>
-      </div>
     </div>
   }
 ];
@@ -219,6 +214,7 @@ function ContentSlide({
     url: string;
     alt?: string;
     title?: string;
+    fix?: string
   },
   description: ReactNode;
   status: "left" | "right" | "center";
@@ -241,9 +237,17 @@ function ContentSlide({
         height={1000}
         width={600}
         priority={true}
+        style={{
+          objectPosition: image.fix ?? "right"
+        }}
       />
       <div
         className={styles.contentDescription}
+        // hacky solution to some weird flex/grid thing that was going on with wide displays
+        style={{
+          justifyContent: (heading == "Technical Skills" ? "flex-start" : "center"),
+          paddingTop: (heading == "Technical Skills" ? "2rem" : "1rem")
+        }}
       >
         {description}
       </div>

@@ -8,14 +8,12 @@
 }
 
 .nav .activePageContainer {
-  border-bottom: 2px solid #026;
-  animation: breathAccent 4s infinite;
+  border-bottom: 2px solid #222;
   background: #fff;
 }
 
 .nav .inactivePages {
-  border-bottom: 2px solid #026;
-  animation: breathAccent 4s infinite;
+  border-bottom: 2px solid #222;
   backdrop-filter: blur(10px);
 }
 
@@ -72,4 +70,30 @@
 
 .contactInfo th, .contactInfo td {
   animation: breathAccent 4s infinite;
+}
+
+.intro {
+  background-image: url("/grid-dark.svg");
+}
+
+.intro .summary {
+  background-color: #015;
+  background-image: url("/grid.svg");
+  color: #fff;
+}
+
+.intro .button {
+  color: #aaa;
+  border-color: #666;
+}
+
+.intro .button:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.intro .image {
+  border-left: 2px solid #333;
+  filter: grayscale(50%);
+  opacity: 0.9;
 }

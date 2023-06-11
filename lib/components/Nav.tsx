@@ -1,37 +1,39 @@
 import componentStyles from "@/styles/components/Nav.module.css";
 import Link from "next/link";
 import Head from "next/head";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { animateTextSwap } from "@/lib";
 import Hamburger from "./Hamburger";
 import Image from "next/image";
 import { Fira_Code } from "next/font/google";
 import Terminal from "./Terminal";
 import { useRouter } from "next/router";
-import theme from "@/styles/theme";
+import theme from "@/styles/themes";
 import mergeStyles from "../functions/mergeStyles";
 
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
 const pageUrls = new Map<string, string>();
-pageUrls.set("Home", "/");
+pageUrls.set("Intro", "/");
 pageUrls.set("Portfolio", "/portfolio");
-pageUrls.set("Resume", "/resume");
+pageUrls.set("Skills", "/skills");
 pageUrls.set("Contact", "/contact");
 
 export default function Nav({
   onChange,
-  className
+  className,
+  target
 }: {
   onChange?: (newPage: string) => void;
   className?: string;
+  target?: string;
 }) {
   const [activePage, setActivePage] = useState<string>("--");
   const [otherPages, setOtherPages] = useState<string[]>([
     "Portfolio",
-    "Resume",
+    "Skills",
     "Contact",
-    "Home"
+    "Intro"
   ]);
   const [open, setOpen] = useState(false);
   const inAnimation = useRef(false);
@@ -42,7 +44,7 @@ export default function Nav({
   useEffect(() => {
     let initialPage = window.location.pathname.substring(1);
     if (initialPage === "") {
-      initialPage = "home";
+      initialPage = "intro";
     }
     initialPage = capitalize(initialPage);
     onChange && onChange(initialPage);
@@ -51,11 +53,11 @@ export default function Nav({
     setStyles(mergeStyles(componentStyles, theme.get(initialPage)!));
   }, [onChange]);
 
-  const [styles, setStyles] = useState(mergeStyles(componentStyles, theme.get("Home")!));
+  const [styles, setStyles] = useState(mergeStyles(componentStyles, theme.get("Intro")!));
 
-  function swapActive(
+  const swapActive = useCallback((
     newPage: string
-  ) {
+  ) => {
     if (newPage == "github") {
       window.open("https://github.com/Chad-Glazier", "_blank");
       return;
@@ -63,7 +65,7 @@ export default function Nav({
     if (inAnimation.current) {
       return;
     }
-    const targetIndex = otherPages.indexOf(capitalize(newPage) || "Home");
+    const targetIndex = otherPages.indexOf(capitalize(newPage) || "Intro");
     if (targetIndex == -1) {
       console.error(`${newPage} is not a valid target. Current state's \`otherPages\`:`);
       console.error(otherPages);
@@ -91,7 +93,14 @@ export default function Nav({
     );
     setOpen(false);
     onChange && onChange(initialTargetPage);
-  }
+  }, [activePage, onChange, otherPages]);
+
+  useEffect(() => {
+    if (target !== undefined) {
+      swapActive(target ?? "Intro");
+      router.push("/" + (target?.toLowerCase() ?? ""));      
+    }
+  }, [target, router, swapActive]);
 
   return (
     <>
@@ -108,7 +117,7 @@ export default function Nav({
         }}
       />
       <Head>
-        <title>{`Chad Glazier | ${activePage == "Resume" ? "Resumé" : activePage}`}</title>
+        <title>{`Chad Glazier | ${activePage}`}</title>
       </Head>
       <nav 
         className={
@@ -129,7 +138,7 @@ export default function Nav({
           <span
             onClick={() => setOpen(prev => !prev)}
           >
-            {activePage == "Resume" ? "Resumé" : activePage}  
+            {activePage}  
           </span>
         </div>
         <div 
@@ -141,7 +150,6 @@ export default function Nav({
               <div key={page} className={styles.navItem}>
                 <Link
                   href={pageUrls.get(page) ?? ""}
-                  // className={styles.navItem}
                   onClick={e => {
                     if (inAnimation.current) {
                       e.preventDefault();
@@ -149,7 +157,7 @@ export default function Nav({
                     swapActive(page);
                   }}
                 >
-                  {page == "Resume" ? "Resumé" : page}
+                  {page}
                 </Link>
               </div>
             ))

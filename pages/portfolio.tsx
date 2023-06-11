@@ -1,6 +1,6 @@
 import mergeStyles from "@/lib/functions/mergeStyles";
 import pageStyles from "@/styles/pages/Portfolio.module.css";
-import theme from "@/styles/theme";
+import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";

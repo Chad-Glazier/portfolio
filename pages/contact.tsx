@@ -1,6 +1,6 @@
 import mergeStyles from "@/lib/functions/mergeStyles";
 import pageStyles from "@/styles/pages/Contact.module.css";
-import theme from "@/styles/theme";
+import theme from "@/styles/themes";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,7 +37,7 @@ export default function Contact() {
         >
           <Image
             className={styles.githubLink}
-            src="/github.png"
+            src="/github.svg"
             alt="Click here to visit my Github!"
             width={30}
             height={30}
@@ -45,28 +45,30 @@ export default function Contact() {
         </Link>
       </section>
       <table className={styles.contactInfo}>
-        <tr>
-          <th>Email</th>
-          <td>
-            <Link href="mailto:chadglazier@outlook.com" target="_blank">
-              chadglazier@outlook.com
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <th>Phone</th>
-          <td>
-            (250) 241-4039
-          </td>
-        </tr>
-        <tr>
-          <th>Location</th>
-          <td>
-            <Link href="https://goo.gl/maps/839DwLLUU2yUMRAC8" target="_blank">
-              Kelowna, BC
-            </Link>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Email</th>
+            <td>
+              <Link href="mailto:chadglazier@outlook.com" target="_blank">
+                chadglazier@outlook.com
+              </Link>
+            </td>
+          </tr>
+          <tr>
+            <th>Phone</th>
+            <td>
+              (250) 241-4039
+            </td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td>
+              <Link href="https://goo.gl/maps/839DwLLUU2yUMRAC8" target="_blank">
+                Kelowna, BC
+              </Link>
+            </td>
+          </tr>          
+        </tbody>
       </table>
     </article>
   )

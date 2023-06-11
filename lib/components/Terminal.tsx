@@ -1,5 +1,5 @@
 import styles from "@/styles/components/Terminal.module.css";
-import theme from "@/styles/theme";
+import theme from "@/styles/themes";
 import { Fira_Code } from "next/font/google";
 import { useState, useRef, useEffect } from "react";
 import { DoublyLinkedList, animateText } from "@/lib";
@@ -51,7 +51,7 @@ Enter \`help\` for a list of commands.
         className={
           styles.terminal
           + ` ${show ? styles.show : styles.hide}`
-          + ` ${(theme.get(pageName) ?? theme.get("Home"))!.terminal}`
+          + ` ${(theme.get(pageName) ?? theme.get("Intro"))!.terminal}`
           + ` ${firaCode.className}`
         }
         onSubmit={e => {
@@ -248,7 +248,7 @@ const commands = {
     if (args.length == 0 || args[0] == "") {
       return "`cd` expects an argument.";
     }
-    if (args[0] == "home" || args[0] == "/") {
+    if (args[0] == "intro" || args[0] == "/") {
       navigateTo("");
       return "";
     }
