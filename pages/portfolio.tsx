@@ -3,8 +3,8 @@ import pageStyles from "@/styles/pages/Portfolio.module.css";
 import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { DeleteButton } from "@/lib";
+import { ReactNode, useEffect, useState } from "react";
+import { DeleteButton, animateText } from "@/lib";
 
 const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
@@ -15,9 +15,6 @@ export default function Portfolio() {
 
   return (
     <article className={styles.page}>
-      <h1 className={styles.sectionHeading}>
-        Projects for Clients
-      </h1>
       <section className={styles.portfolio}>
         <div 
           className={
@@ -78,17 +75,7 @@ export default function Portfolio() {
           }
           <hr />
           <div className={styles.description}>
-            <p>
-              This website was created for the Greater Vernon Museum &amp;
-              Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
-              and they tasked me with creating a simpler content-management system that was more
-              specific to their needs.
-            </p>
-            <p>
-              At the time of writing, the website is not yet fully deployed but you can still
-              visit it at the link above. Since the backend of the CMS is meant for museum staff
-              only, I&apos;ve included the video above to demonstrate the system.
-            </p>
+
             <p style={{ width: "100%" }}>
               Below is a list of the technologies used in this project.
             </p>
@@ -174,62 +161,154 @@ export default function Portfolio() {
             </div>
           }
           <div className={styles.description}>
-            <h2>Preface</h2>
-            <p>
-              I will first point out that this project isn&apos;t by any means intended to be a performant or
-              genuinely useful library. Rather, it was an exploratory problem to put myself into the
-              shoes of those programmers who were writing Lisp before OOP even existed. It was a fun project that forced me to go out of my comfort zone
-              and seriously consider the underlying implementation of objects.
-            </p>
-            <h2>The Problem</h2>
-            <p>
-              This project originally started as an assignment for one of my courses, where we
-              were tasked with implementing a rudimentary accumulator machine in an object-oriented
-              way while using Scheme. Since Scheme (like all dialects of Lisp) is a functional language,
-              implementing any sort of object is verbose and complex, relying on the state of closures
-              instead of structs or other complex datatypes conveniently included in most languages.
-            </p>
-            <Image
-              className={styles.codeExample}
-              src="/bad-object-definition.png"
-              alt="the most beautiful code you've ever seen"
-              width={400}
-              height={1000}
-              priority={true}
-            />
-            <h2>The Solution</h2>
-            <p>
-              My personal goals with this task quickly outgrew the scope of the actual assignment;
-              I decided right away that instead of just implementing a bunch of closures by hand to represent
-              the components of an accumulator machine, I would rather create a library for R5RS (the specification
-              of Scheme that we were using) that made implementing such closures simple and somewhat
-              syntactically familiar to non-Lisp programmers. The snippet below is an example from the 
-              end result.
-            </p>
-            <Image
-              className={styles.codeExample}
-              src="/good-object-definition.png"
-              alt="a bunch of ugly code"
-              width={400}
-              height={1000}
-              priority={true}
-            />
-            <em>
-              You might also notice that the first example, with the explicit closure, doesn&apos;t include
-              any type-checking, input validation, or access modification of any sort, while the second example (using the library)
-              includes both. If the pure R5RS example were a true analogy, it would be twice as verbose as it
-              already is.
-            </em>
-            <h2>Read More</h2>
-            <p>
-              I would encourage you to check out the <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine" target="_blank">Github repo</Link> if
-              you want to learn a bit about how I approach problems like this and some of my personal thoughts
-              on OOP. The repository has a second <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine/tree/master/objects#readme" target="_blank">README</Link> that
-              ignores the accumulator machine and solely focuses on the small library I wrote.
-            </p>
+
           </div>
         </div>
       </section>
     </article>
   );
 }
+
+type media = {
+  active?: boolean;
+} & ({
+  youTubeId: never;
+  imageUrl: string;
+} | {
+  youTubeId: string;
+  imageUrl: never;
+});
+
+function Media({ 
+  youTubeId,
+  imageUrl, 
+  active
+}: media
+) {
+  if (youTubeId && active) {
+    return <iframe
+      width="560" 
+      height="315" 
+      src={`https://www.youtube-nocookie.com/embed/${youTubeId}`}
+      title="YouTube video player" 
+      frameBorder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowFullScreen
+    />;
+  }
+
+  return <Image
+    src={
+      youTubeId ?
+        `https://img.youtube.com/vi/${youTubeId}/0.jpg`
+      :
+        imageUrl
+    }
+    alt="media"
+    height={500}
+    width={800}
+  />;
+}
+
+function AnimatedTextCarousel({
+  options,
+  activeIndex
+}: {
+  options: string[];
+  activeIndex: number;
+}) {
+  const [text, setText] = useState(options[0]);
+
+  useEffect(() => {
+    animateText(
+      text,
+      options[activeIndex],
+      {
+        onFrame: setText
+      }  
+    );
+  }, [activeIndex]);
+
+  return <>{text}</>
+}
+
+const projects = [
+  {
+    title: "Vernon Museum Exhibits",
+    media: "J03WOW2iSSg",
+    techIcons: [ "/next.svg", "/ts.svg", "/zod.svg", "/prisma.svg", "/mysql.svg", "/css-modules.svg" ],
+    description: <>
+      <p>
+        This website was created for the Greater Vernon Museum &amp;
+        Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
+        and they tasked me with creating a simpler content-management system that was more
+        specific to their needs.
+      </p>
+      <p>
+        At the time of writing, the website is not yet fully deployed but you can still
+        visit it at the link above. Since the backend of the CMS is meant for museum staff
+        only, I&apos;ve included the video above to demonstrate the system.
+      </p>
+    </>
+  },
+  {
+    title: "Object-Oriented Programming in Lisp",
+    media: "/wizard.svg",
+    techIcons: [ "/scheme.svg" ],
+    description: <>
+      <h2>Preface</h2>
+      <p>
+        I will first point out that this project isn&apos;t by any means intended to be a performant or
+        genuinely useful library. Rather, it was an exploratory problem to put myself into the
+        shoes of those programmers who were writing Lisp before OOP even existed. It was a fun project that forced me to go out of my comfort zone
+        and seriously consider the underlying implementation of objects.
+      </p>
+      <h2>The Problem</h2>
+      <p>
+        This project originally started as an assignment for one of my courses, where we
+        were tasked with implementing a rudimentary accumulator machine in an object-oriented
+        way while using Scheme. Since Scheme (like all dialects of Lisp) is a functional language,
+        implementing any sort of object is verbose and complex, relying on the state of closures
+        instead of structs or other complex datatypes conveniently included in most languages.
+      </p>
+      <Image
+        className={styles.codeExample}
+        src="/bad-object-definition.png"
+        alt="the most beautiful code you've ever seen"
+        width={400}
+        height={1000}
+        priority={true}
+      />
+      <h2>The Solution</h2>
+      <p>
+        My personal goals with this task quickly outgrew the scope of the actual assignment;
+        I decided right away that instead of just implementing a bunch of closures by hand to represent
+        the components of an accumulator machine, I would rather create a library for R5RS (the specification
+        of Scheme that we were using) that made implementing such closures simple and somewhat
+        syntactically familiar to non-Lisp programmers. The snippet below is an example from the 
+        end result.
+      </p>
+      <Image
+        className={styles.codeExample}
+        src="/good-object-definition.png"
+        alt="a bunch of ugly code"
+        width={400}
+        height={1000}
+        priority={true}
+      />
+      <em>
+        You might also notice that the first example, with the explicit closure, doesn&apos;t include
+        any type-checking, input validation, or access modification of any sort, while the second example (using the library)
+        includes both. If the pure R5RS example were a true analogy, it would be twice as verbose as it
+        already is.
+      </em>
+      <h2>Read More</h2>
+      <p>
+        I would encourage you to check out the <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine" target="_blank">Github repo</Link> if
+        you want to learn a bit about how I approach problems like this and some of my personal thoughts
+        on OOP. The repository has a second <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine/tree/master/objects#readme" target="_blank">README</Link> that
+        ignores the accumulator machine and solely focuses on the small library I wrote.
+      </p>
+    </>
+  }
+]
