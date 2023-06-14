@@ -40,7 +40,7 @@
 }
 
 .controls .arrowButton {
-  border-color: #aaa;
+  border-color: #235;
   transition: all 400ms;
 }
 
@@ -100,7 +100,7 @@
 
   border-bottom-style: solid;
   border-width: 1px;
-  border-color: #aaa;
+  border-color: #235;
 }
 
 .contentImage {
@@ -112,7 +112,7 @@
 
   border-right-style: solid;
   border-width: 1px;
-  border-color: #aaa;
+  border-color: #235;
 
   overflow: hidden;
 }
@@ -170,7 +170,7 @@
 .educationSubsection a,
 .reference a 
 {
-  color: #aaa;
+  color: #235;
   transition: all 400ms;
 }
 

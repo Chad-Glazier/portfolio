@@ -34,7 +34,7 @@
 }
 
 .project h1 {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #235;
 }
 
 .project .media {
@@ -91,7 +91,7 @@
   }
 
   .project .description {
-    border-left: 1px solid #aaa;
+    border-left: 1px solid #235;
     justify-content: flex-start;
     overflow-y: auto;
   }
@@ -140,7 +140,7 @@
 }
 
 .controls .arrowButton {
-  border-color: #aaa;
+  border-color: #235;
   transition: all 400ms;
 }
 
