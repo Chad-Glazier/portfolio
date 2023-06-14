@@ -1,5 +1,6 @@
 :root {
   --nav-height: 4rem;
+  --controls-height: 100px;
 }
 
 * {
@@ -24,4 +25,11 @@ a {
 
 input:focus, textarea:focus {
   outline: none;
+}
+
+@media (max-height: 800px) {
+  :root {
+    --nav-height: 0;
+    --controls-height: 50px;
+  }
 }

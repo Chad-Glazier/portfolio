@@ -29,3 +29,9 @@
 .hamburger.open .bar:last-of-type {
   transform: translateY(calc(var(--size) / -6)) rotate(45deg);
 }
+
+@media (max-height: 800px) {
+  .hamburger {
+    --size: 60px;
+  }
+}

@@ -75,6 +75,13 @@
   }
 }
 
+@media (max-height: 800px) {
+  .nav {
+    position: static;
+    --active-height: 60px;
+  }
+}
+
 .activePageContainer *:hover {
   cursor: pointer;
 }

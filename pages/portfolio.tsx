@@ -3,240 +3,98 @@ import pageStyles from "@/styles/pages/Portfolio.module.css";
 import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
-import { ReactNode, useEffect, useState } from "react";
-import { DeleteButton, animateText } from "@/lib";
+import { useState } from "react";
+import { Media } from "@/lib";
 
 const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
 
 export default function Portfolio() {
-  const [exhibitSiteExpanded, setExhibitSiteExpanded] = useState(false);
-  const [accumulatorMachineExpanded, setAccumulatorMachineExpanded] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <article className={styles.page}>
-      <section className={styles.portfolio}>
-        <div 
-          className={
-            styles.project
-            + ` ${exhibitSiteExpanded ? "" : styles.collapsed}`
-          }
+    <div
+      className={styles.page}
+    >
+      <article
+        className={styles.projects}
+      >
+        {
+          projects.map(({ title, media, description }, index) => 
+            <section
+              className={styles.project}
+              key={title}
+              data-status={
+                index === activeIndex ? "active" 
+                : index > activeIndex ? "right"
+                : "left"
+              }
+            >
+              <h1>
+                {title}
+              </h1>
+              <Media
+                className={styles.media}
+                url={media}
+                height={900}
+                width={900}
+                active={true}
+              />
+              <div
+                className={styles.description}
+              >
+                {description}
+              </div>
+            </section>
+          )
+        }
+      </article>
+      <nav
+        className={styles.controls}
+      >
+        <button
+          className={styles.arrowButton}
           onClick={() => {
-            setExhibitSiteExpanded(true);
+            setActiveIndex(prev => prev ? prev - 1 : projects.length - 1)
           }}
         >
-          {exhibitSiteExpanded && 
-            <DeleteButton 
-              onClick={e => {
-                e.stopPropagation();
-                setExhibitSiteExpanded(prev => !prev)
-              }} 
-              className={styles.deleteButton}
-            />
-          }
-          <h1>Vernon Museum Exhibit Website</h1>
-          {exhibitSiteExpanded &&
-            <div className={styles.links}>
-              <Link
-                className={styles.button + " " + styles.sourceCode}
-                href="https://github.com/Chad-Glazier/exhibit-site#readme"
-                target="_blank"
-              >
-                Source Code
-              </Link> 
-              <Link
-                className={styles.button + " " + styles.liveSite}
-                href="https://exhibit-site.vercel.app/"
-                target="_blank"
-              >
-                See Live
-              </Link>
-            </div>
-          }
-          {!exhibitSiteExpanded ?
-            <Image
-              width={600}
-              height={400}
-              alt={"thumbnail"}
-              src="https://img.youtube.com/vi/J03WOW2iSSg/sddefault.jpg"
-              className={styles.demo}
-            />
-            :
-            <iframe 
-              width="1000" 
-              height="400" 
-              src="https://www.youtube.com/embed/J03WOW2iSSg" 
-              title="Video Demo" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowFullScreen={true}
-              className={styles.demo}
-            />            
-          }
-          <hr />
-          <div className={styles.description}>
-
-            <p style={{ width: "100%" }}>
-              Below is a list of the technologies used in this project.
-            </p>
-            <table className={styles.technologies}>
-              <thead>
-                <tr>
-                  <th>Technology</th>
-                  <th>Purpose</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>NextJS / React</td>
-                  <td>The core framework</td>
-                </tr>
-                <tr>
-                  <td>TypeScript</td>
-                  <td>TypeScript&apos;s blue logo looks way nicer than JavaScript&apos;s yellow one.</td>
-                </tr>
-                <tr>
-                  <td>MySQL & Prisma</td>
-                  <td>The database system</td>
-                </tr>
-                <tr>
-                  <td>Lexical</td>
-                  <td>The framework used to create the rich text editors</td>
-                </tr>
-                <tr>
-                  <td>Cloudflare R2</td>
-                  <td>Third-party web service to store image uploads</td>
-                </tr>
-                <tr>
-                  <td>Zod</td>
-                  <td>Runtime type validation, especially for communication between the client and Rest API</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-      <h1 className={styles.sectionHeading}>
-        Personal Projects
-      </h1>
-      <section className={styles.portfolio}>
-      <div 
-          className={
-            styles.project
-            + ` ${accumulatorMachineExpanded ? "" : styles.collapsed}`
-          }
+          <Image
+            className={styles.arrowImage}
+            src="/arrow.svg"
+            height={50}
+            width={50}
+            alt="<"
+            style={{ transform: "rotate(-90deg)"}}
+          />          
+        </button>
+        <button
+          className={styles.arrowButton}
           onClick={() => {
-            setAccumulatorMachineExpanded(true);
+            setActiveIndex(prev => (prev + 1) % projects.length);
           }}
         >
-          {accumulatorMachineExpanded && 
-            <DeleteButton 
-              onClick={e => {
-                e.stopPropagation();
-                setAccumulatorMachineExpanded(prev => !prev)
-              }} 
-              className={styles.deleteButton}
-            />
-          }
-          <h1>A Library for OOP in Lisp</h1>
-          {!accumulatorMachineExpanded &&
-            <Image
-              style={{ marginTop: "2rem" }}
-              className={styles.codeExample}
-              src="/good-object-definition.png"
-              alt="a thumbnail that shows some OOP Lisp code"
-              width={400}
-              height={400}
-            />
-          }
-          {accumulatorMachineExpanded &&
-            <div className={styles.links}>
-              <Link
-                className={styles.button + " " + styles.sourceCode}
-                href="https://github.com/Chad-Glazier/r5rs-accumulator-machine"
-                target="_blank"
-              >
-                Source Code
-              </Link> 
-            </div>
-          }
-          <div className={styles.description}>
-
-          </div>
-        </div>
-      </section>
-    </article>
+          <Image
+            className={styles.arrowImage}
+            src="/arrow.svg"
+            height={50}
+            width={50}
+            alt=">"
+            style={{ transform: "rotate(90deg)" }}
+          />          
+        </button>
+      </nav>
+    </div>
   );
 }
 
-type media = {
-  active?: boolean;
-} & ({
-  youTubeId: never;
-  imageUrl: string;
-} | {
-  youTubeId: string;
-  imageUrl: never;
-});
-
-function Media({ 
-  youTubeId,
-  imageUrl, 
-  active
-}: media
-) {
-  if (youTubeId && active) {
-    return <iframe
-      width="560" 
-      height="315" 
-      src={`https://www.youtube-nocookie.com/embed/${youTubeId}`}
-      title="YouTube video player" 
-      frameBorder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      allowFullScreen
-    />;
-  }
-
-  return <Image
-    src={
-      youTubeId ?
-        `https://img.youtube.com/vi/${youTubeId}/0.jpg`
-      :
-        imageUrl
-    }
-    alt="media"
-    height={500}
-    width={800}
-  />;
-}
-
-function AnimatedTextCarousel({
-  options,
-  activeIndex
-}: {
-  options: string[];
-  activeIndex: number;
-}) {
-  const [text, setText] = useState(options[0]);
-
-  useEffect(() => {
-    animateText(
-      text,
-      options[activeIndex],
-      {
-        onFrame: setText
-      }  
-    );
-  }, [activeIndex]);
-
-  return <>{text}</>
-}
-
-const projects = [
+const projects: {
+  title: string;
+  media: string;
+  description: JSX.Element;
+}[] = [
   {
     title: "Vernon Museum Exhibits",
-    media: "J03WOW2iSSg",
-    techIcons: [ "/next.svg", "/ts.svg", "/zod.svg", "/prisma.svg", "/mysql.svg", "/css-modules.svg" ],
+    media: "https://youtu.be/J03WOW2iSSg",
     description: <>
       <p>
         This website was created for the Greater Vernon Museum &amp;
@@ -252,9 +110,8 @@ const projects = [
     </>
   },
   {
-    title: "Object-Oriented Programming in Lisp",
-    media: "/wizard.svg",
-    techIcons: [ "/scheme.svg" ],
+    title: "OOP in Lisp",
+    media: "/wizard.png",
     description: <>
       <h2>Preface</h2>
       <p>
@@ -272,7 +129,6 @@ const projects = [
         instead of structs or other complex datatypes conveniently included in most languages.
       </p>
       <Image
-        className={styles.codeExample}
         src="/bad-object-definition.png"
         alt="the most beautiful code you've ever seen"
         width={400}
@@ -289,7 +145,6 @@ const projects = [
         end result.
       </p>
       <Image
-        className={styles.codeExample}
         src="/good-object-definition.png"
         alt="a bunch of ugly code"
         width={400}

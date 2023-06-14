@@ -3,6 +3,8 @@ import Layout from "./components/Layout";
 import Nav from "./components/Nav";
 import DoublyLinkedList from "./types/DoublyLinkedList";
 import DeleteButton from "./components/DeleteButton";
+import { isYouTube, getYouTubeId } from "./functions/youTube";
+import Media from "./components/Media";
 
 export {
   animateText,
@@ -10,5 +12,8 @@ export {
   Layout,
   Nav,
   DoublyLinkedList,
-  DeleteButton
+  DeleteButton,
+  isYouTube,
+  getYouTubeId,
+  Media
 };

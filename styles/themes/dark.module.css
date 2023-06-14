@@ -8,21 +8,21 @@
 }
 
 .nav .activePageContainer {
-  border-bottom: 2px solid #116;
+  border-bottom: 2px solid #451313;
   animation: breathAccent 4s infinite;
-  box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);
+  box-shadow: 0px 0px 2rem 2px rgba(247, 134, 64, 0.5);
   transition: all 400ms;
 }
 
 .nav.open .activePageContainer {
-  box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0);
+  box-shadow: 0px 0px 2rem 2px rgba(247, 134, 64, 0);
 }
 
 .nav .inactivePages {
-  backdrop-filter: blur(5px);
-  border-bottom: 2px solid #116;
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #451313;
   animation: breathAccent 4s infinite;
-  box-shadow: 0px 0px 2rem 2px rgba(128, 0, 255, 0.5);
+  box-shadow: 0px 0px 2rem 2px rgba(247, 134, 64, 0.5);
 }
 
 .main {
@@ -32,17 +32,16 @@
 
 @keyframes breathAccent {
   0% { 
-    border-color: #116;
+    border-color: #451313;
   }
   50% {
-    border-color: #aaf;
+    border-color: #f78640;
   }
   100% {
-    border-color: #116;
+    border-color: #451313;
   }
 }
 
 .contactInfo th, .contactInfo td {
   animation: breathAccent 4s infinite;
 }
-
