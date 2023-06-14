@@ -252,7 +252,6 @@ function ContentSlide({
       />
       <div
         className={styles.contentDescription}
-        // hacky solution to some weird flex/grid thing that was going on with wide displays
       >
         {description}
       </div>

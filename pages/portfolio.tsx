@@ -4,7 +4,7 @@ import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Media, Swipeable } from "@/lib";
+import { Media, Swipeable, isYouTube } from "@/lib";
 
 const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
@@ -36,6 +36,11 @@ export default function Portfolio() {
             <h1>
               {title}
             </h1>
+            <div
+              className={styles.description}
+            >
+              {description}
+            </div>
             <Media
               className={styles.media}
               url={media}
@@ -43,11 +48,6 @@ export default function Portfolio() {
               width={900}
               active={true}
             />
-            <div
-              className={styles.description}
-            >
-              {description}
-            </div>
           </section>
         )
       }
@@ -126,6 +126,12 @@ const projects: {
     title: "OOP in Lisp",
     media: "/wizard.png",
     description: <div>
+      <h2>TL;DR</h2>
+      <p>
+        I created a library for Scheme that facilitates object-oriented programming, by providing a concise
+        way to create closures that represent object state. The objects support basic access modifiers, 
+        type-checking, polymorphism, and prototypal inheritance.
+      </p>
       <h2>Preface</h2>
       <p>
         I will first point out that this project isn&apos;t by any means intended to be a performant or
@@ -150,7 +156,6 @@ const projects: {
       />
       <h2>The Solution</h2>
       <p>
-        My personal goals with this task quickly outgrew the scope of the actual assignment;
         I decided right away that instead of just implementing a bunch of closures by hand to represent
         the components of an accumulator machine, I would rather create a library for R5RS (the specification
         of Scheme that we were using) that made implementing such closures simple and somewhat
