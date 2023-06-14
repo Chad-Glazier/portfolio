@@ -165,7 +165,7 @@ const projects: {
       <em>
         You might also notice that the first example, with the explicit closure, doesn&apos;t include
         any type-checking, input validation, or access modification of any sort, while the second example (using the library)
-        includes both. If the pure R5RS example were a true analogy, it would be twice as verbose as it
+        includes all three. If the pure R5RS example were a true analogy, it would be twice as verbose as it
         already is.
       </em>
       <h2>Read More</h2>
