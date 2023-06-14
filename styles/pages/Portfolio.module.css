@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-.project > *:not(:last-child) {
+.project h1 {
   border-bottom: 1px solid #aaa;
 }
 
