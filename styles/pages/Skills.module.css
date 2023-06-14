@@ -76,7 +76,6 @@
 
   position: absolute;
   transition: 600ms ease-in-out;
-  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -123,6 +122,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+
   gap: 1rem;
 }
 
