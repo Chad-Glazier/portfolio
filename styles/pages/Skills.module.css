@@ -80,12 +80,6 @@
   overflow-x: hidden;
 }
 
-@media (max-width: 800px) {
-  .content {
-    margin-bottom: 0;
-  }
-}
-
 .contentSlide[data-status="left"] {
   transform: translateX(-100vw);
 }
@@ -220,5 +214,9 @@
 
   .contentImage {
     display: none;
+  }
+
+  .controls {
+    background-color: #080820;
   }
 }
