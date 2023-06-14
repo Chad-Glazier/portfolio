@@ -5,6 +5,7 @@ import DoublyLinkedList from "./types/DoublyLinkedList";
 import DeleteButton from "./components/DeleteButton";
 import { isYouTube, getYouTubeId } from "./functions/youTube";
 import Media from "./components/Media";
+import Swipeable from "./components/Swipeable";
 
 export {
   animateText,
@@ -15,5 +16,6 @@ export {
   DeleteButton,
   isYouTube,
   getYouTubeId,
-  Media
+  Media,
+  Swipeable
 };

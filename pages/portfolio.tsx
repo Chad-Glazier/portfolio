@@ -4,7 +4,7 @@ import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Media } from "@/lib";
+import { Media, Swipeable } from "@/lib";
 
 const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
@@ -13,7 +13,15 @@ export default function Portfolio() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <article className={styles.page}>
+    <Swipeable 
+      className={styles.page}
+      onSwipeLeft={() => {
+        setActiveIndex(prev => prev < projects.length - 1 ? prev + 1 : prev);
+      }}
+      onSwipeRight={() => {
+        setActiveIndex(prev => prev ? prev - 1 : prev)
+      }}
+    >
       {
         projects.map(({ title, media, description }, index) => 
           <section
@@ -77,7 +85,7 @@ export default function Portfolio() {
           />          
         </button>
       </nav>
-    </article>
+    </Swipeable>
   );
 }
 

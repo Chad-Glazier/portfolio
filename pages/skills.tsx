@@ -1,3 +1,4 @@
+import { Swipeable } from "@/lib";
 import mergeStyles from "@/lib/functions/mergeStyles";
 import pageStyles from "@/styles/pages/Skills.module.css";
 import theme from "@/styles/themes";
@@ -11,7 +12,15 @@ export default function Skills() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <article className={styles.page}>
+    <Swipeable 
+      className={styles.page}
+      onSwipeLeft={() => {
+        setActiveIndex(prev => prev < contentSlides.length - 1 ? prev + 1 : prev);
+      }}
+      onSwipeRight={() => {
+        setActiveIndex(prev => prev ? prev - 1 : prev)
+      }}
+    >      
       <section
         className={styles.content}
       >
@@ -61,7 +70,7 @@ export default function Skills() {
           />          
         </button>
       </nav>
-    </article>
+    </Swipeable>
   )
 }
 
