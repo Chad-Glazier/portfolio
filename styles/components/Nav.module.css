@@ -1,9 +1,8 @@
 .nav {
-  --active-height: var(--nav-height);
-  height: var(--active-height);
+  height: var(--nav-height);
   
   text-transform: uppercase;
-  font-size: calc(var(--active-height) * 4 / 5);
+  font-size: calc(var(--nav-height) * 4 / 5);
   
   position: fixed;
   top: 0;
@@ -51,7 +50,7 @@
 .activePageContainer {
   position: relative;
   width: 100%;
-  height: var(--active-height);
+  height: var(--nav-height);
   z-index: 10;
   padding-left: 5px;
 
@@ -75,13 +74,6 @@
   }
 }
 
-@media (max-height: 800px) {
-  .nav {
-    position: static;
-    --active-height: 60px;
-  }
-}
-
 .activePageContainer *:hover {
   cursor: pointer;
 }
@@ -102,11 +94,11 @@
 }
 
 .inactivePages.closed {
-  top: calc(-3.5 * var(--active-height));
+  top: calc(-3.5 * var(--nav-height));
 }
 
 .inactivePages.open {
-  top: var(--active-height);
+  top: var(--nav-height);
 }
 
 .navItem {

@@ -29,7 +29,6 @@ input:focus, textarea:focus {
 
 @media (max-height: 800px) {
   :root {
-    --nav-height: 0;
     --controls-height: 50px;
   }
 }

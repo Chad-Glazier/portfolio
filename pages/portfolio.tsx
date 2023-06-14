@@ -13,42 +13,36 @@ export default function Portfolio() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div
-      className={styles.page}
-    >
-      <article
-        className={styles.projects}
-      >
-        {
-          projects.map(({ title, media, description }, index) => 
-            <section
-              className={styles.project}
-              key={title}
-              data-status={
-                index === activeIndex ? "active" 
-                : index > activeIndex ? "right"
-                : "left"
-              }
+    <article className={styles.page}>
+      {
+        projects.map(({ title, media, description }, index) => 
+          <section
+            className={styles.project}
+            key={title}
+            data-status={
+              index === activeIndex ? "active" 
+              : index > activeIndex ? "right"
+              : "left"
+            }
+          >
+            <h1>
+              {title}
+            </h1>
+            <Media
+              className={styles.media}
+              url={media}
+              height={900}
+              width={900}
+              active={true}
+            />
+            <div
+              className={styles.description}
             >
-              <h1>
-                {title}
-              </h1>
-              <Media
-                className={styles.media}
-                url={media}
-                height={900}
-                width={900}
-                active={true}
-              />
-              <div
-                className={styles.description}
-              >
-                {description}
-              </div>
-            </section>
-          )
-        }
-      </article>
+              {description}
+            </div>
+          </section>
+        )
+      }
       <nav
         className={styles.controls}
       >
@@ -83,7 +77,7 @@ export default function Portfolio() {
           />          
         </button>
       </nav>
-    </div>
+    </article>
   );
 }
 

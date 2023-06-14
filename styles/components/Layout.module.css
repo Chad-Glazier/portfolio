@@ -1,9 +1,10 @@
 .main {
   padding-top: var(--nav-height);
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nav-height));
   min-width: 100vw;
   transition: all 1000ms ease-in-out;
   background-image: url("/grid.svg");
   background-attachment: fixed;
   background-repeat: repeat;
+  position: relative;
 }
