@@ -91,8 +91,16 @@ const projects: {
   title: string;
   media: string;
   description: JSX.Element;
+  links: {
+    live?: string;
+    github?: string;
+  };
 }[] = [
   {
+    links: {
+      live: "https://exhibit-site.vercel.app/",
+      github: "https://github.com/Chad-Glazier/exhibit-site"
+    },
     title: "Vernon Museum Exhibits",
     media: "https://youtu.be/J03WOW2iSSg",
     description: <>
@@ -110,6 +118,9 @@ const projects: {
     </>
   },
   {
+    links: {
+      github: "https://github.com/Chad-Glazier/r5rs-accumulator-machine"
+    },
     title: "OOP in Lisp",
     media: "/wizard.png",
     description: <>

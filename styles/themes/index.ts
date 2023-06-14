@@ -7,7 +7,7 @@ const theme = new Map<string, Record<string, string>>();
 
 theme.set("Intro", light);
 theme.set("Contact", white);
-theme.set("Portfolio", dark);
+theme.set("Portfolio", blue);
 theme.set("Skills", blue);
 theme.set("DARK", dark);
 theme.set("LIGHT", light);

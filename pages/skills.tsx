@@ -181,7 +181,7 @@ const contentSlides = [
     heading: "References",
     image: {
       fix: "left",
-      url: "/wizard.png",
+      url: "/crosswalk.jpg",
       alt: "An image of people crossing a street from a bird's eye view",
       title: "Photo by Ryoji Iwata Yin at https://unsplash.com/@ryoji__iwata"
     },
