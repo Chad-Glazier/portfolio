@@ -72,7 +72,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: .1fr 5fr;
 
   position: absolute;
   transition: 600ms ease-in-out;
@@ -117,10 +117,13 @@
 }
 
 .contentDescription {
+  height: 100%;
+  width: 100%;
+
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   overflow-y: auto;
 
@@ -128,21 +131,26 @@
 }
 
 .references {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 2rem;
   max-width: 800px;
 }
 
 .reference {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 8px;
 }
 
 .education {
+  flex-grow: 1;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -183,6 +191,7 @@
 }
 
 .skills {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -210,7 +219,7 @@
 @media (max-width: 800px) or (max-height: 800px) {
   .contentSlide {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-rows: .1fr 10fr;
   }
 
   .contentImage {
@@ -222,7 +231,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 500px) or (max-height: 800px) {
   .contentHeading {
     padding: 1rem;
     font-size: 2rem;

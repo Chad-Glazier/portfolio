@@ -68,14 +68,14 @@ export default function Swipeable({
     originalVector: { x: number, y: number}
   ) => void;
   /**
-   * the number of pixels the user must swipe to trigger a callback, defaults to 100.
+   * the number of pixels the user must swipe to trigger a callback, defaults to 70.
    */ 
   minSwipeDistance?: number;
   className?: string;
 }) {
   const initialX = useRef(0);
   const initialY = useRef(0);
-  const defaultMinSwipeDistance = 100;
+  const defaultMinSwipeDistance = 70;
 
   return (
     <div 

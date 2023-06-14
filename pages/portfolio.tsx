@@ -105,7 +105,7 @@ const projects: {
     },
     title: "Vernon Museum Exhibits",
     media: "https://youtu.be/J03WOW2iSSg",
-    description: <>
+    description: <div>
       <p>
         This website was created for the Greater Vernon Museum &amp;
         Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
@@ -117,7 +117,7 @@ const projects: {
         visit it at the link above. Since the backend of the CMS is meant for museum staff
         only, I&apos;ve included the video above to demonstrate the system.
       </p>
-    </>
+    </div>
   },
   {
     links: {
@@ -125,7 +125,7 @@ const projects: {
     },
     title: "OOP in Lisp",
     media: "/wizard.png",
-    description: <>
+    description: <div>
       <h2>Preface</h2>
       <p>
         I will first point out that this project isn&apos;t by any means intended to be a performant or
@@ -177,6 +177,6 @@ const projects: {
         on OOP. The repository has a second <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine/tree/master/objects#readme" target="_blank">README</Link> that
         ignores the accumulator machine and solely focuses on the small library I wrote.
       </p>
-    </>
+    </div>
   }
 ]

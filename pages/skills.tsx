@@ -253,10 +253,6 @@ function ContentSlide({
       <div
         className={styles.contentDescription}
         // hacky solution to some weird flex/grid thing that was going on with wide displays
-        style={{
-          justifyContent: (heading == "Technical Skills" ? "flex-start" : "center"),
-          paddingTop: (heading == "Technical Skills" ? "2rem" : "1rem")
-        }}
       >
         {description}
       </div>
