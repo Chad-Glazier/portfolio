@@ -221,3 +221,10 @@
     background-color: #080820;
   }
 }
+
+@media (max-width: 500px) {
+  .contentHeading {
+    padding: 1rem;
+    font-size: 2rem;
+  }
+}
