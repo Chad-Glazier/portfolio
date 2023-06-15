@@ -111,12 +111,12 @@
     overflow: hidden;
     border-bottom: none;
     object-fit: cover;
-    border-right: 1px solid #235;
   }
 
   .project .description {
     height: 100%;
     width: 100%;
+    border-left: 1px solid #235;
     overflow-y: auto;
     padding: 2rem;
   }
