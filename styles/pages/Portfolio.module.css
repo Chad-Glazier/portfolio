@@ -41,6 +41,7 @@
 .project .media {
   min-height: 50vh;
   max-height: 50vh;
+  object-position: top left;
   object-fit: contain;
   order: -1;
 }
