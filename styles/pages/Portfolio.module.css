@@ -39,9 +39,10 @@
 }
 
 .project .media {
-  min-height: 50vh;
-  max-height: 50vh;
-  object-position: top left;
+  min-height: min(60vh, 50vw);
+  max-height: min(60vh, 50vw);
+  width: 100%;
+  object-position: top center;
   object-fit: contain;
   order: -1;
 }
@@ -93,7 +94,7 @@
   padding: 1rem 0;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1600px) and (orientation: landscape) {
   .project {
     display: grid;
     grid-template-columns: 1fr 1fr;
