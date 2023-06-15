@@ -64,11 +64,11 @@ export default function TechIcons({
       {
         tech.map(el =>
           <Link
+            key={el}
             target="_blank"
             href={techLinks.get(el)!}
           >
             <Image
-              key={el}
               src={techIcons.get(el)!}
               alt={el}
               height={size ?? 40}
