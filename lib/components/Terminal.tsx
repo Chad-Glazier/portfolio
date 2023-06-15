@@ -91,9 +91,9 @@ Enter \`help\` for a list of commands.
           id="terminal-input"
           type="text" 
           className={styles.input + ` ${firaCode.className}`} 
-          value={"> " + input}
+          value={input}
           onChange={(e) => {
-            setInput(e.target.value.substring(2));
+            setInput(e.target.value);
           }}
           onKeyDown={e => {
             if (!show) return;
