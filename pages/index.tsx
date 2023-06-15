@@ -66,8 +66,8 @@ export default function Intro({
         </div>
         <Image
           className={styles.image}
-          height={2464}
-          width={2642}
+          height={1380}
+          width={1500}
           src="/wizard.png"
           alt="Me!"
         />
