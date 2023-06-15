@@ -4,7 +4,7 @@ import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Media, Swipeable, isYouTube } from "@/lib";
+import { Media, Swipeable, TechIcons } from "@/lib";
 
 const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
@@ -106,16 +106,48 @@ const projects: {
     title: "Vernon Museum Exhibits",
     media: "https://youtu.be/J03WOW2iSSg",
     description: <div>
+      <ProjectButtons
+        links={{
+          live: "https://exhibit-site.vercel.app/",
+          github: "https://github.com/Chad-Glazier/exhibit-site"
+        }}
+      />
+      <h2>Overview</h2>
       <p>
         This website was created for the Greater Vernon Museum &amp;
         Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
         and they tasked me with creating a simpler content-management system that was more
         specific to their needs.
       </p>
-      <p>
+      <em>
         At the time of writing, the website is not yet fully deployed but you can still
         visit it at the link above. Since the backend of the CMS is meant for museum staff
-        only, I&apos;ve included the video above to demonstrate the system.
+        only, I&apos;ve included a video to demonstrate the system.
+      </em>
+      <h2>Features</h2>
+      <p>
+        This project supports a number of features, including:
+      </p>
+      <ul>
+        <li>User authentication</li>
+        <li>Rich text editing</li>
+        <li>Image uploads</li>
+      </ul>
+      <h2>Tech Stack</h2>
+      <TechIcons
+        tech={[
+          "ts",
+          "next",
+          "react",
+          "zod",
+          "mysql",
+          "prisma"
+        ]}
+      />
+      <p>
+        This project uses TypeScript from front to back, with React/Next for the client and Next&apos;s
+        built-in API routes for the Rest API. The database is MySQL, which is mapped by Prisma. Zod is
+        used throughout client/server interactions to ensure type-safety.
       </p>
     </div>
   },
@@ -126,9 +158,12 @@ const projects: {
     title: "OOP in Lisp",
     media: "/wizard.png",
     description: <div>
+      <ProjectButtons
+        links={{ github: "https://github.com/Chad-Glazier/r5rs-accumulator-machine" }}
+      />
       <h2>TL;DR</h2>
       <p>
-        I created a library for Scheme that facilitates object-oriented programming, by providing a concise
+        I created a library for Scheme that facilitates object-oriented programming by providing a concise
         way to create closures that represent object state. The objects support basic access modifiers, 
         type-checking, polymorphism, and prototypal inheritance.
       </p>
@@ -137,7 +172,7 @@ const projects: {
         I will first point out that this project isn&apos;t by any means intended to be a performant or
         genuinely useful library. Rather, it was an exploratory problem to put myself into the
         shoes of those programmers who were writing Lisp before OOP even existed. It was a fun project that forced me to go out of my comfort zone
-        and seriously consider the underlying implementation of objects.
+        and consider the underlying implementation of objects.
       </p>
       <h2>The Problem</h2>
       <p>
@@ -185,3 +220,53 @@ const projects: {
     </div>
   }
 ]
+
+function ProjectButtons({
+  links
+}: {
+  links: {
+    live?: string;
+    github?: string;
+  }
+}) {
+  if (!links.live && !links.github) return <></>;
+
+  return <div
+    className={styles.projectButtons}
+  >
+    {
+      links.live && 
+        <Link 
+          className={styles.projectButton}
+          href={links.live} 
+          target="_blank"
+        >
+          <Image 
+            src="/globe.svg"
+            alt="live"
+            height={20}
+            width={20}
+          />
+          View Live
+      </Link>
+    }
+    {
+      links.github && 
+        <Link 
+          className={styles.projectButton}
+          href={links.github} 
+          target="_blank"
+        >
+          <Image 
+            src="/github-light.svg"
+            alt="live"
+            height={20}
+            width={20}
+          />
+          <div>
+            View Source
+          </div>
+      </Link>
+    }
+  </div>
+}

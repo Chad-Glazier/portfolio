@@ -33,9 +33,9 @@ export default function Intro({
             </span>
           </h1>
           <div className={styles.buttons}>
-            <button className={styles.button} onClick={() => navigateTo("skills")}>My skills and qualifications</button>
-            <button className={styles.button} onClick={() => navigateTo("portfolio")}>My projects</button>
-            <button className={styles.button} onClick={() => navigateTo("contact")}>Get in Touch</button>
+            <button className={styles.button} onClick={() => navigateTo("skills")}>My Skills &amp; Qualifications</button>
+            <button className={styles.button} onClick={() => navigateTo("portfolio")}>My Projects</button>
+            <button className={styles.button} onClick={() => navigateTo("contact")}>Get In Touch</button>
           </div>
           <div className={styles.links}>
             <Link

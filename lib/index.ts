@@ -6,6 +6,7 @@ import DeleteButton from "./components/DeleteButton";
 import { isYouTube, getYouTubeId } from "./functions/youTube";
 import Media from "./components/Media";
 import Swipeable from "./components/Swipeable";
+import TechIcons from "./components/TechIcons";
 
 export {
   animateText,
@@ -17,5 +18,6 @@ export {
   isYouTube,
   getYouTubeId,
   Media,
-  Swipeable
+  Swipeable,
+  TechIcons
 };
