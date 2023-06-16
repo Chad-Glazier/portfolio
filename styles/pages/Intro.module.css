@@ -37,20 +37,14 @@
 .button {
   width: 100%;
   padding: 5px 10px;
-  border-top: 2px solid #666;
-  border-bottom: 2px solid #666;
-  border-left: none;
-  border-right: none;
   text-align: center;
   transition: all 400ms;
-  border-radius: 7px;
-  background-color: transparent;
-  font-size: 1rem;
+  border-radius: 5px;
+  border: 3px solid #235;
 }
 
 .button:hover {
   cursor: pointer;
-  border-radius: 0px;
 }
 
 @media (max-width: 1000px) {
@@ -78,7 +72,7 @@
 }
 
 .emphasis {
-  color: rgb(253, 128, 75);
+  color: rgb(238, 129, 28);
   text-transform: uppercase;
   font-size: 5rem;
   text-decoration: solid;

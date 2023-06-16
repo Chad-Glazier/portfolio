@@ -4,7 +4,7 @@ import theme from "@/styles/themes";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Media, Swipeable, TechIcons } from "@/lib";
+import { Media, Swipeable, TechIcons, isYouTube } from "@/lib";
 
 const themeStyles = theme.get("Portfolio")!;
 const styles = mergeStyles(themeStyles, pageStyles);
@@ -32,6 +32,7 @@ export default function Portfolio() {
               : index > activeIndex ? "right"
               : "left"
             }
+            data-type={isYouTube(media) ? "video" : "image"}
           >
             <h1>
               {title}
@@ -115,7 +116,7 @@ const projects: {
       <h2>Overview</h2>
       <p>
         This website was created for the Greater Vernon Museum &amp;
-        Archives to create and display virtual exhibits. Their <Link href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
+        Archives to create and display virtual exhibits. Their <Link className={styles.link} href="https://vernonmuseum.ca/" target="_blank">original site</Link> was built with Wordpress,
         and they tasked me with creating a simpler content-management system that was more
         specific to their needs.
       </p>
@@ -212,9 +213,9 @@ const projects: {
       </em>
       <h2>Read More</h2>
       <p>
-        I would encourage you to check out the <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine" target="_blank">Github repo</Link> if
+        I would encourage you to check out the <Link className={styles.link} href="https://github.com/Chad-Glazier/r5rs-accumulator-machine" target="_blank">Github repo</Link> if
         you want to learn a bit about how I approach problems like this and some of my personal thoughts
-        on OOP. The repository has a second <Link href="https://github.com/Chad-Glazier/r5rs-accumulator-machine/tree/master/objects#readme" target="_blank">README</Link> that
+        on OOP. The repository has a second <Link className={styles.link} href="https://github.com/Chad-Glazier/r5rs-accumulator-machine/tree/master/objects#readme" target="_blank">README</Link> that
         ignores the accumulator machine and solely focuses on the small library I wrote.
       </p>
     </div>
