@@ -20,7 +20,7 @@ export default function Intro({
           className={styles.summary}
         >
           <h1 className={styles.title}>
-            my name is 
+            My name is 
             <br />
             <span className={styles.name + " " + styles.emphasis}>
               Chad Glazier

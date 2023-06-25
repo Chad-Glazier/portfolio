@@ -44,14 +44,14 @@
 }
 
 .intro .summary {
-  background-color: #070736;
+  background-color: #080820;
   background-image: url("/grid.svg");
   color: #fff;
 }
 
 .intro .button {
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -67,7 +67,7 @@
   height: 0;
   width: 100%;
   transition: all 200ms ease-in-out;
-  background-color: #236;
+  background-color: #235;
   z-index: -1;
 }
 
