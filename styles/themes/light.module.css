@@ -1,20 +1,35 @@
 .hamburger {
-  background-color: #222;
+  background-color: #fff;
 }
 
 .nav {
-  color: #222;
-  background-color: #fff;
+  color: #fff;
+  background: #080820;
 }
 
 .nav .activePageContainer {
   border-bottom: 2px solid #235;
-  background: #fff;
+  background: #080820;
 }
 
 .nav .inactivePages {
   border-bottom: 2px solid #235;
   backdrop-filter: blur(10px);
+}
+
+@media (min-width: 800px) {
+  .hamburger {
+    background-color: #222;
+  }
+
+  .nav {
+    color: #222;
+    background: #fff;
+  }
+
+  .nav .activePageContainer {
+    background-color: #fff;
+  }
 }
 
 .main {
