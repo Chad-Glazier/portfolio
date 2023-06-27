@@ -105,7 +105,7 @@ const projects: {
       github: "https://github.com/Chad-Glazier/exhibit-site"
     },
     title: "Vernon Museum Exhibits",
-    media: "https://youtu.be/J03WOW2iSSg",
+    media: "https://youtu.be/uMmL0QWMFNg",
     description: <div>
       <ProjectButtons
         links={{
