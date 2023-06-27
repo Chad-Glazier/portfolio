@@ -231,27 +231,35 @@
   align-items: center;
   gap: 10px;
   padding: 0 1rem;
-  border: 3px solid #235;
-  border-radius: 5px;
+  border: 2px solid #fff;
+  /* border-radius: 5px; */
   position: relative;
   z-index: 2;
+  transition: all 400ms;
 }
 
 .projectButton::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 0;
+  top: 5px;
+  left: 5px;
+  height: 100%;
   width: 100%;
-  background-color: #235;
   z-index: -2;
-  transition: all 200ms;
+  transition: all 150ms;
   transform-origin: left;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.projectButton:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .projectButton:hover::after {
-  height: 100%;
+  top: 0px;
+  left: 0px;
 }
 
 

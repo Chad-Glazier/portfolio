@@ -65,29 +65,39 @@
 }
 
 .intro .button {
-  color: #fff;
+  background-color: #080820;
+  color: #eee;
+  border: 2px solid #eee;
+  padding: 5px 10px;
   font-size: 1rem;
-  background: transparent;
+  min-width: 300px;
   position: relative;
-  z-index: 2;
-  overflow: hidden;
-  transition: all 300ms ease-in-out;
+  z-index: 1;
+  transition: all 400ms;
 }
 
-.intro .button::before {
+.intro .button::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 0;
+  top: 5px;
+  left: 5px;
+  border-bottom: 2px solid #eee;
+  border-right: 2px solid #eee;
+  height: 100%;
   width: 100%;
-  transition: all 200ms ease-in-out;
-  background-color: #235;
-  z-index: -1;
+  z-index: -3;
+  transition: all 400ms;
 }
 
-.intro .button:hover::before {
-  height: 100%;
+.intro .button:hover::after {
+  top: -2px;
+  left: -2px;
+}
+
+.intro .button:hover {
+  background-color: #eee;
+  color: #000;
+  cursor: pointer;
 }
 
 .intro .image {
