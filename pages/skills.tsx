@@ -157,6 +157,19 @@ const contentSlides = [
           I completed the program and earned a Dean&apos;s List certificate for the Fall 2022 and Winter 2023 semesters.
         </p>
       </section>
+      <section className={styles.educationSubsection}>
+        <h1>Bachelor&apos;s of Science in Computer Science</h1>
+        <Link
+          href="https://www.ubc.ca"
+          target="_blank"
+        >
+          University of British Columbia
+        </Link>
+        <p>
+          I am currently enrolled to attend the University of British Columbia&apos;s Kelowna campus to complete a 
+          Bachelor&apos;s degree from September 2023 to April 2026.
+        </p>
+      </section>
       <h1>Informal Education</h1>
       <section className={styles.educationSubsection}>
         <h1>Eloquent JavaScript</h1>
