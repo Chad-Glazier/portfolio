@@ -55,23 +55,23 @@ function renderSystem(
 	const black = new Float32Array([0, 0, 0, 1])
 	const white = new Float32Array([1, 1, 1, 1])
 
-	const earth = sphere(20)
+	const earth = sphere(40)
 	const moon = sphere(10)
 
-	renderSpherePoints(
-		gl,
-		earth,
-		white,
-		spherePointsProgram,
-		earthModelMatrix(time),
-		viewMatrix,
-		perspectiveMatrix
-	)
+	// renderSpherePoints(
+	// 	gl,
+	// 	earth,
+	// 	white,
+	// 	spherePointsProgram,
+	// 	earthModelMatrix(time),
+	// 	viewMatrix,
+	// 	perspectiveMatrix
+	// )
 
 	renderSphere(
 		gl,
 		earth,
-		black,
+		new Float32Array([0, 0.8, 1, 1]),
 		sphereProgram,
 		earthModelMatrix(time),
 		viewMatrix,

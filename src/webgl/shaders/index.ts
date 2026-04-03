@@ -50,7 +50,7 @@ export { SPHERE_F_SOURCE }
 
 const SPHERE_V_SOURCE = `#version 100
 
-attribute vec4 aVertexPosition;
+attribute vec3 aVertexPosition;
 
 uniform mat4 uModelMatrix;
 uniform mat4 uViewMatrix;
@@ -61,7 +61,7 @@ void main() {
 		  uProjectionMatrix 
 		* uViewMatrix 
 		* uModelMatrix 
-		* aVertexPosition;
+		* vec4(aVertexPosition, 1.0);
 }
 `
 export { SPHERE_V_SOURCE }
