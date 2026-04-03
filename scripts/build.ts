@@ -56,6 +56,7 @@ async function build(
 		const newName = baseName.toUpperCase() + "_SOURCE"
 
 		outputString += `const ${newName} = \`${shaderSourceCode}\`\n`
+		outputString += `export { ${newName} }\n\n`
 	}
 
 	const encoder = new TextEncoder()
@@ -64,5 +65,5 @@ async function build(
 
 setInterval(
 	() => build("src/webgl/shaders", "./src/webgl/shaders/index.ts"),
-	1000
+	5000
 )
