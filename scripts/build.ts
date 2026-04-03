@@ -63,7 +63,4 @@ async function build(
 	Deno.writeFile(shaderOutput, encoder.encode(outputString))
 }
 
-setInterval(
-	() => build("src/webgl/shaders", "./src/webgl/shaders/index.ts"),
-	5000
-)
+build("src/webgl/shaders", "./src/webgl/shaders/index.ts")

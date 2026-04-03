@@ -1,5 +1,7 @@
 import clearCanvas from "./lib/clearCanvas"
+import initShaderProgram from "./lib/initShaderProgram"
 import renderSystem from "./lib/renderSystem"
+import { POINT_V_SOURCE, POINT_F_SOURCE, SPHERE_V_SOURCE, SPHERE_F_SOURCE } from "./shaders"
 
 function main() {
 	const root = document.getElementById("webgl-root")
@@ -21,10 +23,33 @@ function main() {
 	}
 
 	clearCanvas(gl)
+	gl.enable(gl.DEPTH_TEST)
 
 	// Draw the system
 
-	renderSystem(gl, Date.now())
+	const spherePointsProgram = initShaderProgram(
+		gl, POINT_V_SOURCE, POINT_F_SOURCE
+	)
+	if (spherePointsProgram == null) {
+		return
+	}
+
+	const sphereProgram = initShaderProgram(
+		gl, SPHERE_V_SOURCE, SPHERE_F_SOURCE
+	)
+	if (sphereProgram == null) {
+		return
+	}
+
+	setInterval(() => {
+		clearCanvas(gl)
+		renderSystem(
+			gl, 
+			sphereProgram,
+			spherePointsProgram,
+			Date.now() * 30000
+		)
+	}, 1000 / 30)
 }
 
 document.addEventListener("DOMContentLoaded", main)
