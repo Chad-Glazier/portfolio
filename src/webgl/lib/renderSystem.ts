@@ -58,20 +58,20 @@ function renderSystem(
 	const earth = sphere(40)
 	const moon = sphere(10)
 
-	// renderSpherePoints(
-	// 	gl,
-	// 	earth,
-	// 	white,
-	// 	spherePointsProgram,
-	// 	earthModelMatrix(time),
-	// 	viewMatrix,
-	// 	perspectiveMatrix
-	// )
+	renderSpherePoints(
+		gl,
+		earth,
+		white,
+		spherePointsProgram,
+		earthModelMatrix(time),
+		viewMatrix,
+		perspectiveMatrix
+	)
 
 	renderSphere(
 		gl,
 		earth,
-		new Float32Array([0, 0.8, 1, 1]),
+		new Float32Array([0, 75 / 255, 200 / 255, 1]),
 		sphereProgram,
 		earthModelMatrix(time),
 		viewMatrix,
@@ -97,13 +97,6 @@ function renderSystem(
 		viewMatrix,
 		perspectiveMatrix
 	)
-
-	// !!! TODO
-	// Try sketching out the problem and then implement it.
-	// We can imagine the moon orbiting the earth on the xy plane,
-	// then use the camera (view transformation) to change our
-	// perspective.
-
 }
 
 /**
