@@ -3,6 +3,7 @@ import sphere from "./sphere"
 import type { Mat4 } from "@min-webgl/matrices"
 import * as m from "@min-webgl/matrices"
 import renderSphere from "./renderSphere"
+import { model, type CelestialBody } from "./CelestialBody"
 
 //
 // We define some constants that describe the Earth ("Terra") and Moon
@@ -27,6 +28,11 @@ const LUNAR_DAY = 29.5 * TERRAN_DAY
 const LUNAR_ORBIT_PERIOD = LUNAR_DAY
 const LUNAR_DISTANCE = 384399000 
 
+//
+// TODO:
+// implement directional lighting from the "sun"
+//
+
 /**
  * Renders the Earth and Moon, using their real orbits/orientations.
  * 
@@ -42,21 +48,23 @@ function renderSystem(
 	const aspectRatio = gl.canvas.width / gl.canvas.height
 
 	const viewMatrix = m.concat(
-		m.translate(0, 0, -4.5),
-		m.rotate([1, 0, 0], Math.PI / 2),
+		m.translate(0, 0, -10),
+		// m.rotate([1, 0, 0], 2 * Math.PI / 3),
 	)
 
 	const perspectiveMatrix = m.perspective(
 		Math.PI / 3,
 		aspectRatio,
-		1, 100
+		0.1, 100
 	)
 
 	const black = new Float32Array([0, 0, 0, 1])
+	const gray = new Float32Array([0.05, 0.05, 0.05, 1.0])
+	const blue = new Float32Array([0, 75 / 255, 200 / 255, 1])
 	const white = new Float32Array([1, 1, 1, 1])
 
-	const earth = sphere(40)
-	const moon = sphere(10)
+	const earth = sphere(30)
+	const moon = sphere(12)
 
 	renderSpherePoints(
 		gl,
@@ -71,7 +79,7 @@ function renderSystem(
 	renderSphere(
 		gl,
 		earth,
-		new Float32Array([0, 75 / 255, 200 / 255, 1]),
+		gray,
 		sphereProgram,
 		earthModelMatrix(time),
 		viewMatrix,
@@ -91,7 +99,7 @@ function renderSystem(
 	renderSphere(
 		gl,
 		moon,
-		black,
+		gray,
 		sphereProgram,
 		moonModelMatrix(time),
 		viewMatrix,
@@ -112,13 +120,26 @@ function earthModelMatrix(time: number): Mat4 {
 	)
 }
 
+const moon: CelestialBody = {
+	radius: 0.25,
+	polarTilt: 0,
+	azimuthalTilt: 0,
+	rotationPeriod: LUNAR_DAY,
+	orbitalCenter: [0, 0, 0],
+	orbitalRadius: 6,
+	orbitalPeriod: LUNAR_ORBIT_PERIOD,
+	initialRotation: 0,
+	initialOrbitalRotation: 0
+}
+
 function moonModelMatrix(time: number): Mat4 {
-	return m.concat(
-		m.rotate([0, 0, 1], time / 1000 / LUNAR_ORBIT_PERIOD * 2 * Math.PI),
-		m.translate(0, 3, 0),
-		m.rotate([0, 0, 1], time / 1000 / LUNAR_DAY * 2 * Math.PI),
-		m.scale(0.25, 0.25, 0.25),
-	)
+	return model(moon, time / 1000)
+	// return m.concat(
+	// 	m.rotate([0, 0, 1], time / 1000 / LUNAR_ORBIT_PERIOD * 2 * Math.PI),
+	// 	m.translate(0, 6, 0),
+	// 	m.rotate([0, 0, 1], time / 1000 / LUNAR_DAY * 2 * Math.PI),
+	// 	m.scale(0.25, 0.25, 0.25),
+	// )
 }
 
 export default renderSystem

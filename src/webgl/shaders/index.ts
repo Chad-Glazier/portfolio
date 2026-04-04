@@ -28,7 +28,7 @@ uniform mat4 uViewMatrix;
 uniform mat4 uProjectionMatrix;
 
 void main() {
-	gl_PointSize = 2.0;
+	gl_PointSize = 1.0;
 	gl_Position =
 		  uProjectionMatrix 
 		* uViewMatrix 
