@@ -16,7 +16,7 @@ export type CelestialBody = {
 	/** (s) The time it takes for the object to make one full rotation. */
 	rotationPeriod: number
 	
-	/** (km) The point that this object is orbiting. */
+	/** The point that this object is orbiting. */
 	orbitalCenter: Point | CelestialBody
 	/** (km) The distance between this object and its orbital center. */
 	orbitalRadius: number
