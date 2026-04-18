@@ -1,4 +1,5 @@
 import clearCanvas from "./lib/clearCanvas"
+import { solarSystem } from "./lib/constants/solarSystem"
 import initShaderProgram from "./lib/initShaderProgram"
 import renderSystem from "./lib/renderSystem"
 import { POINT_V_SOURCE, POINT_F_SOURCE, SPHERE_V_SOURCE, SPHERE_F_SOURCE } from "./shaders"
@@ -47,7 +48,8 @@ function main() {
 			gl, 
 			sphereProgram,
 			spherePointsProgram,
-			Date.now() * 30000
+			Date.now() * 3000000,
+			solarSystem
 		)
 	}, 1000 / 30)
 }
