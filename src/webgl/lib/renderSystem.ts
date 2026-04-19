@@ -1,15 +1,15 @@
-import * as m from "@min-webgl/matrices";
-import { model, type PlanetarySystem } from "./CelestialBody";
-import renderSphere from "./webgl_utils/renderSphere";
-import renderSpherePoints from "./webgl_utils/renderSpherePoints";
-import sphere from "./sphere";
-import { rgba } from "./webgl_utils/colors";
+import * as m from "@min-webgl/matrices"
+import { model, type PlanetarySystem } from "./CelestialBody"
+import sphere from "./webgl_utils/sphere"
+import { rgba } from "./webgl_utils/colors"
+import renderSphere from "./webgl_utils/renderSphere"
+import renderSpherePoints from "./webgl_utils/renderSpherePoints"
 
 const view = m.concat(
 	m.translate(0, 0, -2),
-	m.rotate([1, 0, 0], Math.PI / 2),
-);
-const baseSphere = sphere(20);
+	m.rotate([1, 0, 0], Math.PI / 8),
+)
+const baseSphere = sphere(20)
 
 /**
  * Renders a planetary system.
@@ -24,13 +24,13 @@ function renderSystem(
 	time: number,
 	system: PlanetarySystem,
 ) {
-	const aspectRatio = gl.canvas.width / gl.canvas.height;
+	const aspectRatio = gl.canvas.width / gl.canvas.height
 	const perspectiveMatrix = m.perspective(
-		Math.PI / 3,
+		Math.PI / 4,
 		aspectRatio,
 		0.1,
-		10,
-	);
+		3,
+	)
 
 	for (const body of system) {
 		renderSphere(
@@ -41,7 +41,7 @@ function renderSystem(
 			model(body, time / 1000),
 			view,
 			perspectiveMatrix,
-		);
+		)
 		if (body.pointsColor) {
 			renderSpherePoints(
 				gl,
@@ -51,9 +51,9 @@ function renderSystem(
 				model(body, time / 1000),
 				view,
 				perspectiveMatrix,
-			);
+			)
 		}
 	}
 }
 
-export default renderSystem;
+export default renderSystem

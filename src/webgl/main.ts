@@ -1,5 +1,6 @@
+import solarSystem from "./lib/constants/solarSystem";
+import normalizeSystem from "./lib/normalizeSystem";
 import renderSystem from "./lib/renderSystem";
-import solarSystem from "./lib/solarSystem";
 import clearCanvas from "./lib/webgl_utils/clearCanvas";
 import initShaderProgram from "./lib/webgl_utils/initShaderProgram";
 import {
@@ -50,6 +51,7 @@ function main() {
 	if (sphereProgram == null) {
 		return;
 	}
+	normalizeSystem(solarSystem);
 
 	setInterval(() => {
 		clearCanvas(gl);

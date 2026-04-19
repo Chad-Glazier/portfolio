@@ -241,7 +241,7 @@ type SphereOptions = {
 	 * 	azimuthalInterval: [0, Math.PI]
 	 * ```
 	 * In terms of the xy-plane, this hemisphere would cover the first and
-	 * second quadrants; i.e., all points on the sphere where the y-values are
+	 * second quadrants i.e., all points on the sphere where the y-values are
 	 * positive.
 	 *
 	 * To make a full sphere, you would would just set
