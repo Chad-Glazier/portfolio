@@ -9,19 +9,12 @@ import { sol } from "./constants/solarSystem"
  */
 function normalizeSystem(system: PlanetarySystem): void {
 
-	// Get the minimum size and the maximum size. We can have a constant k that
-	// denotes the maximum adjusted size as a multiple of the minimum size. The
-	// function between minimum and maximum can be cubic instead of linear to
-	// allow for large objects to still be much larger than the smallest ones.
-
 	system.forEach(body => {
 		if (body == sol) {
-			body.radius = Math.pow(body.radius, 0.45)
-			body.orbitalRadius = Math.pow(body.orbitalRadius, 0.45)		
-		} else {
-			body.radius = Math.pow(body.radius, 0.42)
-			body.orbitalRadius = Math.pow(body.orbitalRadius, 0.38)			
+			body.radius = Math.pow(body.radius, 1.2)
 		}
+		body.radius = Math.pow(body.radius, 0.4)
+		body.orbitalRadius = Math.pow(body.orbitalRadius, 0.4)			
 	})
 
 	const maxOrbitalRadius = system

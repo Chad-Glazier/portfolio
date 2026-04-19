@@ -59,7 +59,7 @@ function main() {
 			gl,
 			sphereProgram,
 			spherePointsProgram,
-			Date.now() * 300000,
+			Date.now() * 100000,
 			solarSystem,
 		);
 	}, 1000 / 30);

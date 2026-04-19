@@ -18,7 +18,8 @@ export const sol: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(255, 157, 0, 1),
+	// color: rgba(255, 157, 0, 1),
+	color: rgba(0, 0, 0, 1),
 	pointsColor: rgba(251, 255, 0, 1),
 }
 
