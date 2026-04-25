@@ -3,7 +3,7 @@ import { sol } from "./constants/solarSystem"
 
 /**
  * "Normalizes" a planetary system, making it so that the entire thing has a
- * radius of 1.
+ * radius of 1 and the sizes are scaled to be easier to visualize.
  * 
  * @param system The system to normalize.
  */
