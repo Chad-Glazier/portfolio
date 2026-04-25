@@ -1,7 +1,7 @@
 import { flatten, type Mat4 } from "@min-webgl/matrices"
 import type { Sphere } from "./sphere"
 
-function renderSpherePoints(
+function renderSphere(
 	gl: WebGLRenderingContext,
 	sphere: Sphere,
 	color: Float32Array,
@@ -18,10 +18,17 @@ function renderSpherePoints(
 		uModelMatrix: gl.getUniformLocation(program, "uModelMatrix"),
 		uViewMatrix: gl.getUniformLocation(program, "uViewMatrix"),
 		uProjectionMatrix: gl.getUniformLocation(program, "uProjectionMatrix"),
-		uColor: gl.getUniformLocation(program, "uColor")
-	} 
+		uColor: gl.getUniformLocation(program, "uColor"),
+		uSphereCenter: gl.getUniformLocation(program, "uSphereCenter"),
+		uLightPoint: gl.getUniformLocation(program, "uLightPoint"),
+	}
 
 	gl.useProgram(program)
+
+	// Pass constants to OpenGL.
+
+	gl.uniform3fv(loc.uSphereCenter, new Float32Array([0, 0, 0]))
+	gl.uniform3fv(loc.uLightPoint, new Float32Array([0, 0, 0]))
 
 	// Pass the transformation matrices to OpenGL.
 
@@ -50,4 +57,4 @@ function renderSpherePoints(
 	gl.drawElements(gl.TRIANGLES, sphere.indices.length, gl.UNSIGNED_SHORT, 0)
 }
 
-export default renderSpherePoints
+export default renderSphere

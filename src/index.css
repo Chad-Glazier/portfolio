@@ -11,3 +11,13 @@
 	width: 100vw;
 	height: 100vh;
 }
+
+/*
+	Global styles.
+*/
+:root {
+	font-family: "Roboto", sans-serif;
+
+	--heading-dull: #888;
+	--heading-vivid: #eee;
+}

@@ -18,9 +18,7 @@ export const sol: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	// color: rgba(255, 157, 0, 1),
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(251, 255, 0, 1),
+	color: rgba(251, 255, 0, 1),
 }
 
 export const terra: CelestialBody = {
@@ -34,8 +32,7 @@ export const terra: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(0, 255, 251, 1),
+	color: rgba(0, 76, 255, 1),
 }
 
 export const luna: CelestialBody = {
@@ -49,8 +46,7 @@ export const luna: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(196, 196, 196, 1),
+	color: rgba(196, 196, 196, 1),
 }
 
 export const mercury: CelestialBody = {
@@ -64,8 +60,7 @@ export const mercury: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(200, 200, 200, 1),
+	color: rgba(200, 200, 200, 1),
 };
 
 export const venus: CelestialBody = {
@@ -79,8 +74,7 @@ export const venus: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(255, 180, 0, 1),
+	color: rgba(255, 180, 0, 1),
 };
 
 export const mars: CelestialBody = {
@@ -94,8 +88,7 @@ export const mars: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(255, 80, 0, 1),
+	color: rgba(255, 80, 0, 1),
 };
 
 export const phobos: CelestialBody = {
@@ -109,8 +102,7 @@ export const phobos: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(150, 150, 150, 1),
+	color: rgba(150, 150, 150, 1),
 };
 
 export const deimos: CelestialBody = {
@@ -124,8 +116,7 @@ export const deimos: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(180, 180, 180, 1),
+	color: rgba(180, 180, 180, 1),
 };
 
 export const jupiter: CelestialBody = {
@@ -139,8 +130,7 @@ export const jupiter: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(255, 200, 150, 1),
+	color: rgba(255, 200, 150, 1),
 };
 
 export const io: CelestialBody = {
@@ -154,8 +144,7 @@ export const io: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(255, 255, 0, 1),
+	color: rgba(255, 255, 0, 1),
 };
 
 export const europa: CelestialBody = {
@@ -169,8 +158,7 @@ export const europa: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(200, 200, 255, 1),
+	color: rgba(200, 200, 255, 1),
 };
 
 export const ganymede: CelestialBody = {
@@ -184,8 +172,7 @@ export const ganymede: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(180, 180, 180, 1),
+	color: rgba(180, 180, 180, 1),
 };
 
 export const callisto: CelestialBody = {
@@ -199,8 +186,7 @@ export const callisto: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(120, 120, 120, 1),
+	color: rgba(120, 120, 120, 1),
 };
 
 
@@ -215,8 +201,7 @@ export const saturn: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(255, 220, 150, 1),
+	color: rgba(255, 220, 150, 1),
 };
 
 export const titan: CelestialBody = {
@@ -230,8 +215,7 @@ export const titan: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(255, 200, 100, 1),
+	color: rgba(255, 200, 100, 1),
 };
 
 export const uranus: CelestialBody = {
@@ -245,8 +229,7 @@ export const uranus: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(150, 255, 255, 1),
+	color: rgba(150, 255, 255, 1),
 };
 
 export const neptune: CelestialBody = {
@@ -260,8 +243,7 @@ export const neptune: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(100, 150, 255, 1),
+	color: rgba(100, 150, 255, 1),
 };
 
 export const triton: CelestialBody = {
@@ -275,8 +257,7 @@ export const triton: CelestialBody = {
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
 	
-	color: rgba(0, 0, 0, 1),
-	pointsColor: rgba(200, 200, 255, 1),
+	color: rgba(200, 200, 255, 1),
 };
 
 const solarSystem: PlanetarySystem = [

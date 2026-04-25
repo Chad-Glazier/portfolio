@@ -1,14 +1,14 @@
-import solarSystem from "./lib/constants/solarSystem";
-import normalizeSystem from "./lib/normalizeSystem";
-import renderSystem from "./lib/renderSystem";
-import clearCanvas from "./lib/webgl_utils/clearCanvas";
-import initShaderProgram from "./lib/webgl_utils/initShaderProgram";
+import solarSystem from "./constants/solarSystem";
+import renderSystem from "./renderSystem";
+import normalizeSystem from "./normalizeSystem";
 import {
 	POINT_F_SOURCE,
 	POINT_V_SOURCE,
 	SPHERE_F_SOURCE,
 	SPHERE_V_SOURCE,
 } from "./shaders";
+import clearCanvas from "./webgl_utils/clearCanvas";
+import initShaderProgram from "./webgl_utils/initShaderProgram";
 
 function main() {
 	const root = document.getElementById("webgl-root");
