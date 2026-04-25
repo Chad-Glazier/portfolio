@@ -6,8 +6,8 @@ import renderSpherePoints from "./webgl_utils/renderSpherePoints";
 import sphere from "./webgl_utils/sphere";
 
 const view = m.concat(
-	m.translate(0, 0, -1),
-	m.rotate([1, 0, 0], Math.PI / 8),
+	m.translate(0, 0, -1.5),
+	m.rotate([1, 0, 0], Math.PI / 6),
 );
 const baseSphere = sphere(20);
 
