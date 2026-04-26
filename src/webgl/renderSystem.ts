@@ -36,7 +36,7 @@ function renderSystem(
 			model(body, time),
 			view,
 			projection,
-			body.texture()
+			body
 		);
 		if (body.pointsColor) {
 			renderSpherePoints(

@@ -27,7 +27,7 @@ function lookAtObject(
 	const cameraPosition: Point = 
 		[objectPosition[0], objectPosition[1], objectPosition[2], 1]
 	
-	const angle = Math.PI / 6
+	const angle = Math.PI / 8
 	const dist = (distance + 1) * object!.radius
 	const y = dist * Math.sin(angle)
 	const z = dist * Math.cos(angle)

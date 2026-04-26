@@ -26,12 +26,12 @@ async function main() {
 
 	const gl = root.getContext("webgl");
 	if (gl == null) {
-		console.error("Failed to load WebGL rendering context.");
+		console.error("Failed to load WebGL rendering context.")
 		return;
 	}
 
-	clearCanvas(gl);
-	gl.enable(gl.DEPTH_TEST);
+	clearCanvas(gl)
+	gl.enable(gl.DEPTH_TEST)
 
 	// Draw the system
 
@@ -59,7 +59,7 @@ async function main() {
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
 		now *= 1
-		const camera = lookAtObject(6, system, "jupiter", now)
+		const camera = lookAtObject(12, system, "terra", now)
 		clearCanvas(gl!);
 		renderSystem(
 			gl!,

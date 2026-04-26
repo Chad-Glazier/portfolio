@@ -1,6 +1,5 @@
 import type { Mat4, Point } from "@min-webgl/matrices";
 import {
-	identity,
 	mult_i,
 	rotate,
 	scale,
@@ -57,33 +56,29 @@ export type PlanetarySystem = CelestialBody[];
 export function model(body: CelestialBody, time: number): Mat4 {
 	// Note: Each body is on the xz-plane.
 
-	const model = identity(4);
-
 	// Scale it up to match the radius.
-	mult_i(scale(body.radius, body.radius, body.radius), model);
+	const model = scale(body.radius, body.radius, body.radius)
 
 	// Orient it so that the "top" of the sphere is aligned with its north
 	// pole.
-	mult_i(rotate([1, 0, 0], Math.PI / 2), model);
-	mult_i(rotate([0, 0, 1], -body.polarTilt), model);
-	mult_i(rotate([0, 1, 0], -body.azimuthalTilt), model);
+	mult_i(rotate([1, 0, 0], Math.PI / 2), model)
+	mult_i(rotate([0, 0, 1], -body.polarTilt), model)
+	mult_i(rotate([0, 1, 0], -body.azimuthalTilt), model)
 
 	// Rotate it about its axis.
-	const axialRotation = rotate(
+	mult_i(rotate(
 		[Math.sin(body.polarTilt), Math.cos(body.polarTilt), 0],
 		body.initialRotation +
 			2 * Math.PI * time / body.rotationPeriod,
-	);
-	mult_i(axialRotation, model);
+	), model)
 
 	// Rotate it to match its orbit.
 	mult_i(translate(0, 0, -body.orbitalRadius), model);
-	const orbitalRotation = rotate(
+	mult_i(rotate(
 		[0, 1, 0],
 		body.initialOrbitalRotation +
 			2 * Math.PI * time / body.orbitalPeriod,
-	);
-	mult_i(orbitalRotation, model);
+	), model);
 
 	// Translate it to be centered around its orbital center instead of the
 	// origin.
@@ -117,12 +112,11 @@ export function model(body: CelestialBody, time: number): Mat4 {
  */
 export function position(body: CelestialBody, time: number): Point {
 	const model = translate(0, 0, -body.orbitalRadius);
-	const orbitalRotation = rotate(
+	mult_i(rotate(
 		[0, 1, 0],
 		body.initialOrbitalRotation +
 			2 * Math.PI * time / body.orbitalPeriod,
-	);
-	mult_i(orbitalRotation, model);
+	), model);
 	if (Array.isArray(body.orbitalCenter)) {
 		mult_i(
 			translate(
