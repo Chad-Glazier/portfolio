@@ -58,8 +58,8 @@ async function main() {
 
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
-		now *= 10000
-		const camera = lookAtObject(6, system, "terra", now)
+		now *= 1
+		const camera = lookAtObject(6, system, "jupiter", now)
 		clearCanvas(gl!);
 		renderSystem(
 			gl!,

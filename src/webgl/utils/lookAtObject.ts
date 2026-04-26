@@ -22,12 +22,12 @@ function lookAtObject(
 ) {
 
 	const object = system.find(object => object.name == objectName)
-	const objectPosition = position(object!, time / 1000)
+	const objectPosition = position(object!, time)
 
 	const cameraPosition: Point = 
 		[objectPosition[0], objectPosition[1], objectPosition[2], 1]
 	
-	const angle = Math.PI / 4
+	const angle = Math.PI / 6
 	const dist = (distance + 1) * object!.radius
 	const y = dist * Math.sin(angle)
 	const z = dist * Math.cos(angle)

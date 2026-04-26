@@ -10,7 +10,7 @@ const baseSphere = sphere(40);
  * Renders a planetary system.
  *
  * @param gl The rendering context.
- * @param time The time in milliseconds.
+ * @param time The time in seconds.
  */
 function renderSystem(
 	gl: WebGLRenderingContext,
@@ -33,7 +33,7 @@ function renderSystem(
 			gl,
 			baseSphere,
 			sphereProgram,
-			model(body, time / 1000),
+			model(body, time),
 			view,
 			projection,
 			body.texture()
@@ -44,7 +44,7 @@ function renderSystem(
 				baseSphere,
 				body.pointsColor,
 				spherePointsProgram,
-				model(body, time / 1000),
+				model(body, time),
 				view,
 				projection,
 			);

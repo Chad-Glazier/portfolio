@@ -33,7 +33,7 @@ function loadTexture(
 	const image = new Image()
 	image.src = url
 
-	image.addEventListener("load", e => {
+	image.addEventListener("load", () => {
 		gl.bindTexture(gl.TEXTURE_2D, texture)
 		gl.texImage2D(
 			gl.TEXTURE_2D,
