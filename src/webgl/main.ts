@@ -57,10 +57,9 @@ async function main() {
 
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
-		now *= 10000
+		now *= 1000
 		const system = normalizeSystem(solar)
 		const camera = lookAtObject(12, system, "sol", now)
-		// const camera = lookAt([.5, .5, 0, 1], [0, 0, 0, 1], [0, 1, 0, 0])
 		clearCanvas(gl!);
 		renderSystem(
 			gl!,

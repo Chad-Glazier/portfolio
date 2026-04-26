@@ -4,7 +4,7 @@ import renderSphere from "./utils/renderSphere";
 import renderSpherePoints from "./utils/renderSpherePoints";
 import sphere from "./utils/sphere";
 
-const baseSphere = sphere(60);
+const baseSphere = sphere(40);
 
 /**
  * Renders a planetary system.
