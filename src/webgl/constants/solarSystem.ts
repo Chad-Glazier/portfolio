@@ -1,5 +1,5 @@
-import type { CelestialBody, PlanetarySystem } from "../CelestialBody";
-import { rgba } from "../webgl_utils/colors";
+import type { CelestialBody, PlanetarySystem } from "../utils/CelestialBody";
+import { rgba } from "../utils/colors";
 
 //
 // Distance is measured in kilometers.
@@ -19,7 +19,7 @@ export const sol: CelestialBody = {
 	initialOrbitalRotation: 0,
 
 	color: rgba(251, 255, 0, 1),
-}
+};
 
 export const terra: CelestialBody = {
 	radius: 6_371,
@@ -33,7 +33,7 @@ export const terra: CelestialBody = {
 	initialOrbitalRotation: 0,
 
 	color: rgba(0, 76, 255, 1),
-}
+};
 
 export const luna: CelestialBody = {
 	radius: 1_737.5,
@@ -47,7 +47,7 @@ export const luna: CelestialBody = {
 	initialOrbitalRotation: 0,
 
 	color: rgba(196, 196, 196, 1),
-}
+};
 
 export const mercury: CelestialBody = {
 	radius: 2_439.7,
@@ -143,7 +143,7 @@ export const io: CelestialBody = {
 	orbitalPeriod: 1.77 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(255, 255, 0, 1),
 };
 
@@ -157,7 +157,7 @@ export const europa: CelestialBody = {
 	orbitalPeriod: 3.55 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(200, 200, 255, 1),
 };
 
@@ -171,7 +171,7 @@ export const ganymede: CelestialBody = {
 	orbitalPeriod: 7.15 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(180, 180, 180, 1),
 };
 
@@ -185,10 +185,9 @@ export const callisto: CelestialBody = {
 	orbitalPeriod: 16.7 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(120, 120, 120, 1),
 };
-
 
 export const saturn: CelestialBody = {
 	radius: 58_232,
@@ -200,7 +199,7 @@ export const saturn: CelestialBody = {
 	orbitalPeriod: 10759 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(255, 220, 150, 1),
 };
 
@@ -214,7 +213,7 @@ export const titan: CelestialBody = {
 	orbitalPeriod: 15.9 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(255, 200, 100, 1),
 };
 
@@ -228,7 +227,7 @@ export const uranus: CelestialBody = {
 	orbitalPeriod: 30687 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(150, 255, 255, 1),
 };
 
@@ -242,7 +241,7 @@ export const neptune: CelestialBody = {
 	orbitalPeriod: 60190 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(100, 150, 255, 1),
 };
 
@@ -256,7 +255,7 @@ export const triton: CelestialBody = {
 	orbitalPeriod: 5.88 * 24 * 60 * 60,
 	initialRotation: 0,
 	initialOrbitalRotation: 0,
-	
+
 	color: rgba(200, 200, 255, 1),
 };
 

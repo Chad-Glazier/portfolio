@@ -1,5 +1,5 @@
+import { sol } from "../constants/solarSystem";
 import type { PlanetarySystem } from "./CelestialBody";
-import { sol } from "./constants/solarSystem";
 
 /**
  * "Normalizes" a planetary system, making it so that the entire thing has a

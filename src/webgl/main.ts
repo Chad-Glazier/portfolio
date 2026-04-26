@@ -1,14 +1,15 @@
 import solarSystem from "./constants/solarSystem";
 import renderSystem from "./renderSystem";
-import normalizeSystem from "./normalizeSystem";
 import {
 	POINT_F_SOURCE,
 	POINT_V_SOURCE,
 	SPHERE_F_SOURCE,
 	SPHERE_V_SOURCE,
 } from "./shaders";
-import clearCanvas from "./webgl_utils/clearCanvas";
-import initShaderProgram from "./webgl_utils/initShaderProgram";
+import clearCanvas from "./utils/clearCanvas";
+import initShaderProgram from "./utils/initShaderProgram";
+import lookAt from "./utils/lookAt";
+import normalizeSystem from "./utils/normalizeSystem";
 
 function main() {
 	const root = document.getElementById("webgl-root");
@@ -61,6 +62,11 @@ function main() {
 			spherePointsProgram,
 			Date.now() * 100000,
 			solarSystem,
+			lookAt(
+				[0, 1, 0, 1],
+				[0, 0, 0, 1],
+				[0, 0, 1, 0],
+			),
 		);
 	}, 1000 / 30);
 }
