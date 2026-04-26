@@ -19,7 +19,6 @@ import titanImg from "../../assets/textures/Titan.jpg"
 import uranusImg from "../../assets/textures/Uranus.jpg"
 import neptuneImg from "../../assets/textures/Neptune.jpg"
 import tritonImg from "../../assets/textures/Triton.jpg"
-import solImg from "../../assets/textures/Sol.jpg"
 
 //
 // Distance is measured in kilometers.
@@ -43,7 +42,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, solImg, rgba(251, 255, 0, 1))
+		texture: await loadTexture(gl, "null", rgba(251, 255, 0, 1))
 	};
 
 	const terra: CelestialBody = {
