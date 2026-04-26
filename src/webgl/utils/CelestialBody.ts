@@ -38,7 +38,7 @@ export type CelestialBody = {
 	/** The color of the points to render on the sphere. */
 	pointsColor?: Float32Array;
 	/** The texture for the sphere */
-	texture: WebGLTexture
+	texture: () => WebGLTexture
 };
 
 /**

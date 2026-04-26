@@ -26,9 +26,9 @@ import tritonImg from "../../assets/textures/Triton.jpg"
 // Angles are measured in radians.
 //
 
-async function solarSystem(
+function solarSystem(
 	gl: WebGLRenderingContext
-): Promise<PlanetarySystem> {
+): PlanetarySystem {
 
 	const sol: CelestialBody = {
 		name: "sol",
@@ -42,7 +42,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, "null", rgba(251, 255, 0, 1))
+		texture: loadTexture(gl, "null", rgba(250, 253, 102, 1))
 	};
 
 	const terra: CelestialBody = {
@@ -57,7 +57,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, terraImg, rgba(0, 76, 255, 1))
+		texture: loadTexture(gl, terraImg, rgba(0, 76, 255, 1))
 	};
 
 	const luna: CelestialBody = {
@@ -72,7 +72,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, lunaImg, rgba(196, 196, 196, 1))
+		texture: loadTexture(gl, lunaImg, rgba(196, 196, 196, 1))
 	};
 
 	const mercury: CelestialBody = {
@@ -87,7 +87,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, mercuryImg, rgba(200, 200, 200, 1))
+		texture: loadTexture(gl, mercuryImg, rgba(200, 200, 200, 1))
 	};
 
 	const venus: CelestialBody = {
@@ -102,7 +102,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, venusImg, rgba(255, 180, 0, 1))
+		texture: loadTexture(gl, venusImg, rgba(255, 180, 0, 1))
 	};
 
 	const mars: CelestialBody = {
@@ -117,7 +117,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, marsImg, rgba(255, 80, 0, 1))
+		texture: loadTexture(gl, marsImg, rgba(255, 80, 0, 1))
 	};
 
 	const phobos: CelestialBody = {
@@ -132,7 +132,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, phobosImg, rgba(150, 150, 150, 1))
+		texture: loadTexture(gl, phobosImg, rgba(150, 150, 150, 1))
 	};
 
 	const deimos: CelestialBody = {
@@ -147,7 +147,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, deimosImg, rgba(180, 180, 180, 1))
+		texture: loadTexture(gl, deimosImg, rgba(180, 180, 180, 1))
 	};
 
 	const jupiter: CelestialBody = {
@@ -162,7 +162,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, jupiterImg, rgba(255, 200, 150, 1))
+		texture: loadTexture(gl, jupiterImg, rgba(255, 200, 150, 1))
 	};
 
 	const io: CelestialBody = {
@@ -177,7 +177,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, ioImg, rgba(255, 255, 0, 1))
+		texture: loadTexture(gl, ioImg, rgba(255, 255, 0, 1))
 	};
 
 	const europa: CelestialBody = {
@@ -192,7 +192,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, europaImg, rgba(200, 200, 255, 1))
+		texture: loadTexture(gl, europaImg, rgba(200, 200, 255, 1))
 	};
 
 	const ganymede: CelestialBody = {
@@ -207,7 +207,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, ganymedeImg, rgba(180, 180, 180, 1))
+		texture: loadTexture(gl, ganymedeImg, rgba(180, 180, 180, 1))
 	};
 
 	const callisto: CelestialBody = {
@@ -222,7 +222,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, callistoImg, rgba(120, 120, 120, 1))
+		texture: loadTexture(gl, callistoImg, rgba(120, 120, 120, 1))
 	};
 
 	const saturn: CelestialBody = {
@@ -237,7 +237,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, saturnImg, rgba(255, 220, 150, 1))
+		texture: loadTexture(gl, saturnImg, rgba(255, 220, 150, 1))
 	};
 
 	const titan: CelestialBody = {
@@ -252,7 +252,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, titanImg, rgba(255, 200, 100, 1))
+		texture: loadTexture(gl, titanImg, rgba(255, 200, 100, 1))
 	};
 
 	const uranus: CelestialBody = {
@@ -267,7 +267,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, uranusImg, rgba(150, 255, 255, 1))
+		texture: loadTexture(gl, uranusImg, rgba(150, 255, 255, 1))
 	};
 
 	const neptune: CelestialBody = {
@@ -282,7 +282,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, neptuneImg, rgba(100, 150, 255, 1))
+		texture: loadTexture(gl, neptuneImg, rgba(100, 150, 255, 1))
 	};
 
 	const triton: CelestialBody = {
@@ -297,7 +297,7 @@ async function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
-		texture: await loadTexture(gl, tritonImg, rgba(200, 200, 255, 1))
+		texture: loadTexture(gl, tritonImg, rgba(200, 200, 255, 1))
 	};
 
 	return [

@@ -53,13 +53,13 @@ async function main() {
 		return;
 	}
 
-	const solar = await solarSystem(gl)
+	const solar = solarSystem(gl)
 	const system = normalizeSystem(solar)
 
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
-		now *= 1000
-		const camera = lookAtObject(12, system, "sol", now)
+		now *= 10000
+		const camera = lookAtObject(6, system, "terra", now)
 		clearCanvas(gl!);
 		renderSystem(
 			gl!,
