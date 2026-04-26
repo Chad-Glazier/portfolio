@@ -12,6 +12,8 @@ import {
  * Represents a celestial body. For example, a star, a planet, or a moon.
  */
 export type CelestialBody = {
+	/** The unique name of the body. */
+	name: string;
 	/** (km) The radius of the body. */
 	radius: number;
 	/** (rad) The angle between the body's axis of rotation and the y axis. */
@@ -35,8 +37,8 @@ export type CelestialBody = {
 
 	/** The color of the points to render on the sphere. */
 	pointsColor?: Float32Array;
-	/** The color of the sphere. */
-	color?: Float32Array;
+	/** The texture for the sphere */
+	texture: WebGLTexture
 };
 
 /**
@@ -113,7 +115,7 @@ export function model(body: CelestialBody, time: number): Mat4 {
  * Returns the point position of a celestial body (that is, its center) at a
  * given time.
  */
-function position(body: CelestialBody, time: number): Point {
+export function position(body: CelestialBody, time: number): Point {
 	const model = translate(0, 0, -body.orbitalRadius);
 	const orbitalRotation = rotate(
 		[0, 1, 0],

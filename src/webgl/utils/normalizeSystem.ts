@@ -1,4 +1,3 @@
-import { sol } from "../constants/solarSystem";
 import type { PlanetarySystem } from "./CelestialBody";
 
 /**
@@ -7,23 +6,33 @@ import type { PlanetarySystem } from "./CelestialBody";
  *
  * @param system The system to normalize.
  */
-function normalizeSystem(system: PlanetarySystem): void {
-	system.forEach((body) => {
-		if (body == sol) {
-			body.radius = Math.pow(body.radius, 1.1);
+function normalizeSystem(system: PlanetarySystem): PlanetarySystem {
+
+	const copy: PlanetarySystem = system.map(body => {
+		return { ...body }
+	})
+	copy.forEach(body => {
+		if (!Array.isArray(body.orbitalCenter)) {
+			const idx = system.indexOf(body.orbitalCenter)
+			body.orbitalCenter = copy[idx]
 		}
-		body.radius = Math.pow(body.radius, 0.42);
-		body.orbitalRadius = Math.pow(body.orbitalRadius, 0.42);
+	})
+
+	copy.forEach((body) => {
+		body.radius = Math.pow(body.radius, 0.5);
+		body.orbitalRadius = Math.pow(body.orbitalRadius, 0.5);
 	});
 
-	const maxOrbitalRadius = system
+	const maxOrbitalRadius = copy
 		.map((body) => body.orbitalRadius)
 		.reduce((a, b) => Math.max(a, b));
 
-	system.forEach((body) => {
+	copy.forEach((body) => {
 		body.orbitalRadius /= maxOrbitalRadius;
 		body.radius /= maxOrbitalRadius;
 	});
+
+	return copy
 }
 
 export default normalizeSystem;

@@ -1,6 +1,7 @@
 #version 100
 
 attribute vec3 aVertexPosition;
+attribute vec2 aTextureCoord;
 
 uniform vec3 uSphereCenter;
 uniform vec3 uLightPoint;
@@ -11,8 +12,12 @@ uniform mat4 uProjectionMatrix;
 
 varying vec3 vSurfaceNormal;
 varying vec3 vSurfaceToLight;
+varying vec2 vTextureCoord;
 
 void main() {
+	// Pass texture coordinates straight to the fragment shader
+	vTextureCoord = aTextureCoord;
+
 	gl_Position = 
 		  uProjectionMatrix 
 		* uViewMatrix 

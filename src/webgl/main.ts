@@ -1,4 +1,4 @@
-import solarSystem from "./constants/solarSystem";
+import solarSystem from "./constants/solarSystem"
 import renderSystem from "./renderSystem";
 import {
 	POINT_F_SOURCE,
@@ -8,10 +8,10 @@ import {
 } from "./shaders";
 import clearCanvas from "./utils/clearCanvas";
 import initShaderProgram from "./utils/initShaderProgram";
-import lookAt from "./utils/lookAt";
+import lookAtObject from "./utils/lookAtObject"
 import normalizeSystem from "./utils/normalizeSystem";
 
-function main() {
+async function main() {
 	const root = document.getElementById("webgl-root");
 
 	if (root == null || !(root instanceof HTMLCanvasElement)) {
@@ -52,23 +52,27 @@ function main() {
 	if (sphereProgram == null) {
 		return;
 	}
-	normalizeSystem(solarSystem);
 
-	setInterval(() => {
-		clearCanvas(gl);
+	const solar = await solarSystem(gl)
+
+	requestAnimationFrame(drawScene)
+	function drawScene(now: number) {
+		now *= 10000
+		const system = normalizeSystem(solar)
+		const camera = lookAtObject(6, system, "terra", now)
+		clearCanvas(gl!);
 		renderSystem(
-			gl,
-			sphereProgram,
-			spherePointsProgram,
-			Date.now() * 100000,
-			solarSystem,
-			lookAt(
-				[0, 1, 0, 1],
-				[0, 0, 0, 1],
-				[0, 0, 1, 0],
-			),
-		);
-	}, 1000 / 30);
+			gl!,
+			sphereProgram!,
+			spherePointsProgram!,
+			now,
+			system,
+			camera
+		)
+		requestAnimationFrame(drawScene)
+	}
 }
+
+
 
 document.addEventListener("DOMContentLoaded", main);

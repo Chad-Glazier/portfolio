@@ -2,7 +2,8 @@
 
 precision highp float;
 
-uniform vec4 uColor;
+varying vec2 vTextureCoord;
+uniform sampler2D uTexture;
 
 varying vec3 vSurfaceNormal;
 varying vec3 vSurfaceToLight;
@@ -13,6 +14,6 @@ void main() {
 
 	float light = max(dot(normal, surfaceToLightDirection), 0.1);
 
-	gl_FragColor = uColor;
+	gl_FragColor = texture2D(uTexture, vTextureCoord);
 	gl_FragColor.rgb *= light;
 }

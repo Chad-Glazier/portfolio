@@ -73,6 +73,7 @@ function sphere(
 	const [polarStart, _polarEnd] = polarInterval
 	const polarStep = polarIntervalWidth / polarDivisions
 
+
 	// First, we'll draw a circle of the specified radius around the origin,
 	// flat on the xy plane (ignoring the z axis). We are only drawing one
 	// circle here.
@@ -94,6 +95,7 @@ function sphere(
 	// First, we copy the circle. We add "+ 1" because we need to account for
 	// the zeroth polar angle as well.
 	points = Array(polarDivisions + 1).fill(points).flat()
+	let uvs: [number, number][] = []
 
 	// Second, we iterate over the copied points. For each one, we'll calculate
 	// the new values for x and y, as well as z based on the trigonometry of
@@ -116,6 +118,11 @@ function sphere(
 		x *= Math.sin(polarAngle)
 		y *= Math.sin(polarAngle)
 		z = radialDistance * Math.cos(polarAngle)
+
+		const v = (polarAngle - polarStart) / polarIntervalWidth
+		const u = (idx % (azimuthalDivisions + 1)) / azimuthalDivisions
+		uvs.push([1 - u, 1 - v])
+
 		return [x, y, z]
 	})
 
@@ -174,6 +181,7 @@ function sphere(
 	return {
 		vertices: new Float32Array(points.flat()),
 		indices: new Uint16Array(triangles.flat()),
+		uvs: new Float32Array(uvs.flat())
 	}
 }
 
@@ -272,6 +280,7 @@ type SphereOptions = {
 export type Sphere = {
 	vertices: Float32Array
 	indices: Uint16Array
+	uvs: Float32Array
 }
 
 export default sphere

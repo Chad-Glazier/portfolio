@@ -4,23 +4,24 @@ import type { Sphere } from "./sphere"
 function renderSphere(
 	gl: WebGLRenderingContext,
 	sphere: Sphere,
-	color: Float32Array,
 	program: WebGLProgram,
 	model: Mat4,
 	view: Mat4,
-	projection: Mat4
+	projection: Mat4,
+	texture: WebGLTexture
 ): void {
 
 	// Map the locations of different shader variables.
 
 	const loc = {
 		aVertexPosition: gl.getAttribLocation(program, "aVertexPosition"),
+		aTextureCoord: gl.getAttribLocation(program, "aTextureCoord"),
 		uModelMatrix: gl.getUniformLocation(program, "uModelMatrix"),
 		uViewMatrix: gl.getUniformLocation(program, "uViewMatrix"),
 		uProjectionMatrix: gl.getUniformLocation(program, "uProjectionMatrix"),
-		uColor: gl.getUniformLocation(program, "uColor"),
 		uSphereCenter: gl.getUniformLocation(program, "uSphereCenter"),
 		uLightPoint: gl.getUniformLocation(program, "uLightPoint"),
+		uTexture: gl.getUniformLocation(program, "uTexture")
 	}
 
 	gl.useProgram(program)
@@ -48,9 +49,18 @@ function renderSphere(
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer())
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, sphere.indices, gl.STATIC_DRAW)
 
-	// Pass the color to OpenGL.
+	// Pass the texture to OpenGL.
 
-	gl.uniform4fv(loc.uColor, color)
+	gl.activeTexture(gl.TEXTURE0)
+	gl.bindTexture(gl.TEXTURE_2D, texture)
+	gl.uniform1i(loc.uTexture, 0)
+
+	// Pass the texture coordinates to OpenGL.
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
+	gl.bufferData(gl.ARRAY_BUFFER, sphere.uvs, gl.STATIC_DRAW)
+	gl.vertexAttribPointer(loc.aTextureCoord, 2, gl.FLOAT, false, 0, 0)
+	gl.enableVertexAttribArray(loc.aTextureCoord)
 
 	// Tell OpenGL to render the points.
 

@@ -1,11 +1,10 @@
 import * as m from "@min-webgl/matrices";
 import { model, type PlanetarySystem } from "./utils/CelestialBody";
-import { rgba } from "./utils/colors";
 import renderSphere from "./utils/renderSphere";
 import renderSpherePoints from "./utils/renderSpherePoints";
 import sphere from "./utils/sphere";
 
-const baseSphere = sphere(20);
+const baseSphere = sphere(60);
 
 /**
  * Renders a planetary system.
@@ -22,22 +21,22 @@ function renderSystem(
 	view: m.Mat4,
 ) {
 	const aspectRatio = gl.canvas.width / gl.canvas.height;
-	const perspectiveMatrix = m.perspective(
+	const projection = m.perspective(
 		Math.PI / 4,
 		aspectRatio,
-		0.1,
-		3,
+		0.00001,
+		100,
 	);
 
 	for (const body of system) {
 		renderSphere(
 			gl,
 			baseSphere,
-			body.color ?? rgba(30, 30, 30, 1),
 			sphereProgram,
 			model(body, time / 1000),
 			view,
-			perspectiveMatrix,
+			projection,
+			body.texture
 		);
 		if (body.pointsColor) {
 			renderSpherePoints(
@@ -47,7 +46,7 @@ function renderSystem(
 				spherePointsProgram,
 				model(body, time / 1000),
 				view,
-				perspectiveMatrix,
+				projection,
 			);
 		}
 	}
