@@ -19,6 +19,7 @@ import titanImg from "../../assets/textures/Titan.jpg"
 import uranusImg from "../../assets/textures/Uranus.jpg"
 import neptuneImg from "../../assets/textures/Neptune.jpg"
 import tritonImg from "../../assets/textures/Triton.jpg"
+import skyImg from "../../assets/textures/Stars.jpg"
 
 //
 // Distance is measured in kilometers.
@@ -29,6 +30,21 @@ import tritonImg from "../../assets/textures/Triton.jpg"
 function solarSystem(
 	gl: WebGLRenderingContext
 ): PlanetarySystem {
+
+	const sky: CelestialBody = {
+		name: "sky",
+		radius: 4_495_000_000,
+		polarTilt: 0,
+		rotationPeriod: Number.POSITIVE_INFINITY,
+		azimuthalTilt: 0,
+		orbitalCenter: [0, 0, 0, 1],
+		orbitalRadius: 0,
+		orbitalPeriod: Number.POSITIVE_INFINITY,
+		initialRotation: 0,
+		initialOrbitalRotation: 0,
+
+		texture: loadTexture(gl, skyImg, rgba(0, 0, 0, 1))
+	}
 
 	const sol: CelestialBody = {
 		name: "sol",
@@ -301,6 +317,7 @@ function solarSystem(
 	};
 
 	return [
+		sky,
 		sol,
 
 		mercury,
