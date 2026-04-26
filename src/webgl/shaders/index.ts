@@ -52,7 +52,7 @@ void main() {
 	vec3 normal = normalize(vSurfaceNormal);
 	vec3 surfaceToLightDirection = normalize(vSurfaceToLight);
 
-	float light = max(dot(normal, surfaceToLightDirection), 0.1);
+	float light = max(dot(normal, surfaceToLightDirection), 0.15);
 
 	gl_FragColor = texture2D(uTexture, vTextureCoord);
 	gl_FragColor.rgb *= light;
