@@ -38,12 +38,6 @@ void main() {
 `
 export { POINT_V_SOURCE }
 
-const SKY_F_SOURCE = ``
-export { SKY_F_SOURCE }
-
-const SKY_V_SOURCE = ``
-export { SKY_V_SOURCE }
-
 const SPHERE_F_SOURCE = `#version 100
 
 precision highp float;
