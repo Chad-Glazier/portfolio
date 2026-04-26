@@ -19,8 +19,8 @@ function normalizeSystem(system: PlanetarySystem): PlanetarySystem {
 	})
 
 	copy.forEach((body) => {
-		body.radius = Math.pow(body.radius, 0.5);
-		body.orbitalRadius = Math.pow(body.orbitalRadius, 0.5);
+		body.radius = Math.sqrt(body.radius);
+		body.orbitalRadius = Math.sqrt(body.orbitalRadius);
 	});
 
 	const maxOrbitalRadius = copy

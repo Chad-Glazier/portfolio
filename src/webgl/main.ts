@@ -59,7 +59,8 @@ async function main() {
 	function drawScene(now: number) {
 		now *= 10000
 		const system = normalizeSystem(solar)
-		const camera = lookAtObject(6, system, "terra", now)
+		const camera = lookAtObject(12, system, "sol", now)
+		// const camera = lookAt([.5, .5, 0, 1], [0, 0, 0, 1], [0, 1, 0, 0])
 		clearCanvas(gl!);
 		renderSystem(
 			gl!,
