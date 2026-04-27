@@ -34,7 +34,7 @@ function solarSystem(
 
 	const sky: CelestialBody = {
 		name: "sky",
-		radius: 4_495_000_000,
+		radius: 10_000_000_000,
 		polarTilt: 0,
 		rotationPeriod: Number.POSITIVE_INFINITY,
 		azimuthalTilt: 0,
