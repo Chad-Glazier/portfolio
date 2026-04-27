@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "./Intro.module.css"
+import styles from "./Landing.module.css"
 import { faAnglesDown } from "@fortawesome/free-solid-svg-icons"
 import getSystem from "../webgl"
 import { useEffect, useState } from "react"
 import type { SolarObject } from "../webgl/constants/solarSystem"
+import transitionText from "../lib/transitionText"
 
-function Intro() {
+function Landing() {
 
 	const [ planet, setPlanet ] = useState<SolarObject>("terra")
 	const [ planetName, setPlanetName ] = useState<string>("World")
@@ -47,35 +48,6 @@ function Intro() {
 	</section>
 }
 
-function transitionText(
-	initial: string, 
-	target: string, 
-	setFn: (current: string) => void, 
-	duration = 300
-) {
-	let currentArr = initial.split("")
-	const targetArr = target.split("")
-	const steps = Math.max(target.length, initial.length)
 
-	let i = 0
 
-	const interval = setInterval(() => {
-		if (i > targetArr.length) {
-			currentArr[i] = ""
-		} else if (i > currentArr.length) {
-			currentArr.push(targetArr[i])
-		} else {
-			currentArr[i] = targetArr[i]
-		}
-
-		setFn(currentArr.join(""))
-		i++
-		if (i > steps) {
-			clearInterval(interval)
-		}
-	}, duration / steps)
-
-	return interval
-}
-
-export default Intro
+export default Landing

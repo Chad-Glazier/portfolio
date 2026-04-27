@@ -1,11 +1,11 @@
 import "./App.css"
 
-import Intro from "./components/Intro"
+import Landing from "./components/Landing"
 
 function App() {
 	return (
 		<>
-			<Intro />
+			<Landing />
 		</>
 	)
 }
