@@ -59,7 +59,7 @@ async function main() {
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
 		now *= 2
-		const camera = lookAtObject(4, system, "terra", now)
+		const camera = lookAtObject(6, system, "terra", now)
 		clearCanvas(gl!);
 		renderSystem(
 			gl!,
