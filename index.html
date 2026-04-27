@@ -14,9 +14,13 @@
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		<noscript>
+			Sorry, this website requires JavaScript.
+		</noscript>
+
 		<!-- React setup -->
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
@@ -24,5 +28,21 @@
 		<!-- WebGL setup -->
 		<canvas id="webgl-root"></canvas>
 		<script type="module" src="/src/webgl/index.ts" defer></script>
+
+		<!-- Console message -->
+		<script>
+			const message = `
+┓┏  ┓┓    ┏┳┓┓        
+┣┫┏┓┃┃┏┓   ┃ ┣┓┏┓┏┓┏┓ 
+┛┗┗ ┗┗┗┛   ┻ ┛┗┗ ┛ ┗ •    
+
+If you spot any bugs, let me know at chadglazier@outlook.com
+
+If you're just curious about the code, you can see all of it here:
+https://github.com/Chad-Glazier/portfolio
+
+`
+			console.log(message)
+		</script>
 	</body>
 </html>

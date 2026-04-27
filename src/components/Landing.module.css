@@ -3,6 +3,13 @@
 	height: 100vh;
 
 	position: relative;
+	top: 0;
+
+	transition: all 400ms;
+}
+
+.container.hidden {
+	top: -100vh;
 }
 
 .heading {
@@ -16,6 +23,8 @@
 	margin: 0 auto;
 
 	font-size: 3rem;
+
+	font-family: "Space Grotesk";
 
 	background: linear-gradient(90deg, #000, var(--heading-vivid), #000);
 	background-repeat: no-repeat;
@@ -65,8 +74,6 @@
 
 .downButton:hover {
 	color: var(--heading-vivid);
-	animation: none;
-	bottom: 5px;
 }
 
 @keyframes wave {
@@ -76,6 +83,10 @@
   100% {
 	background-position: 600%;
   }
+}
+
+.downButton.hidden {
+	display: none;
 }
 
 @keyframes bounce {

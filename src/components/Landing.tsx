@@ -6,7 +6,14 @@ import { useEffect, useState } from "react"
 import type { SolarObject } from "../webgl/constants/solarSystem"
 import transitionText from "../lib/transitionText"
 
-function Landing() {
+type LandingProps = {
+	hidden?: boolean
+	onExit: () => void
+}
+
+function Landing({
+	hidden, onExit
+}: LandingProps) {
 
 	const [ planet, setPlanet ] = useState<SolarObject>("terra")
 	const [ planetName, setPlanetName ] = useState<string>("World")
@@ -24,7 +31,20 @@ function Landing() {
 		transitionText(planetName, newPlanetName, setPlanetName)
 	}, [planet])
 
-	return <section className={styles.container}>
+	useEffect(() => {
+		const handler = (ev: WheelEvent) => {
+			if (ev.deltaY > 0) {
+				onExit()
+				document.removeEventListener("wheel", handler)
+			}
+		}
+		document.addEventListener("wheel", handler)
+	})
+
+	return <section 
+		className={styles.container + (hidden ? " " + styles.hidden : "")}
+
+	>
 		<h1 className={styles.heading}>
 			Hello,&nbsp; 
 			<span
@@ -40,9 +60,10 @@ function Landing() {
 				{planetName}
 			</span>.
 		</h1>
-		<button className={styles.downButton} onClick={() => {
-			// TODO
-		}}>
+		<button 
+			className={styles.downButton + (hidden ? " " + styles.hidden : "")} 
+			onClick={onExit}
+		>
 			<FontAwesomeIcon icon={faAnglesDown} />
 		</button>
 	</section>
