@@ -1,14 +1,79 @@
 .container {
-	
+	width: 100vw;
+	height: 100vh;
+
+	position: relative;
 }
 
 .heading {
+	padding: 1rem;
+	padding-top: 15vh;
+
+	max-width: 20ch;
+	text-wrap: wrap;
+	text-align: center;
+
+	margin: 0 auto;
+
+	font-size: 3rem;
+
+	background: linear-gradient(90deg, #000, var(--heading-vivid), #000);
+	background-repeat: no-repeat;
+	background-size: 60%;
+	animation: wave 10s linear infinite;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-height: 600px) {
+	.heading {
+		padding-top: 1rem;
+	}
+}
+
+.downButton {
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+
+	text-align: center;
+
 	font-size: 2rem;
 	color: var(--heading-dull);
+	background: none;
+	border: none;
+	padding: none;
+
+	cursor: pointer;
+
+	animation: bounce 2s ease-in-out infinite;
+	transition: all 300ms;
 }
 
-.vivid {
-	font-size: 2.2rem;
-	color: var(--heading-vivid)
+.downButton:hover {
+	color: var(--heading-vivid);
+	animation: none;
+	bottom: 5px;
 }
 
+@keyframes wave {
+  0% {
+    background-position: -300%;
+  }
+  100% {
+	background-position: 600%;
+  }
+}
+
+@keyframes bounce {
+	0% { 
+		bottom: 5px;
+	}
+	50% {
+		bottom: 15px;
+	}
+	100% {
+		bottom: 5px;
+	}
+}

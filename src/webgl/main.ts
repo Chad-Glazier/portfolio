@@ -1,15 +1,5 @@
-import solarSystem from "./constants/solarSystem"
-import renderSystem from "./renderSystem";
-import {
-	POINT_F_SOURCE,
-	POINT_V_SOURCE,
-	SPHERE_F_SOURCE,
-	SPHERE_V_SOURCE,
-} from "./shaders";
+import State from "./State"
 import clearCanvas from "./utils/clearCanvas";
-import initShaderProgram from "./utils/initShaderProgram";
-import lookAtObject from "./utils/lookAtObject"
-import normalizeSystem from "./utils/normalizeSystem";
 
 async function main() {
 	const root = document.getElementById("webgl-root");
@@ -33,46 +23,16 @@ async function main() {
 	clearCanvas(gl)
 	gl.enable(gl.DEPTH_TEST)
 
-	// Draw the system
+	// Initialize the system state.
 
-	const spherePointsProgram = initShaderProgram(
-		gl,
-		POINT_V_SOURCE,
-		POINT_F_SOURCE,
-	);
-	if (spherePointsProgram == null) {
-		return;
-	}
-
-	const sphereProgram = initShaderProgram(
-		gl,
-		SPHERE_V_SOURCE,
-		SPHERE_F_SOURCE,
-	);
-	if (sphereProgram == null) {
-		return;
-	}
-
-	const solar = solarSystem(gl)
-	const system = normalizeSystem(solar)
+	const system = new State(gl)
 
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
 		now *= 2
-		const camera = lookAtObject(6, system, "terra", now)
-		clearCanvas(gl!);
-		renderSystem(
-			gl!,
-			sphereProgram!,
-			spherePointsProgram!,
-			now,
-			system,
-			camera
-		)
+		system.render(now)
 		requestAnimationFrame(drawScene)
 	}
 }
-
-
 
 document.addEventListener("DOMContentLoaded", main);

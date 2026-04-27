@@ -1,7 +1,7 @@
 import type { Point } from "@min-webgl/matrices"
-import { position, type PlanetarySystem } from "./CelestialBody"
+import type { PlanetarySystem } from "./CelestialBody"
 import lookAt from "./lookAt"
-
+import position from "./position"
 
 /**
  * 
@@ -14,10 +14,10 @@ import lookAt from "./lookAt"
  * @param time The current time, in seconds. This is necessary to calculate the
  * position of the object.
  */
-function lookAtObject(
+function lookAtObject<ObjectName extends string>(
 	distance: number, 
-	system: PlanetarySystem, 
-	objectName: string, 
+	system: PlanetarySystem<ObjectName>, 
+	objectName: ObjectName, 
 	time: number
 ) {
 
@@ -27,13 +27,15 @@ function lookAtObject(
 	const cameraPosition: Point = 
 		[objectPosition[0], objectPosition[1], objectPosition[2], 1]
 	
-	const angle = Math.PI / 6
+	const angle = Math.PI / 24
 	const dist = (distance + 1) * object!.radius
 	const y = dist * Math.sin(angle)
 	const z = dist * Math.cos(angle)
 
 	cameraPosition[1] += y
 	cameraPosition[2] += z
+
+	objectPosition[0] -= 2 * object!.radius
 
 	return lookAt(
 		cameraPosition,

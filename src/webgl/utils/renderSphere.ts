@@ -41,7 +41,7 @@ type Locations = {
     uLightPoint: WebGLUniformLocation | null;
     uTexture: WebGLUniformLocation | null;
 }
-const memo = new Map<CelestialBody, Locations>()
+const memo = new Map<CelestialBody<any>, Locations>()
 
 function renderSphere(
 	gl: WebGLRenderingContext,
@@ -50,7 +50,7 @@ function renderSphere(
 	model: Mat4,
 	view: Mat4,
 	projection: Mat4,
-	body: CelestialBody
+	body: CelestialBody<any>
 ): void {
 
 	// Map the locations of different shader variables.

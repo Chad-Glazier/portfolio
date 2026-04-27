@@ -6,9 +6,11 @@ import type { PlanetarySystem } from "./CelestialBody";
  *
  * @param system The system to normalize.
  */
-function normalizeSystem(system: PlanetarySystem): PlanetarySystem {
+function normalizeSystem<ObjectName extends string>(
+	system: PlanetarySystem<ObjectName>
+): PlanetarySystem<ObjectName> {
 
-	const copy: PlanetarySystem = system.map(body => {
+	const copy: PlanetarySystem<ObjectName> = system.map(body => {
 		return { ...body }
 	})
 	copy.forEach(body => {

@@ -1,10 +1,11 @@
 import * as m from "@min-webgl/matrices";
-import { model, type PlanetarySystem } from "./utils/CelestialBody";
+import type { PlanetarySystem } from "./utils/CelestialBody";
+import model from "./utils/model";
 import renderSphere from "./utils/renderSphere";
 import renderSpherePoints from "./utils/renderSpherePoints";
 import sphere from "./utils/sphere";
 
-const baseSphere = sphere(40);
+const baseSphere = sphere(60);
 
 /**
  * Renders a planetary system.
@@ -17,7 +18,7 @@ function renderSystem(
 	sphereProgram: WebGLProgram,
 	spherePointsProgram: WebGLProgram,
 	time: number,
-	system: PlanetarySystem,
+	system: PlanetarySystem<any>,
 	view: m.Mat4,
 ) {
 	const aspectRatio = gl.canvas.width / gl.canvas.height;

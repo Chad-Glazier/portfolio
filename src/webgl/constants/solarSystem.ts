@@ -28,11 +28,32 @@ import solImg from "../../assets/textures/Sol.jpg"
 // Angles are measured in radians.
 //
 
+export type SolarObject = 
+	  "sol" 
+	| "terra"
+	| "luna"
+	| "mercury"
+	| "venus"
+	| "mars"
+	| "phobos"
+	| "deimos"
+	| "jupiter"
+	| "io"
+	| "europa"
+	| "ganymede"
+	| "callisto"
+	| "saturn"
+	| "titan"
+	| "uranus"
+	| "neptune"
+	| "triton"
+	| "sky"
+
 function solarSystem(
 	gl: WebGLRenderingContext
-): PlanetarySystem {
+): PlanetarySystem<SolarObject> {
 
-	const sky: CelestialBody = {
+	const sky: CelestialBody<SolarObject> = {
 		name: "sky",
 		radius: 10_000_000_000,
 		polarTilt: 0,
@@ -47,7 +68,7 @@ function solarSystem(
 		texture: loadTexture(gl, skyImg, rgba(0, 0, 0, 1))
 	}
 
-	const sol: CelestialBody = {
+	const sol: CelestialBody<SolarObject> = {
 		name: "sol",
 		radius: 695_508,
 		polarTilt: 0.1265,
@@ -62,7 +83,7 @@ function solarSystem(
 		texture: loadTexture(gl, solImg, rgba(250, 253, 102, 1))
 	};
 
-	const terra: CelestialBody = {
+	const terra: CelestialBody<SolarObject> = {
 		name: "terra",
 		radius: 6_371,
 		polarTilt: 0.408407,
@@ -72,12 +93,12 @@ function solarSystem(
 		orbitalRadius: 149_600_000,
 		orbitalPeriod: 365 * 24 * 60 * 60,
 		initialRotation: 0,
-		initialOrbitalRotation: Math.PI / 3,
+		initialOrbitalRotation: 0.2 * Math.PI,
 
 		texture: loadTexture(gl, terraImg, rgba(0, 76, 255, 1))
 	};
 
-	const luna: CelestialBody = {
+	const luna: CelestialBody<SolarObject> = {
 		name: "luna",
 		radius: 1_737.5,
 		polarTilt: 0,
@@ -87,12 +108,12 @@ function solarSystem(
 		orbitalRadius: 384_000,
 		orbitalPeriod: 29.5 * terra.rotationPeriod,
 		initialRotation: 0,
-		initialOrbitalRotation: Math.PI * 2 * Math.random(),
+		initialOrbitalRotation: 2 * Math.PI / 16,
 
 		texture: loadTexture(gl, lunaImg, rgba(196, 196, 196, 1))
 	};
 
-	const mercury: CelestialBody = {
+	const mercury: CelestialBody<SolarObject> = {
 		name: "mercury",
 		radius: 2_439.7,
 		polarTilt: 0.00059,
@@ -107,7 +128,7 @@ function solarSystem(
 		texture: loadTexture(gl, mercuryImg, rgba(200, 200, 200, 1))
 	};
 
-	const venus: CelestialBody = {
+	const venus: CelestialBody<SolarObject> = {
 		name: "venus",
 		radius: 6_051.8,
 		polarTilt: 3.096,
@@ -122,7 +143,7 @@ function solarSystem(
 		texture: loadTexture(gl, venusImg, rgba(255, 180, 0, 1))
 	};
 
-	const mars: CelestialBody = {
+	const mars: CelestialBody<SolarObject> = {
 		name: "mars",
 		radius: 3_389.5,
 		polarTilt: 0.4397,
@@ -137,7 +158,7 @@ function solarSystem(
 		texture: loadTexture(gl, marsImg, rgba(255, 80, 0, 1))
 	};
 
-	const phobos: CelestialBody = {
+	const phobos: CelestialBody<SolarObject> = {
 		name: "phobos",
 		radius: 11,
 		polarTilt: 0,
@@ -152,7 +173,7 @@ function solarSystem(
 		texture: loadTexture(gl, phobosImg, rgba(150, 150, 150, 1))
 	};
 
-	const deimos: CelestialBody = {
+	const deimos: CelestialBody<SolarObject> = {
 		name: "deimos",
 		radius: 6,
 		polarTilt: 0,
@@ -167,7 +188,7 @@ function solarSystem(
 		texture: loadTexture(gl, deimosImg, rgba(180, 180, 180, 1))
 	};
 
-	const jupiter: CelestialBody = {
+	const jupiter: CelestialBody<SolarObject> = {
 		name: "jupiter",
 		radius: 69_911,
 		polarTilt: 0.0546,
@@ -182,7 +203,7 @@ function solarSystem(
 		texture: loadTexture(gl, jupiterImg, rgba(255, 200, 150, 1))
 	};
 
-	const io: CelestialBody = {
+	const io: CelestialBody<SolarObject> = {
 		name: "io",
 		radius: 1_821.6,
 		polarTilt: 0,
@@ -197,7 +218,7 @@ function solarSystem(
 		texture: loadTexture(gl, ioImg, rgba(255, 255, 0, 1))
 	};
 
-	const europa: CelestialBody = {
+	const europa: CelestialBody<SolarObject> = {
 		name: "europa",
 		radius: 1_560.8,
 		polarTilt: 0,
@@ -212,7 +233,7 @@ function solarSystem(
 		texture: loadTexture(gl, europaImg, rgba(200, 200, 255, 1))
 	};
 
-	const ganymede: CelestialBody = {
+	const ganymede: CelestialBody<SolarObject> = {
 		name: "ganymede",
 		radius: 2_634.1,
 		polarTilt: 0,
@@ -227,7 +248,7 @@ function solarSystem(
 		texture: loadTexture(gl, ganymedeImg, rgba(180, 180, 180, 1))
 	};
 
-	const callisto: CelestialBody = {
+	const callisto: CelestialBody<SolarObject> = {
 		name: "callisto",
 		radius: 2_410.3,
 		polarTilt: 0,
@@ -242,7 +263,7 @@ function solarSystem(
 		texture: loadTexture(gl, callistoImg, rgba(120, 120, 120, 1))
 	};
 
-	const saturn: CelestialBody = {
+	const saturn: CelestialBody<SolarObject> = {
 		name: "saturn",
 		radius: 58_232,
 		polarTilt: 0.4665,
@@ -257,7 +278,7 @@ function solarSystem(
 		texture: loadTexture(gl, saturnImg, rgba(255, 220, 150, 1))
 	};
 
-	const titan: CelestialBody = {
+	const titan: CelestialBody<SolarObject> = {
 		name: "titan",
 		radius: 2_575,
 		polarTilt: 0,
@@ -272,7 +293,7 @@ function solarSystem(
 		texture: loadTexture(gl, titanImg, rgba(255, 200, 100, 1))
 	};
 
-	const uranus: CelestialBody = {
+	const uranus: CelestialBody<SolarObject> = {
 		name: "uranus",
 		radius: 25_362,
 		polarTilt: 1.71,
@@ -287,7 +308,7 @@ function solarSystem(
 		texture: loadTexture(gl, uranusImg, rgba(150, 255, 255, 1))
 	};
 
-	const neptune: CelestialBody = {
+	const neptune: CelestialBody<SolarObject> = {
 		name: "neptune",
 		radius: 24_622,
 		polarTilt: 0.4943,
@@ -302,7 +323,7 @@ function solarSystem(
 		texture: loadTexture(gl, neptuneImg, rgba(100, 150, 255, 1))
 	};
 
-	const triton: CelestialBody = {
+	const triton: CelestialBody<SolarObject> = {
 		name: "triton",
 		radius: 1_353.4,
 		polarTilt: 0,
@@ -322,6 +343,7 @@ function solarSystem(
 		sol,
 
 		mercury,
+
 		venus,
 
 		terra,
@@ -341,10 +363,10 @@ function solarSystem(
 		titan,
 
 		uranus,
+
 		neptune,
 		triton,
 	]
 }
-
 
 export default solarSystem;
