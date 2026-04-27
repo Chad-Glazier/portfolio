@@ -45,7 +45,7 @@
 }
 
 .downButton {
-	position: absolute;
+	position: fixed;
 	bottom: 5px;
 	width: 100%;
 
@@ -80,12 +80,18 @@
 
 @keyframes bounce {
 	0% { 
+		padding-top: 10px;
+		padding-bottom: 0px;
 		bottom: 5px;
 	}
 	50% {
+		padding-top: 0;
+		padding-bottom: 10px;
 		bottom: 15px;
 	}
 	100% {
+		padding-top: 10px;
+		padding-bottom: 0px;
 		bottom: 5px;
 	}
 }
