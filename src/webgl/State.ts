@@ -66,6 +66,16 @@ class State {
 			this.camera(time)
 		)
 	}
+
+	nextPlanet(): SolarObject {
+		const planets: SolarObject[] = [
+			"sol", "terra", "mercury", "venus", 
+			"mars", "jupiter", "saturn", "uranus", 
+			"neptune" 
+		]
+		let nextIdx = (planets.indexOf(this.focus) + 1) % planets.length
+		return planets[nextIdx]
+	}
 }
 
 export default State

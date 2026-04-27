@@ -20,10 +20,22 @@
 	background: linear-gradient(90deg, #000, var(--heading-vivid), #000);
 	background-repeat: no-repeat;
 	background-size: 60%;
-	animation: wave 10s linear infinite;
+	animation: wave 6s linear infinite;
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+}
+
+.planetSwitch {
+	cursor: pointer;
+	transition: all 300ms;
+	text-transform: capitalize;
+	text-decoration: underline solid var(--heading-dull) 5px;
+}
+
+.planetSwitch:hover {
+	-webkit-text-fill-color: var(--heading-vivid);
+	text-decoration-color: var(--heading-vivid);
 }
 
 @media (max-height: 600px) {

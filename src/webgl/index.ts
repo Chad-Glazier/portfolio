@@ -1,6 +1,8 @@
 import State from "./State"
 import clearCanvas from "./utils/clearCanvas";
 
+let system: State | null = null
+
 async function main() {
 	const root = document.getElementById("webgl-root");
 
@@ -25,14 +27,18 @@ async function main() {
 
 	// Initialize the system state.
 
-	const system = new State(gl)
+	system = new State(gl)
 
 	requestAnimationFrame(drawScene)
 	function drawScene(now: number) {
 		now *= 2
-		system.render(now)
+		system!.render(now)
 		requestAnimationFrame(drawScene)
 	}
+}
+
+export default function getSystem(): State | null {
+	return system
 }
 
 document.addEventListener("DOMContentLoaded", main);
