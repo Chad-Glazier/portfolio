@@ -27,7 +27,13 @@ class State {
 		this.gl = gl
 		this.system = normalizeSystem(solarSystem(gl))
 		this.focus = "terra"
-		this.camera = (time) => lookAtObject(4, this.system, this.focus, time)
+		let horizontalOffset = 2
+		if (gl.canvas.width < gl.canvas.height) {
+			horizontalOffset = 0
+		}
+		this.camera = (time) => lookAtObject(
+			4, this.system, this.focus, time, horizontalOffset
+		)
 		
 		const spherePointsProgram = initShaderProgram(
 			gl,

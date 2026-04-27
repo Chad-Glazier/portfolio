@@ -18,7 +18,8 @@ function lookAtObject<ObjectName extends string>(
 	distance: number, 
 	system: PlanetarySystem<ObjectName>, 
 	objectName: ObjectName, 
-	time: number
+	time: number,
+	horizontalOffset: number = 2
 ) {
 
 	const object = system.find(object => object.name == objectName)
@@ -35,7 +36,7 @@ function lookAtObject<ObjectName extends string>(
 	cameraPosition[1] += y
 	cameraPosition[2] += z
 
-	objectPosition[0] -= 2 * object!.radius
+	objectPosition[0] -= horizontalOffset * object!.radius
 
 	return lookAt(
 		cameraPosition,
