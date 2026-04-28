@@ -4,27 +4,41 @@
 
 	position: relative;
 	top: 0;
+	left: 0;
 
 	transition: all 400ms;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .container.hidden {
-	top: -100vh;
+	left: -100vw;
 }
 
 .heading {
-	padding: 1rem;
-	padding-top: 15vh;
-
-	max-width: 20ch;
 	text-wrap: wrap;
-	text-align: center;
 
-	margin: 0 auto;
+	margin: 10%;
 
 	font-size: 3rem;
 
 	font-family: "Space Grotesk";
+
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.planetSwitch {
+	font-size: 10rem;
+	padding: none;
+
+	cursor: pointer;
+	transition: all 300ms;
+	text-transform: capitalize;
+	text-decoration: underline solid var(--heading-dull) 5px;
+
 
 	background: linear-gradient(90deg, #000, var(--heading-vivid), #000);
 	background-repeat: no-repeat;
@@ -35,21 +49,18 @@
 	-webkit-text-fill-color: rgba(255, 255, 255, 0.5);
 }
 
-.planetSwitch {
-	cursor: pointer;
-	transition: all 300ms;
-	text-transform: capitalize;
-	text-decoration: underline solid var(--heading-dull) 5px;
-}
-
 .planetSwitch:hover {
 	-webkit-text-fill-color: var(--heading-vivid);
 	text-decoration-color: var(--heading-vivid);
 }
 
-@media (max-height: 600px) {
-	.heading {
-		padding-top: 1rem;
+@media (orientation: portrait) {
+	.container {
+		flex-direction: column;
+	}
+
+	.planetSwitch {
+		font-size: 5rem;
 	}
 }
 

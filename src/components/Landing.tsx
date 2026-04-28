@@ -46,7 +46,7 @@ function Landing({
 
 	>
 		<h1 className={styles.heading}>
-			Hello,&nbsp; 
+			Hello,<br />
 			<span
 				className={styles.planetSwitch}
 				onClick={() => {
