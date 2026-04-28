@@ -95,7 +95,7 @@ function solarSystem(
 		initialRotation: 0,
 		initialOrbitalRotation: 0.2 * Math.PI,
 
-		texture: loadTexture(gl, terraImg, rgba(0, 76, 255, 1))
+		texture: loadTexture(gl, terraImg, rgba(37, 76, 102, 1))
 	};
 
 	const luna: CelestialBody<SolarObject> = {
