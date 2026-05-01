@@ -1,78 +1,88 @@
-// function enableDragControls(): () => void {
-// 	const canvas = game.config.renderingContext.canvas
+import type State from "../webgl/State"
 
-// 	if (canvas instanceof OffscreenCanvas) {
-// 		return
-// 	}
+const SENSIVITY_FACTOR = 0.5
 
-// 	let dragging = false
-// 	let initialPosition = [0, 0]
-// 	let initialTime = 0
-// 	let lastRPM = 0
-// 	let lastAxis = [0, 0, 0]
+const state: {
+	dragging: boolean
+	initialTime: number
+	lastRPM: number
+	lastAxis: number[]
+	system: State | null
+} = {
+	dragging: false,
+	initialTime: 0,
+	lastRPM: 0,
+	lastAxis: [0, 0, 0],
+	system: null
+}
 
-// 	canvas.addEventListener("mousedown", ev => {
-// 		if (game.isPaused) return
-// 		if (ev.button !== 1) return // ensure it's clicking the mousewheel
+function mousedown(ev: MouseEvent) {
+	if (ev.button !== 0) return // ensure it's a left-click
 
-// 		dragging = true
-// 		initialTime = Date.now()
+	state.dragging = true
+	state.initialTime = Date.now()
+}
 
-// 		game.setMomentum([0, 0, 1], 0)
-// 	})
+function mousemove({ movementX, movementY }: MouseEvent) {
+	if (!state.dragging) return
 
-// 	canvas.addEventListener("mousemove", ({ movementX, movementY }) => {
-// 		if (game.isPaused) return
-// 		if (!dragging) return
+	const windowLength = Math.max(window.innerWidth, window.innerHeight)
 
-// 		const canvasLength = Math.max(canvas.clientWidth, canvas.clientHeight)
+	const magnitude = Math.sqrt(
+		movementX * movementX + movementY * movementY
+	)
+	if (magnitude === 0) return
 
-// 		// We calculate the displacement of the mouse.
-// 		const [initialX, initialY] = initialPosition
-// 		const [deltaX, deltaY] = [
-// 			movementX,
-// 			-1 * movementY,
-// 		]
-// 		const magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
-// 		if (magnitude === 0) return
+	const rotations = SENSIVITY_FACTOR * magnitude / windowLength
 
-// 		// By default, there is one half of a rotation per length of the canvas
-// 		// dragged. The sensitivity setting is also factored in.
-// 		const rotations = game.dragSensitivity * magnitude /
-// 			(2 * canvasLength) * game.mouseSensitivityMultiplier
+	// The axis of rotation ought to be orthogonal to the displacement
+	// of the mouse in order to feel natural. It's magnitude is irrelevant.
+	// Since we know that delta Y and delta X are never both zero,
+	// otherwise the "mousemove" event wouldn't be emitted in the first
+	// place, this should work.
+	const axisOfRotation = [movementY, movementX, 0]
 
-// 		// The axis of rotation ought to be orthogonal to the displacement
-// 		// of the mouse in order to feel natural. It's magnitude is irrelevant.
-// 		// Since we know that `deltaY` and `deltaX` are never both zero,
-// 		// otherwise the "mousemove" event wouldn't be emitted in the first
-// 		// place, this should work.
-// 		const axisOfRotation = [-1 * deltaY, deltaX, 0]
+	state.system!.cameraOptions.verticalAngle += 
+		2 * Math.PI * rotations * movementY / magnitude
+	state.system!.cameraOptions.horizontalAngle -=
+		2 * Math.PI * rotations * movementX / magnitude
 
-// 		// Finally, we apply the rotation.
-// 		game.applyRotation(axisOfRotation, rotations * 360)
+	// Adjust the outer variables.
+	const minutes = (Date.now() - state.initialTime) / 1000 / 60
+	state.lastAxis = axisOfRotation
+	state.lastRPM = rotations / minutes
+	if (state.lastRPM == Infinity) state.lastRPM = 0
+	state.initialTime = Date.now()
+}
 
-// 		// Adjust the outer variables.
-// 		const minutes = (Date.now() - initialTime) / 1000 / 60
-// 		lastAxis = axisOfRotation
-// 		lastRPM = rotations / minutes
-// 		if (lastRPM == Infinity) lastRPM = 0
-// 		initialTime = Date.now()
-// 	})
+function mouseup(ev: MouseEvent) {
+	if (!state.dragging) return
+	if (ev.button !== 0) return // ensure it's clicking the mousewheel
 
-// 	canvas.addEventListener("mouseup", ev => {
-// 		if (!dragging) return
-// 		if (ev.button !== 1) return // ensure it's clicking the mousewheel
+	state.dragging = false
+}
 
-// 		dragging = false
-// 		game.setInertia(lastAxis, lastRPM)
-// 	})
+function mouseleave() {
+	if (!state.dragging) return
 
-// 	canvas.addEventListener("mouseleave", () => {
-// 		if (!dragging) return
+	state.dragging = false
+}
 
-// 		dragging = false
-// 		game.setInertia(lastAxis, lastRPM)
-// 	})
-// }
+function enableDragControls(system: State): () => void {
 
-// export default enableDragControls
+	state.system = system
+
+	document.addEventListener("mousedown", mousedown)
+	document.addEventListener("mousemove", mousemove)
+	document.addEventListener("mouseup", mouseup)
+	document.addEventListener("mouseleave", mouseleave)
+
+	return () => {
+		document.removeEventListener("mousedown", mousedown)
+		document.removeEventListener("mousemove", mousemove)
+		document.removeEventListener("mouseup", mouseup)
+		document.removeEventListener("mouseleave", mouseleave)
+	}
+}
+
+export default enableDragControls

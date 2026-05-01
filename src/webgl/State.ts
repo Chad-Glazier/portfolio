@@ -23,7 +23,7 @@ class State {
 		sphere: WebGLProgram
 		spherePoints: WebGLProgram
 	}
-	private cameraOptions: CameraOptions
+	public cameraOptions: CameraOptions
 
 	constructor(gl: WebGLRenderingContext) {
 		this.gl = gl

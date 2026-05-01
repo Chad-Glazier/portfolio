@@ -2,30 +2,30 @@ import type { PlanetarySystem } from "./CelestialBody"
 import * as m from "@min-webgl/matrices"
 import position from "./position"
 
-export type CameraOptions = Partial<{
+export type CameraOptions = {
 	horizontalOffset: number
 	verticalOffset: number
 	horizontalAngle: number
 	verticalAngle: number
 	distance: number
-}>
+}
 
 /**
+ * Returns a view matrix that looks at a specific object with the specified
+ * options.
  * 
- * 
- * @param distance The distance away from the object's surface as a multiple of
- * the celestial body's radius. I.e., a distance of `0` would be right on the
- * surface, while a distance of `1` would be at a height equal to the radius
- * of the body.
- * @param object The celestial body to look at.
+ * @param system The system containing the celestial body to look at.
+ * @param object The name of the celestial body to look at.
  * @param time The current time, in seconds. This is necessary to calculate the
  * position of the object.
+ * @param options The options for the camera, including the distance from it,
+ * rotations, etc. All distances are multiples of the object's radius.
  */
 function lookAtObject<ObjectName extends string>(
 	system: PlanetarySystem<ObjectName>, 
 	objectName: ObjectName, 
 	time: number,
-	options: CameraOptions = {
+	options: Partial<CameraOptions> = {
 		distance: 4,
 		horizontalAngle: 0,
 		verticalAngle: 0,

@@ -29,6 +29,7 @@ function Landing({
 		const newPlanetName = planet == "terra" ? "world" : planet
 
 		transitionText(planetName, newPlanetName, setPlanetName)
+
 	}, [planet])
 
 	useEffect(() => {
@@ -43,7 +44,6 @@ function Landing({
 
 	return <section 
 		className={styles.container + (hidden ? " " + styles.hidden : "")}
-
 	>
 		<h1 className={styles.heading}>
 			Hello,<br />
