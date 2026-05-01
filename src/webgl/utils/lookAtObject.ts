@@ -7,6 +7,7 @@ export type CameraOptions = Partial<{
 	verticalOffset: number
 	horizontalAngle: number
 	verticalAngle: number
+	distance: number
 }>
 
 /**
@@ -21,17 +22,18 @@ export type CameraOptions = Partial<{
  * position of the object.
  */
 function lookAtObject<ObjectName extends string>(
-	distance: number, 
 	system: PlanetarySystem<ObjectName>, 
 	objectName: ObjectName, 
 	time: number,
 	options: CameraOptions = {
+		distance: 4,
 		horizontalAngle: 0,
 		verticalAngle: 0,
 		horizontalOffset: 0,
 		verticalOffset: 0,
 	}
 ): m.Mat4 {
+	let distance = options.distance ?? 4
 	const horizontalAngle = options.horizontalAngle ?? 0
 	const verticalAngle = options.verticalAngle ?? 0
 	let horizontalOffset = options.horizontalOffset ?? 0
