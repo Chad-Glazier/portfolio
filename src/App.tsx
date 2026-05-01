@@ -1,28 +1,30 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import "./App.css"
 
 import Landing from "./components/Landing"
 import getSystem from "./webgl"
-import enableDragControls from "./lib/enableDragControls"
+import { enableCameraControls, disableCameraControls } from "./lib/enableCameraControls"
 
 function App() {
 
 	const [hideLanding, setHideLanding] = useState(false)
-	const disableControls = useRef<null | (() => void)>(null)
 
+	// Every 200ms, we check if the system is loaded. If it is, then we set up
+	// the controls and stop checking.
 	useEffect(() => {
 		const retry = setInterval(() => {
 			const system = getSystem()
 			if (system) {
-				disableControls.current = enableDragControls(system)
+				enableCameraControls(system)
 				clearInterval(retry)
 			}
 		}, 200)
 	}, [])
 
+	// When the landing page is hidden, we disable the controls.
 	useEffect(() => {
-		if (hideLanding && disableControls.current) {
-			disableControls.current()
+		if (hideLanding) {
+			disableCameraControls()
 		}
 	}, [hideLanding])
 

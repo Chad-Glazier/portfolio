@@ -33,7 +33,7 @@ class State {
 			distance: gl.canvas.width < gl.canvas.height ? 6 : 4,
 			horizontalAngle: Math.PI / 3,
 			verticalAngle: Math.PI / 12,
-			horizontalOffset: gl.canvas.width < gl.canvas.height ? 0 : 1.6,
+			horizontalOffset: gl.canvas.width < gl.canvas.height ? 0 : 1,
 			verticalOffset: 0,
 		}
 		this.camera = (time) => lookAtObject(

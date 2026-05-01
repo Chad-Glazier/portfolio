@@ -68,7 +68,17 @@ function mouseleave() {
 	state.dragging = false
 }
 
-function enableDragControls(system: State): () => void {
+function wheel(ev: WheelEvent) {
+
+	const distance = ev.deltaY / 300
+
+	state.system!.cameraOptions.distance = Math.min(
+		Math.max(3, state.system!.cameraOptions.distance + distance),
+		30
+	) 
+}
+
+export function enableCameraControls(system: State) {
 
 	state.system = system
 
@@ -76,13 +86,13 @@ function enableDragControls(system: State): () => void {
 	document.addEventListener("mousemove", mousemove)
 	document.addEventListener("mouseup", mouseup)
 	document.addEventListener("mouseleave", mouseleave)
-
-	return () => {
-		document.removeEventListener("mousedown", mousedown)
-		document.removeEventListener("mousemove", mousemove)
-		document.removeEventListener("mouseup", mouseup)
-		document.removeEventListener("mouseleave", mouseleave)
-	}
+	document.addEventListener("wheel", wheel)
 }
 
-export default enableDragControls
+export function disableCameraControls() {
+	document.removeEventListener("mousedown", mousedown)
+	document.removeEventListener("mousemove", mousemove)
+	document.removeEventListener("mouseup", mouseup)
+	document.removeEventListener("mouseleave", mouseleave)
+	document.removeEventListener("wheel", wheel)
+}

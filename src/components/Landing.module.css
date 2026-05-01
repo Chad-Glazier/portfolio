@@ -16,6 +16,14 @@
 	user-select: none;
 }
 
+.container {
+	cursor: grab;
+}
+
+.container:active {
+	cursor: grabbing
+}
+
 .container.hidden {
 	top: -100vh;
 }
@@ -68,6 +76,12 @@
 
 	.planetSwitch {
 		font-size: 5rem;
+	}
+}
+
+@media (max-width: 1100px) and (orientation: landscape) {
+	.planetSwitch {
+		font-size: 10rem;
 	}
 }
 

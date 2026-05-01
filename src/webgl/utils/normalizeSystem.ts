@@ -21,8 +21,8 @@ function normalizeSystem<ObjectName extends string>(
 	})
 
 	copy.forEach((body) => {
-		body.radius = Math.sqrt(body.radius);
-		body.orbitalRadius = Math.sqrt(body.orbitalRadius);
+		body.radius = Math.pow(body.radius, 0.55);
+		body.orbitalRadius = Math.pow(body.orbitalRadius, 0.55);
 	});
 
 	const maxOrbitalRadius = copy
