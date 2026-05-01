@@ -2,6 +2,7 @@ import type { Mat4 } from "@min-webgl/matrices"
 import solarSystem, { type SolarObject } from "./constants/solarSystem"
 import type { PlanetarySystem } from "./utils/CelestialBody"
 import lookAtObject from "./utils/lookAtObject"
+import type { CameraOptions } from "./utils/lookAtObject"
 import normalizeSystem from "./utils/normalizeSystem"
 import clearCanvas from "./utils/clearCanvas"
 import renderSystem from "./renderSystem"
@@ -22,6 +23,7 @@ class State {
 		sphere: WebGLProgram
 		spherePoints: WebGLProgram
 	}
+	private cameraOptions: CameraOptions
 
 	constructor(gl: WebGLRenderingContext) {
 		this.gl = gl
@@ -33,8 +35,14 @@ class State {
 			horizontalOffset = 0
 			distance = 6
 		}
+		this.cameraOptions = {
+			horizontalAngle: Math.PI / 3,
+			verticalAngle: Math.PI / 12,
+			horizontalOffset: 1.6,
+			verticalOffset: 0,
+		}
 		this.camera = (time) => lookAtObject(
-			distance, this.system, this.focus, time, horizontalOffset
+			distance, this.system, this.focus, time, this.cameraOptions
 		)
 		
 		const spherePointsProgram = initShaderProgram(

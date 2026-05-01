@@ -93,7 +93,7 @@ function solarSystem(
 		orbitalRadius: 149_600_000,
 		orbitalPeriod: 365 * 24 * 60 * 60,
 		initialRotation: 0,
-		initialOrbitalRotation: 0.2 * Math.PI,
+		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
 		texture: loadTexture(gl, terraImg, rgba(37, 76, 102, 1))
 	};
@@ -108,7 +108,7 @@ function solarSystem(
 		orbitalRadius: 384_000,
 		orbitalPeriod: 29.5 * terra.rotationPeriod,
 		initialRotation: 0,
-		initialOrbitalRotation: 2 * Math.PI / 16,
+		initialOrbitalRotation: Math.PI * 2 * Math.random(),
 
 		texture: loadTexture(gl, lunaImg, rgba(196, 196, 196, 1))
 	};

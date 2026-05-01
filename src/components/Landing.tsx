@@ -39,7 +39,7 @@ function Landing({
 			}
 		}
 		document.addEventListener("wheel", handler)
-	})
+	}, [])
 
 	return <section 
 		className={styles.container + (hidden ? " " + styles.hidden : "")}

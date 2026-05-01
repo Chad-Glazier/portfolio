@@ -1,7 +1,13 @@
-import type { Point } from "@min-webgl/matrices"
 import type { PlanetarySystem } from "./CelestialBody"
-import lookAt from "./lookAt"
+import * as m from "@min-webgl/matrices"
 import position from "./position"
+
+export type CameraOptions = Partial<{
+	horizontalOffset: number
+	verticalOffset: number
+	horizontalAngle: number
+	verticalAngle: number
+}>
 
 /**
  * 
@@ -19,29 +25,44 @@ function lookAtObject<ObjectName extends string>(
 	system: PlanetarySystem<ObjectName>, 
 	objectName: ObjectName, 
 	time: number,
-	horizontalOffset: number = 2
-) {
+	options: CameraOptions = {
+		horizontalAngle: 0,
+		verticalAngle: 0,
+		horizontalOffset: 0,
+		verticalOffset: 0,
+	}
+): m.Mat4 {
+	const horizontalAngle = options.horizontalAngle ?? 0
+	const verticalAngle = options.verticalAngle ?? 0
+	let horizontalOffset = options.horizontalOffset ?? 0
+	let verticalOffset = options.verticalOffset ?? 0
 
 	const object = system.find(object => object.name == objectName)
-	const objectPosition = position(object!, time)
 
-	const cameraPosition: Point = 
-		[objectPosition[0], objectPosition[1], objectPosition[2], 1]
+	if (!object) {
+		throw new Error(`Error: "${objectName}" not found in the system.`)
+	}
+
+	const objectPosition = position(object, time)
+
+	horizontalOffset *= object.radius
+	verticalOffset *= object.radius
+	distance *= object.radius
 	
-	const angle = Math.PI / 24
-	const dist = (distance + 1) * object!.radius
-	const y = dist * Math.sin(angle)
-	const z = dist * Math.cos(angle)
-
-	cameraPosition[1] += y
-	cameraPosition[2] += z
-
-	objectPosition[0] -= horizontalOffset * object!.radius
-
-	return lookAt(
-		cameraPosition,
-		objectPosition,
-		[ 0, 1, 0, 0 ]
+	return m.concat(
+		m.translate(
+			horizontalOffset,
+			verticalOffset,
+			0
+		),
+		m.translate(0, 0, -distance),
+		m.rotate([1, 0, 0], verticalAngle),
+		m.rotate([0, 1, 0], -horizontalAngle),
+		m.translate(
+			-objectPosition[0], 
+			-objectPosition[1], 
+			-objectPosition[2]
+		),
 	)
 }
 
