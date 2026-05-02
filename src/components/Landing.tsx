@@ -32,16 +32,6 @@ function Landing({
 
 	}, [planet])
 
-	// useEffect(() => {
-	// 	const handler = (ev: WheelEvent) => {
-	// 		if (ev.deltaY > 0) {
-	// 			onExit()
-	// 			document.removeEventListener("wheel", handler)
-	// 		}
-	// 	}
-	// 	document.addEventListener("wheel", handler)
-	// }, [])
-
 	return <section 
 		className={styles.container + (hidden ? " " + styles.hidden : "")}
 	>

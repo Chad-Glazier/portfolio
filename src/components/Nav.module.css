@@ -1,0 +1,51 @@
+.nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	position: relative;
+	overflow: hidden;
+}
+
+.item {
+	text-align: center;
+	font-size: 1.2rem;
+	padding: 1.2rem;
+
+	transition: color 300ms;
+
+	color: var(--inactive-nav-item);
+}
+
+.item:hover, .item.active {
+	cursor: pointer;
+	color: var(--active-nav-item);
+}
+
+.backgroundPattern {
+	height: 100vh;
+	width: 100vw;
+
+	background-image: radial-gradient(
+		rgba(255, 255, 255, 0.7) 2%,
+		transparent 2%
+	);
+	background-position: 0% 0%;
+	background-size: 10vmin 10vmin;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+
+	background-attachment: 50% 50%;
+
+	transition: background-size 400ms ease,
+		opacity 400ms ease,
+		background-position 400ms ease;
+}
+
+.item:hover ~ .backgroundPattern:hover {
+	opacity: 0.8;
+}
