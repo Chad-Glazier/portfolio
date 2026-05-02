@@ -1,0 +1,29 @@
+.link {
+	color: var(--link-color);
+	text-decoration: none;
+	transition: color 300ms ease;
+
+	position: relative;
+	z-index: 1;
+}
+
+.link:hover {
+	cursor: pointer;
+	color: var(--link-hover-color);
+}
+
+.underline {
+	background-color: var(--link-background-color);
+	position: absolute;
+	left: -4px;
+	bottom: -2px;
+	width: calc(100% + 8px);
+	height: 2px;
+	transition: height 300ms ease;
+}
+
+.link:hover .underline {
+	height: calc(100% + 4px);
+	z-index: -1;
+}
+

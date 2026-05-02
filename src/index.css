@@ -36,6 +36,10 @@ body {
 	--active-nav-item: #fff;
 	
 	--vivid-text: #00f2ff;
+
+	--link-color: #eee;
+	--link-hover-color: #000000;
+	--link-background-color: #44e9ff;
 }
 
 * {

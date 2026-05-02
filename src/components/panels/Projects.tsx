@@ -3,6 +3,7 @@ import styles from "./Projects.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons"
 import transitionText from "../../lib/transitionText"
+import Evacuation from "./projects/Evacuation"
 
 type ProjectName = "EDI" | "Evacuation" | "Booklend"
 
@@ -12,6 +13,8 @@ const projects: ProjectName[]  = [
 
 function getProject(project: ProjectName | null) {
 	switch (project) {
+	case "Evacuation":
+		return <Evacuation />
 	default: 
 		return <p>Not found.</p>
 	}
@@ -27,14 +30,16 @@ function Projects() {
 	}, [project])
 
 	return <main className={styles.container}>
-		<section className={styles.content}>
-			{getProject(project)}
-		</section>
 		<section className={styles.titleContainer}>
 			<h1 className={styles.title}>
 				{title}
 			</h1>
 		</section>
+		
+		<section className={styles.content}>
+			{getProject(project)}
+		</section>
+
 		<section className={styles.controls}>
 			<button 
 				className={styles.leftBtn}
