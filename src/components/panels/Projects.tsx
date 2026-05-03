@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import styles from "./Projects.module.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeftLong, faArrowRightLong } from "@fortawesome/free-solid-svg-icons"
 import transitionText from "../../lib/transitionText"
 import Evacuation from "./projects/Evacuation"
+import NextButton from "./NextButton"
+import { navItems, type NavItem } from "../Nav"
 
-type ProjectName = "EDI" | "Evacuation" | "Booklend"
+export type ProjectName = "EDI" | "Evacuation" | "Booklend"
 
-const projects: ProjectName[]  = [
-	"EDI", "Evacuation", "Booklend"
+export const projects: ProjectName[]  = [
+	"Evacuation", "EDI", "Booklend"
 ]
 
 function getProject(project: ProjectName | null) {
@@ -20,49 +20,42 @@ function getProject(project: ProjectName | null) {
 	}
 }
 
-function Projects() {
+type ProjectsProps = {
+	onNext: (nextPanel: NavItem) => void
+}
+
+function Projects({ onNext }: ProjectsProps) {
 
 	const [project, setProject] = useState<ProjectName>(projects[0])
-	const [title, setTitle] = useState<string>(projects[0])
 
-	useEffect(() => {
-		transitionText(title, project, setTitle)
-	}, [project])
+	const nextProject = () => {
+		const currentIdx = projects.indexOf(project)
+		if (projects.length === currentIdx + 1) {
+			return null
+		}
+		return projects[currentIdx + 1]
+	}
+
+	const nextPanel = () => {
+		return navItems[navItems.indexOf("Projects") + 1]
+	}
 
 	return <main className={styles.container}>
-		<section className={styles.titleContainer}>
-			<h1 className={styles.title}>
-				{title}
-			</h1>
-		</section>
-		
 		<section className={styles.content}>
+			<h1 className={styles.title}>
+				{project}
+			</h1>
 			{getProject(project)}
-		</section>
-
-		<section className={styles.controls}>
-			<button 
-				className={styles.leftBtn}
+			<NextButton 
+				text={nextProject() == null ? nextPanel() : nextProject()!}
 				onClick={() => {
-					const idx = projects.indexOf(project) 
-					if (idx == 0) {
-						setProject(projects[projects.length - 1])
+					if (nextProject()) {
+						setProject(nextProject()!)
 					} else {
-						setProject(projects[idx - 1])
+						onNext(nextPanel())
 					}
 				}}
-			>
-				<FontAwesomeIcon icon={faArrowLeftLong} />
-			</button>
-			<button
-				className={styles.rightBtn}
-				onClick={() => {
-					const idx = projects.indexOf(project) 
-					setProject(projects[(idx + 1) % projects.length])
-				}}
-			>
-				<FontAwesomeIcon icon={faArrowRightLong} />
-			</button>
+			/>
 		</section>
 	</main>
 }

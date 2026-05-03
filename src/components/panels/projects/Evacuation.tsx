@@ -11,6 +11,7 @@ function Evacuation() {
 			className={styles.clipContainer}
 		>
 			<img
+				loading="eager"
 				src={evacuationClip}
 				alt="A short clip of gameplay from Evacuation"
 				className={styles.clip}
@@ -30,7 +31,7 @@ function Evacuation() {
 		</div>
 		<div className={styles.text}>
 			<p>
-				Evacuation is a simple browser-based game built with zero external dependencies; just native JavaScript and the WebGL browser interface. Naturally, this required me to write OpenGL shader code, come up with procedures for generating vertices, and use linear algebra to handle transformations in affine space. It also came with less obvious problems I had to figure out, including managing complex game states, mapping browser-based user input into game actions, and detecting collisions. 
+				Evacuation is a simple browser-based game built native JavaScript and the WebGL browser interface. This project required me to write OpenGL shader code, come up with procedures for generating vertices, and use linear algebra to handle transformations in affine space. It also came with less immediate problems I had to figure out, including managing complex game states, mapping browser-based user input into game actions, and detecting collisions. 
 			</p>
 			<p>
 				Handling the math for Evacuation motivated me to create a small library of functions for matrix algebra carefully made for ideal performance&mdash;by JavaScript standards, that is. You can find that package <Link href="https://jsr.io/@min-webgl/matrices" text="here" />.

@@ -3,7 +3,7 @@ import styles from "./Nav.module.css"
 
 export type NavItem = "Introduction" | "Background" | "Projects" | "Contact"
 
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
 	"Introduction", 
 	"Background", 
 	"Projects", 

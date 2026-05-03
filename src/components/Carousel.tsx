@@ -12,22 +12,22 @@ type CarouselProps = {
 	onExit: () => void
 }
 
-function getPanel(panelName: NavItem) {
-	switch (panelName) {
-	case "Introduction":
-		return <Introduction />
-	case "Projects":
-		return <Projects />
-	default: 
-		return <p>Not Found.</p>
-	}
-}
-
 function Carousel({
 	hidden, onExit
 }: CarouselProps) {
 
 	const [activePanel, setActivePanel] = useState<NavItem>("Introduction")
+
+	function getPanel(panelName: NavItem) {
+		switch (panelName) {
+		case "Introduction":
+			return <Introduction />
+		case "Projects":
+			return <Projects onNext={setActivePanel} />
+		default: 
+			return <p>Not Found.</p>
+		}
+	}
 
 	return <section
 		className={styles.container + 
