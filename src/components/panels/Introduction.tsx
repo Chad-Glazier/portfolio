@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import VerticalBar from "../svg/VerticalBar"
-import VerticalBarThick from "../svg/VerticalBarThick"
+import VerticalBar from "../skyrim_ui/svg/VerticalBar"
+import VerticalBarThick from "../skyrim_ui/svg/VerticalBarThick"
 import styles from "./Introduction.module.css"
 
 function Introduction() {

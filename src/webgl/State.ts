@@ -80,7 +80,7 @@ class State {
 
 	nextPlanet(): SolarObject {
 		const planets: SolarObject[] = [
-			"sol", "terra", "mercury", "venus", 
+			"sol", "terra", "luna", "mercury", "venus", 
 			"mars", "jupiter", "saturn", "uranus", 
 			"neptune" 
 		]
