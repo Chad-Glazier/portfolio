@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import type { VerticalBarProps } from "./VerticalBar"
 
 const STROKE_WIDTH = 1.4
@@ -13,6 +14,47 @@ function VerticalBarThick({
 	} else {
 		arrowY = height * (arrowYPercent! / 100)
 	}
+
+	// The arrowY value is computed under the assumption that it's perfectly
+	// symmetrical, but it isn't. This adjustment corrects for that.
+	arrowY += 3
+
+	// Animates the value of the height.
+	const ANIMATION_DURATION_MS = 400
+
+	const [animatedY, setAnimatedY] = useState(arrowY)
+
+	useEffect(() => {
+		const startY = animatedY
+		const delta = arrowY - startY
+
+		let frame: number
+		let then: number | null = null
+
+		function animate(now: number) {
+			if (then === null) {
+				then = now
+			}
+
+			const elapsed = now - then
+
+			// Normalized progress in [0, 1]
+			const t = Math.min(elapsed / ANIMATION_DURATION_MS, 1)
+
+			// Optional easing
+			const eased = 1 - Math.pow(1 - t, 3) // easeOutCubic
+
+			setAnimatedY(startY + delta * eased)
+
+			if (t < 1) {
+				frame = requestAnimationFrame(animate)
+			}
+		}
+
+		frame = requestAnimationFrame(animate)
+
+		return () => cancelAnimationFrame(frame)
+	}, [arrowY])
 
 	return <svg 
 		width="19" 
@@ -34,9 +76,9 @@ function VerticalBarThick({
 		</defs>
 
 		<g mask="url(#fadeMask)">
-			<TopChain startY={0} endY={arrowY - 35} />
-			<Arrow startY={arrowY - 35} />
-			<BottomChain startY={arrowY + 46} endY={height} />			
+			<TopChain startY={0} endY={animatedY - 35} />
+			<Arrow startY={animatedY - 35} />
+			<BottomChain startY={animatedY + 46} endY={height} />			
 		</g>
 	</svg>		
 }

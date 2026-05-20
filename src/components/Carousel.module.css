@@ -13,23 +13,11 @@
 
 	transition: opacity 800ms;
 
-	display: grid;
-	grid-template-columns: min(300px, 30vw) 4fr;
-
 }
 
 .container.hidden {
 	opacity: 0;
 	z-index: -1;
-}
-
-.container>* {
-	height: 100%;
-	width: 100%;
-}
-
-.container>:nth-child(1) {
-	border-right: 1px solid var(--border-color);
 }
 
 .return {
@@ -38,21 +26,20 @@
 
 	position: absolute;
 	top: 0;
-	left: 0;
+	right: 0;
 	margin: 1rem;
 	
 	height: fit-content;
 	width: fit-content;
 	
 	color: var(--main-text-color);
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-family: var(--main-font);
-	text-transform: uppercase;
 
 	transition: color 400ms ease,
 		width 400ms ease;
 
-	width: 2ch;
+	width: 1.3ch;
 	overflow: hidden;
 	text-wrap: nowrap;
 }
@@ -60,5 +47,10 @@
 .return:hover {
 	cursor: pointer;
 	color: var(--vivid-text);
-	width: 9ch;
+	width: 8.3ch;
+}
+
+.nav {
+	width: 250px;
+	height: 100%;
 }
