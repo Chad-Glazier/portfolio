@@ -1,0 +1,21 @@
+.button {
+	background: none;
+	border: none;
+
+	position: fixed;
+	top: 20px;
+	right: 10px;
+	
+	color: var(--main-text-color);
+	font-size: 1.6rem;
+	font-family: var(--main-font);
+
+    text-transform: uppercase;
+
+	transition: color 400ms ease;
+}
+
+.button:hover {
+	cursor: pointer;
+	color: var(--vivid-text);
+}

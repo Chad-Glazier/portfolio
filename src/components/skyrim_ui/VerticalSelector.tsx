@@ -1,5 +1,5 @@
 import styles from "./VerticalSelector.module.css"
-import { useRef } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 import VerticalBarWithArrow from "./svg/VerticalBarWithArrow"
 import VerticalBarWithArrowThick from "./svg/VerticalBarWithArrowThick"
 
@@ -38,26 +38,29 @@ function VerticalSelector<T extends string>({
     items, onSelect, style, className, selected
 }: VerticalSelectorProps<T>) {
 
+    // Set defaults.
     style ??= "normal"
     className ??= ""
 
     const container = useRef<null | HTMLElement>(null)
+    const [barHeight, setBarHeight] = useState(0)
+    const [arrowTop, setArrowTop] = useState(0)
 
-    /**
-     * Gets the vertical distance (in pixels) from the top of the container
-     * to the middle of the currently-selected element.
-     */
-    function getSelectedItemTop(): number {
-        if (!container.current) {
-            return 0
-        }
+    useLayoutEffect(() => {
+        if (!container.current) return
+
+        setBarHeight(container.current.clientHeight)
+
+        // Get the vertical distance, in pixels, from the top of the container
+        // to the center of the currently-selected element.
         const selectedItem = container
             .current
             .querySelector(`.${selected}`)!
-        return selectedItem.getBoundingClientRect().top -
+        const height = selectedItem.getBoundingClientRect().top -
             container.current.getBoundingClientRect().top +
             selectedItem.clientHeight / 2
-    }
+        setArrowTop(height)
+    }, [selected])
 
     let RightBar: typeof VerticalBarWithArrow
     switch (style) {
@@ -91,10 +94,11 @@ function VerticalSelector<T extends string>({
                 </div>
             )}
         </nav>
-        <RightBar
-            height={(container.current?.clientHeight ?? 0)}
-            arrowYPx={getSelectedItemTop()}
-        />
+        {barHeight != 0 && <RightBar
+            height={barHeight}
+            arrowYPx={arrowTop}
+        />}
+        
     </aside>
 }
 

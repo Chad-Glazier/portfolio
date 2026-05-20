@@ -1,5 +1,4 @@
 .svg { 
-    color: currentColor;
     height: 1em;
     vertical-align: -0.125em;
 }
@@ -8,10 +7,10 @@
     stroke: currentColor;
     stroke-width: 2px;
 
-    transition: 1000ms linear;
+    transition: all 400ms ease-in-out;
     
     stroke-dasharray: 1;
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 0.70;
 }
 
 .path.hidden {

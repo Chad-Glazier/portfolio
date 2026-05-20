@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "./Landing.module.css"
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons"
 import getSystem from "../webgl"
 import { useEffect, useState } from "react"
 import type { SolarObject } from "../webgl/constants/solarSystem"
@@ -8,11 +6,10 @@ import transitionText from "../lib/transitionText"
 
 type LandingProps = {
 	hidden?: boolean
-	onExit: () => void
 }
 
 function Landing({
-	hidden, onExit
+	hidden
 }: LandingProps) {
 
 	const [ planet, setPlanet ] = useState<SolarObject>("terra")
@@ -50,12 +47,6 @@ function Landing({
 				{planetName}
 			</span>.
 		</h1>
-		<button 
-			className={styles.downButton + (hidden ? " " + styles.hidden : "")} 
-			onClick={onExit}
-		>
-			<FontAwesomeIcon icon={faAnglesDown} />
-		</button>
 	</section>
 }
 

@@ -1,4 +1,6 @@
+import getSystem from "../webgl"
 import type State from "../webgl/State"
+import sleep from "./sleep"
 
 const SENSIVITY_FACTOR = 0.5
 
@@ -78,9 +80,16 @@ function wheel(ev: WheelEvent) {
 	) 
 }
 
-export function enableCameraControls(system: State) {
+export async function enableCameraControls() {
 
-	state.system = system
+    // If the state (i.e., the global state object that manages the controls)
+    // does not yet have a reference to the system, then we periodically try
+    // to get such a reference. This is necessary because the visual system
+    // requires some setup that happens asynchronously. 
+    while (state.system === null) {
+        await sleep(100)
+        state.system = getSystem()
+    }
 
 	document.addEventListener("mousedown", mousedown)
 	document.addEventListener("mousemove", mousemove)
@@ -90,6 +99,11 @@ export function enableCameraControls(system: State) {
 }
 
 export function disableCameraControls() {
+
+    if (state.system === null) { 
+        return
+    }
+
 	document.removeEventListener("mousedown", mousedown)
 	document.removeEventListener("mousemove", mousemove)
 	document.removeEventListener("mouseup", mouseup)

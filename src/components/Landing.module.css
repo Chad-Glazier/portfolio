@@ -83,56 +83,27 @@
 	}
 }
 
-.downButton {
-	position: fixed;
-	bottom: 5px;
-	width: 100%;
-
-	text-align: center;
-
-	font-size: 2rem;
-	color: var(--heading-dull);
+.return {
 	background: none;
 	border: none;
-	padding: none;
 
+	position: absolute;
+	top: 20px;
+	right: 10px;
+	
+	color: var(--main-text-color);
+	font-size: 1.6rem;
+	font-family: var(--main-font);
+
+    text-transform: uppercase;
+
+	transition: color 400ms ease;
+
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+.return:hover {
 	cursor: pointer;
-
-	animation: bounce 2s ease-in-out infinite;
-	transition: all 300ms;
-}
-
-.downButton:hover {
-	color: var(--heading-vivid);
-}
-
-@keyframes wave {
-  0% {
-    background-position: -300%;
-  }
-  100% {
-	background-position: 600%;
-  }
-}
-
-.downButton.hidden {
-	display: none;
-}
-
-@keyframes bounce {
-	0% { 
-		padding-top: 10px;
-		padding-bottom: 0px;
-		bottom: 5px;
-	}
-	50% {
-		padding-top: 0;
-		padding-bottom: 10px;
-		bottom: 15px;
-	}
-	100% {
-		padding-top: 10px;
-		padding-bottom: 0px;
-		bottom: 5px;
-	}
+	color: var(--vivid-text);
 }
