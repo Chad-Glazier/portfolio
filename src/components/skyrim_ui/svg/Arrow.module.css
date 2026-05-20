@@ -1,0 +1,19 @@
+.svg { 
+    color: currentColor;
+    height: 1em;
+    vertical-align: -0.125em;
+}
+
+.path {
+    stroke: currentColor;
+    stroke-width: 2px;
+
+    transition: 1000ms linear;
+    
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+}
+
+.path.hidden {
+    stroke-dashoffset: 1;
+}

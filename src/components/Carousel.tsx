@@ -1,6 +1,4 @@
 import styles from "./Carousel.module.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { VerticalSelector, LeftArrow, RightArrow } from "./skyrim_ui"
 import { useState } from "react"
 
@@ -16,6 +14,8 @@ function Carousel({
     const navItems = ["Introduction", "Background", "Projects", "Contact"]
     const [selectedNavItem, setSelectedNavItem] = useState("Introduction")
 
+    const [showReturnArrow, setShowReturnArrow] = useState(false)
+
     return <section
         className={styles.container + 
             (hidden ? " " + styles.hidden : "")
@@ -30,8 +30,10 @@ function Carousel({
         <button 
             className={styles.return}
             onClick={onExit}	
+            onMouseEnter={() => setShowReturnArrow(true)}
+            onMouseLeave={() => setShowReturnArrow(false)}
         >
-             <RightArrow /> Return
+             <RightArrow hidden={!showReturnArrow} /> Return
         </button>
     </section>
 }

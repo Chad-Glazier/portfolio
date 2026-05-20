@@ -1,6 +1,7 @@
+import styles from "./VerticalSelector.module.css"
 import { useRef } from "react"
-import VerticalBar from "./svg/VerticalBar"
-import VerticalBarThick from "./svg/VerticalBarThick"
+import VerticalBarWithArrow from "./svg/VerticalBarWithArrow"
+import VerticalBarWithArrowThick from "./svg/VerticalBarWithArrowThick"
 
 type VerticalSelectorProps<T extends string> = {
     // The items that the user can select from.
@@ -38,13 +39,14 @@ function VerticalSelector<T extends string>({
 }: VerticalSelectorProps<T>) {
 
     style ??= "normal"
+    className ??= ""
 
     const container = useRef<null | HTMLElement>(null)
 
     /**
      * Gets the vertical distance (in pixels) from the top of the container
      * to the middle of the currently-selected element.
-     */ 
+     */
     function getSelectedItemTop(): number {
         if (!container.current) {
             return 0
@@ -52,55 +54,46 @@ function VerticalSelector<T extends string>({
         const selectedItem = container
             .current
             .querySelector(`.${selected}`)!
-        return selectedItem.getBoundingClientRect().top - 
-            container.current.getBoundingClientRect().top + 
+        return selectedItem.getBoundingClientRect().top -
+            container.current.getBoundingClientRect().top +
             selectedItem.clientHeight / 2
     }
 
-    const Bar = style == "normal" ? VerticalBar : VerticalBarThick
+    let RightBar: typeof VerticalBarWithArrow
+    switch (style) {
+    case "normal":
+        RightBar = VerticalBarWithArrow
+        break
+    case "thick":
+        RightBar = VerticalBarWithArrowThick
+    }
 
-    return <aside ref={container} className={className} style={{
-        height: className ? undefined : "100%",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: "10px",
-    }}>
-        <nav style={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "30px",
-            justifyContent: "center",
-            flex: "1",
-            alignItems: "center",
-            paddingRight: "20px",
-            paddingLeft: "20px",
-            fontSize: "1.2rem",
-        }}>
-            {items.map((item, idx) => 
+    const containerClassName = styles.container + " " + className
+
+    return <aside ref={container} className={containerClassName}>
+        <nav className={styles.nav}>
+            {items.map((item, idx) =>
                 <div
                     key={idx}
                     onClick={() => {
                         onSelect(item)
                     }}
-                    // The className here is just used for the query selector.
-                    // I'm aware that it's semantically wrong.
-                    className={item}
-                    style={{
-                        cursor: "pointer",
-                        userSelect: "none",
-                    }}
-                    
+                    // The `item` className here is just used for the query
+                    // selector. I'm aware that it's semantically wrong.
+                    className={
+                        item + " " 
+                        + styles.navItem + " " +
+                        (item == selected ?
+                            styles.selected : "")
+                    }
                 >
                     {item}
                 </div>
             )}
         </nav>
-        <Bar 
+        <RightBar
             height={(container.current?.clientHeight ?? 0)}
             arrowYPx={getSelectedItemTop()}
-            // mirrored
         />
     </aside>
 }

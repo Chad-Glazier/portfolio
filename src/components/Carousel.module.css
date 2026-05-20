@@ -39,7 +39,6 @@
 	transition: color 400ms ease,
 		width 400ms ease;
 
-	width: 1.3ch;
 	overflow: hidden;
 	text-wrap: nowrap;
 }
@@ -47,7 +46,6 @@
 .return:hover {
 	cursor: pointer;
 	color: var(--vivid-text);
-	width: 8.3ch;
 }
 
 .nav {

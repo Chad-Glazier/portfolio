@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export type VerticalBarProps = {
+export type VerticalBarWithArrowProps = {
 	height: number
 	mirrored?: boolean
 } & ({
@@ -11,9 +11,9 @@ export type VerticalBarProps = {
 	arrowYPercent: number
 })
 
-function VerticalBar({ 
+function VerticalBarWithArrow({ 
 	height, arrowYPercent, arrowYPx, mirrored
-}: VerticalBarProps) {
+}: VerticalBarWithArrowProps) {
 
 	const arrowWidth = 16
 	const arrowHeight = 32
@@ -110,4 +110,4 @@ function VerticalBar({
 	</svg>
 }
 
-export default VerticalBar
+export default VerticalBarWithArrow

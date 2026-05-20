@@ -1,5 +1,4 @@
 import VerticalSelector from "./VerticalSelector"
-import LeftArrow from "./svg/LeftArrow"
-import RightArrow from "./svg/RightArrow"
+import { LeftArrow, RightArrow } from "./svg/Arrow"
 
 export { VerticalSelector, LeftArrow, RightArrow }
