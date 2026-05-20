@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./Projects.module.css"
-import transitionText from "../../lib/transitionText"
 import Evacuation from "./projects/Evacuation"
 import NextButton from "./NextButton"
 import { navItems, type NavItem } from "../Nav"

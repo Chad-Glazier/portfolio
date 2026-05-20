@@ -1,5 +1,5 @@
 import styles from "./Carousel.module.css"
-import { VerticalSelector, LeftArrow, RightArrow } from "./skyrim_ui"
+import { VerticalSelector, RightArrow } from "./skyrim_ui"
 import { useState } from "react"
 
 type CarouselProps = {
