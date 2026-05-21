@@ -1,6 +1,6 @@
-import styles from "./ToggleButton.module.css"
 import { useState } from "react"
-import { RightArrow } from "./skyrim_ui"
+import { RightArrow } from "../skyrim_ui"
+import styles from "./ToggleButton.module.css"
 
 type ToggleButtonProps = {
     onClick: () => void
@@ -8,12 +8,12 @@ type ToggleButtonProps = {
 }
 
 function ToggleButton({ text, onClick }: ToggleButtonProps) {
-    
+
     const [showArrow, setShowArrow] = useState(false)
-    
-    return <button 
+
+    return <button
         className={styles.button}
-        onClick={onClick}	
+        onClick={onClick}
         onMouseEnter={() => setShowArrow(true)}
         onMouseLeave={() => setShowArrow(false)}
     >

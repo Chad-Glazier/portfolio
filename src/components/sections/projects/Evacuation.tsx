@@ -1,12 +1,12 @@
 import styles from "./Evacuation.module.css"
 import evacuationClip from "../../../assets/clips/evacuation_clip.gif"
-import Link from "../../Link"
+import Link from "../../misc/Link"
 import { faGlobe } from "@fortawesome/free-solid-svg-icons/faGlobe"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 function Evacuation() {
 	return <article className={styles.container}>
-		{/* <h1 className={styles.heading}>Evacuation</h1> */}
+		<h1 className={styles.heading}>Evacuation</h1>
 		<div
 			className={styles.clipContainer}
 		>

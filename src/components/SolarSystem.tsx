@@ -1,16 +1,17 @@
-import styles from "./Landing.module.css"
+import styles from "./SolarSystem.module.css"
 import getSystem from "../webgl"
 import { useEffect, useState } from "react"
 import type { SolarObject } from "../webgl/constants/solarSystem"
 import transitionText from "../lib/transitionText"
+import { disableCameraControls, enableCameraControls } from "../lib/enableCameraControls"
 
-type LandingProps = {
+type SolarSystemProps = {
 	hidden?: boolean
 }
 
-function Landing({
+function SolarSystem({
 	hidden
-}: LandingProps) {
+}: SolarSystemProps) {
 
 	const [ planet, setPlanet ] = useState<SolarObject>("terra")
 	const [ planetName, setPlanetName ] = useState<string>("World")
@@ -28,6 +29,16 @@ function Landing({
 		transitionText(planetName, newPlanetName, setPlanetName)
 
 	}, [planet])
+
+    // When the solar system is hidden, we disable the controls; when its un-
+    // hidden, we enable them.
+    useEffect(() => {
+        if (hidden) {
+            disableCameraControls()
+        } else {
+            enableCameraControls()
+        }
+    }, [hidden])
 
 	return <section 
 		className={styles.container + (hidden ? " " + styles.hidden : "")}
@@ -52,4 +63,4 @@ function Landing({
 
 
 
-export default Landing
+export default SolarSystem

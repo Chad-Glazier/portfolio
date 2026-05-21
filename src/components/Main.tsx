@@ -1,19 +1,19 @@
-import styles from "./Carousel.module.css"
+import styles from "./Main.module.css"
 import { VerticalSelector } from "./skyrim_ui"
 import { useState } from "react"
 
-type CarouselProps = {
+type MainProps = {
     hidden: boolean
 }
 
-function Carousel({
+function Main({
     hidden
-}: CarouselProps) {
+}: MainProps) {
 
     const navItems = ["Introduction", "Background", "Projects", "Contact"]
     const [selectedNavItem, setSelectedNavItem] = useState("Introduction")
 
-    return <section
+    return <main
         className={styles.container + 
             (hidden ? " " + styles.hidden : "")
         }
@@ -24,7 +24,7 @@ function Carousel({
             onSelect={setSelectedNavItem}		
             selected={selectedNavItem}
         />
-    </section>
+    </main>
 }
 
-export default Carousel
+export default Main

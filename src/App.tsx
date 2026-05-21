@@ -1,44 +1,40 @@
 import { useEffect, useState } from "react"
 import "./App.css"
 
-import Landing from "./components/Landing"
-import { enableCameraControls, disableCameraControls } from "./lib/enableCameraControls"
-import Carousel from "./components/Carousel"
-import ToggleButton from "./components/ToggleButton"
+import Main from "./components/Main"
+import ToggleButton from "./components/misc/ToggleButton"
 import transitionText from "./lib/transitionText"
+import SolarSystem from "./components/SolarSystem"
 
 function App() {
 
-	const [hideCarousel, setHideCarousel] = useState(false)
+    const [hideMain, setHideMain] = useState(false)
     const [toggleButtonText, setToggleButtonText] = useState("Exit")
 
-	// When the landing page is hidden, we disable the controls.
-	useEffect(() => {
-        if (hideCarousel) {
+    useEffect(() => {
+        if (hideMain) {
             transitionText(toggleButtonText, "Return", setToggleButtonText)
-            enableCameraControls()
         } else {
             transitionText(toggleButtonText, "Exit", setToggleButtonText)
-            disableCameraControls()
         }
-    }, [hideCarousel])
+    }, [hideMain])
 
-	return (
-		<>
-			<Landing 
-				hidden={!hideCarousel} 
-			/>
-			<Carousel
-				hidden={hideCarousel}
-			/>
+    return (
+        <>
+            <SolarSystem
+                hidden={!hideMain}
+            />
+            <Main
+                hidden={hideMain}
+            />
             <ToggleButton
                 text={toggleButtonText}
                 onClick={() => {
-                    setHideCarousel(prev => !prev)
+                    setHideMain(prev => !prev)
                 }}
             />
-		</>
-	)
+        </>
+    )
 }
 
 export default App
