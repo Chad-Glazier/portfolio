@@ -5,7 +5,6 @@ This is a static website meant to serve as my portfolio.
 ## To-Do
 
 For the solar system model, I can add the following:
-- Add inertia to the camera.
 - Give Saturn his ring.
 
 For the main section:

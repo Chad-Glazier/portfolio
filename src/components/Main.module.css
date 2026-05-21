@@ -13,14 +13,17 @@
 
 	transition: opacity 800ms;
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
 }
 
 .container.hidden {
 	opacity: 0;
-	z-index: -1;
 }
 
 .nav {
 	width: 250px;
-	height: 100%;
+    height: min(80%, calc(100% - 30px));
 }

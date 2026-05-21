@@ -15,7 +15,7 @@ function App() {
         if (hideMain) {
             transitionText(toggleButtonText, "Return", setToggleButtonText)
         } else {
-            transitionText(toggleButtonText, "Exit", setToggleButtonText)
+            transitionText(toggleButtonText, "Close", setToggleButtonText)
         }
     }, [hideMain])
 
