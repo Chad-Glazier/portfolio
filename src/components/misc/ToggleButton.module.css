@@ -6,16 +6,14 @@
 	top: 20px;
 	right: 10px;
 	
-	color: var(--main-text-color);
-	font-size: 1.6rem;
+	color: var(--return-button-inactive);
+	font-size: 1.5rem;
 	font-family: var(--main-font);
-
-    text-transform: uppercase;
 
 	transition: color 400ms ease;
 }
 
 .button:hover {
 	cursor: pointer;
-	color: var(--vivid-text);
+	color: var(--return-button-active);
 }

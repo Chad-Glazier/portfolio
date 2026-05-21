@@ -43,6 +43,9 @@ body {
 
 	--skyrim-cursor: url("./assets/skyrim_ui/cursor.svg");
 
+    --return-button-inactive: #aaa;
+    --return-button-active: #fff;
+
 }
 
 * {

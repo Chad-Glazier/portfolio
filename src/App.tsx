@@ -9,7 +9,7 @@ import SolarSystem from "./components/SolarSystem"
 function App() {
 
     const [hideMain, setHideMain] = useState(false)
-    const [toggleButtonText, setToggleButtonText] = useState("Exit")
+    const [toggleButtonText, setToggleButtonText] = useState("Close")
 
     useEffect(() => {
         if (hideMain) {

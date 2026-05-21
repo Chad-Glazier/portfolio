@@ -1,4 +1,5 @@
 import styles from "./Main.module.css"
+import Introduction from "./sections/Introduction"
 import { VerticalSelector } from "./skyrim_ui"
 import { useEffect, useState } from "react"
 
@@ -32,6 +33,11 @@ function Main({
             onSelect={setSelectedNavItem}		
             selected={selectedNavItem}
         />
+        <article
+            className={styles.article}
+        >
+            <Introduction />
+        </article>
     </main>
 }
 

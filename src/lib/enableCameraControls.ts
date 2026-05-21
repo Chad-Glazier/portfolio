@@ -1,9 +1,21 @@
 import getSystem from "../webgl"
 import type State from "../webgl/State"
+import clamp from "./clamp"
 import sleep from "./sleep"
 
-const SENSIVITY_FACTOR = 0.02
+// A factor that determines how sensitive the rotation speed is to movements.
+const SENSIVITY_FACTOR = 0.015
+// A factor that adjusts the RPM for inertial movements (i.e., the movement
+// that occurs after the sphere has been "released.")
+const INTERTIA_SENSITIVITY_FACTOR = 0.50
+// The coefficient of friction; i.e., how quickly the sphere loses its 
+// momentum.
 const COEFFICIENT_OF_FRICTION = 0.05
+// A hard limit on the vertical angle that the camera can have relative to the
+// body it's focused on and the horizontal axis. This is put in place because
+// it's kind of disorienting if the camera can do full somersaults. This value
+// should be in the interval [0, π/2].
+const VERTICAL_CAMERA_ANGLE_BOUND = Math.PI / 4
 
 const state: {
 	dragging: boolean
@@ -48,11 +60,18 @@ function mousemove({ movementX, movementY }: MouseEvent) {
 	// place, this should work.
 	const axisOfRotation = [movementY, movementX, 0]
 
-	state.system!.cameraOptions.verticalAngle += 
-		2 * Math.PI * rotations * movementY
-	state.system!.cameraOptions.horizontalAngle -=
-		2 * Math.PI * rotations * movementX
+    const verticalDelta = 2 * Math.PI * rotations * movementY
+    const horizontalDelta = 2 * Math.PI * rotations * movementX
 
+	state.system!.cameraOptions.verticalAngle += verticalDelta    
+    state.system!.cameraOptions.horizontalAngle -= horizontalDelta
+
+    state.system!.cameraOptions.verticalAngle = clamp(
+        -VERTICAL_CAMERA_ANGLE_BOUND,
+        state.system!.cameraOptions.verticalAngle,
+        VERTICAL_CAMERA_ANGLE_BOUND,
+    )
+	
 	// Adjust the outer variables.
 	const minutes = (Date.now() - state.initialTime) / 1000 / 60
 	state.lastAxis = axisOfRotation
@@ -74,12 +93,21 @@ function mouseup(ev: MouseEvent) {
             return
         }
         const minutesElapsed = interval / 1000 / 60
-        const rotations = minutesElapsed * state.lastRPM
+        let rotations = minutesElapsed * state.lastRPM
 
-        state.system!.cameraOptions.verticalAngle +=
-            2 * Math.PI * rotations * state.lastAxis[0]
-        state.system!.cameraOptions.horizontalAngle -=
-            2 * Math.PI * rotations * state.lastAxis[1]
+        rotations *= INTERTIA_SENSITIVITY_FACTOR
+
+        const verticalDelta = 2 * Math.PI * rotations * state.lastAxis[0]
+        const horizontalDelta = 2 * Math.PI * rotations * state.lastAxis[1]
+
+        state.system!.cameraOptions.verticalAngle += verticalDelta    
+        state.system!.cameraOptions.horizontalAngle -= horizontalDelta
+
+        state.system!.cameraOptions.verticalAngle = clamp(
+            -VERTICAL_CAMERA_ANGLE_BOUND,
+            state.system!.cameraOptions.verticalAngle,
+            VERTICAL_CAMERA_ANGLE_BOUND,
+        )
 
         state.lastRPM *= 1 - COEFFICIENT_OF_FRICTION
 

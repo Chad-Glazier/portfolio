@@ -1,0 +1,11 @@
+.container {
+    width: min(100%, 800px);
+
+   display: flex;
+   flex-direction: column;
+   gap: 1rem; 
+}
+
+.container p {
+    max-width: 80ch;
+}
