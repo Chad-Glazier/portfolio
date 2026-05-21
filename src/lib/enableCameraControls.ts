@@ -2,7 +2,8 @@ import getSystem from "../webgl"
 import type State from "../webgl/State"
 import sleep from "./sleep"
 
-const SENSIVITY_FACTOR = 0.5
+const SENSIVITY_FACTOR = 0.02
+const COEFFICIENT_OF_FRICTION = 0.05
 
 const state: {
 	dragging: boolean
@@ -10,12 +11,14 @@ const state: {
 	lastRPM: number
 	lastAxis: number[]
 	system: State | null
+    inertiaUpdate: number | null
 } = {
 	dragging: false,
 	initialTime: 0,
 	lastRPM: 0,
 	lastAxis: [0, 0, 0],
-	system: null
+	system: null,
+    inertiaUpdate: null
 }
 
 function mousedown(ev: MouseEvent) {
@@ -23,6 +26,7 @@ function mousedown(ev: MouseEvent) {
 
 	state.dragging = true
 	state.initialTime = Date.now()
+    clearInterval(state.inertiaUpdate ?? undefined)
 }
 
 function mousemove({ movementX, movementY }: MouseEvent) {
@@ -45,9 +49,9 @@ function mousemove({ movementX, movementY }: MouseEvent) {
 	const axisOfRotation = [movementY, movementX, 0]
 
 	state.system!.cameraOptions.verticalAngle += 
-		2 * Math.PI * rotations * movementY / magnitude
+		2 * Math.PI * rotations * movementY
 	state.system!.cameraOptions.horizontalAngle -=
-		2 * Math.PI * rotations * movementX / magnitude
+		2 * Math.PI * rotations * movementX
 
 	// Adjust the outer variables.
 	const minutes = (Date.now() - state.initialTime) / 1000 / 60
@@ -62,6 +66,26 @@ function mouseup(ev: MouseEvent) {
 	if (ev.button !== 0) return // ensure it's clicking the mousewheel
 
 	state.dragging = false
+
+    const elapsed = 1000 / 60
+    const interval = setInterval(() => {
+        if (state.lastRPM <= 0.001) {
+            clearInterval(interval)
+            return
+        }
+        const minutesElapsed = interval / 1000 / 60
+        const rotations = minutesElapsed * state.lastRPM
+
+        state.system!.cameraOptions.verticalAngle +=
+            2 * Math.PI * rotations * state.lastAxis[0]
+        state.system!.cameraOptions.horizontalAngle -=
+            2 * Math.PI * rotations * state.lastAxis[1]
+
+        state.lastRPM *= 1 - COEFFICIENT_OF_FRICTION
+
+    }, elapsed)
+
+    state.inertiaUpdate = interval
 }
 
 function mouseleave() {

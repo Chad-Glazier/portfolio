@@ -28,7 +28,7 @@ class State {
 	constructor(gl: WebGLRenderingContext) {
 		this.gl = gl
 		this.system = normalizeSystem(solarSystem(gl))
-		this.focus = "terra"
+		this.focus = "luna"
 		this.cameraOptions = {
 			distance: gl.canvas.width < gl.canvas.height ? 6 : 4,
 			horizontalAngle: Math.PI / 3,
