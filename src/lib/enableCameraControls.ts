@@ -4,10 +4,10 @@ import clamp from "./clamp"
 import sleep from "./sleep"
 
 // A factor that determines how sensitive the rotation speed is to movements.
-const SENSIVITY_FACTOR = 0.015
+const SENSIVITY_FACTOR = 0.02
 // A factor that adjusts the RPM for inertial movements (i.e., the movement
 // that occurs after the sphere has been "released.")
-const INTERTIA_SENSITIVITY_FACTOR = 0.50
+const INTERTIA_SENSITIVITY_FACTOR = 0.20
 // The coefficient of friction; i.e., how quickly the sphere loses its 
 // momentum.
 const COEFFICIENT_OF_FRICTION = 0.05

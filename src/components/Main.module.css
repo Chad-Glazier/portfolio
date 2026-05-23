@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
 }
 
 .container.hidden {
@@ -30,11 +29,27 @@
 }
 
 .article {
+    align-self: flex-start;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 2rem;
-    margin: 40px;
+    height: 100%;
+
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.section {
+    width: fit-content;
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding-top: 30vh;
+    padding-bottom: 100vh;
+    
+    scroll-snap-align: start;
+}
+
+.section:last-of-type {
+    padding-bottom: 0px;
 }

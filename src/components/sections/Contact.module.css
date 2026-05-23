@@ -1,5 +1,26 @@
 .container {
+    max-width: 80ch;
 
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.portrait {
+    height: 200px;
+    width: 200px;
+
+    border-radius: 30px;
+
+    grid-row: 1 / 3;
+}
+
+.contactInfo {
+    max-width: 40ch;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
 }
 
 

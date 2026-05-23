@@ -46,6 +46,12 @@ body {
     --return-button-inactive: #aaa;
     --return-button-active: #fff;
 
+    --button-color-inactive: #aaa;
+    --button-color-active: #fff;
+    --button-border-inactive: #444;
+    --button-border-active: #888;
+    --button-background-inactive: #111;
+    --button-background-active: #111;
 }
 
 * {
