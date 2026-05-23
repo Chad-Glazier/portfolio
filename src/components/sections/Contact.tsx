@@ -1,5 +1,5 @@
 import styles from "./Contact.module.css"
-import headshot from "../../assets/headshot.jpg"
+// import headshot from "../../assets/headshot.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons"
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
