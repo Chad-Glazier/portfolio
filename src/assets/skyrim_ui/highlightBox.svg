@@ -16,7 +16,7 @@
 </filter>
 <linearGradient id="paint0_linear_2_205" x1="36.5" y1="50.25" x2="653.001" y2="50.25" gradientUnits="userSpaceOnUse">
 <stop stop-color="#111" stop-opacity="0.5"/>
-<stop offset="1" stop-color="#333" stop-opacity="0.8"/>
+<stop offset="1" stop-color="#111" stop-opacity="0.8"/>
 </linearGradient>
 <linearGradient id="paint1_linear_2_205" x1="5" y1="50.25" x2="653" y2="50.25" gradientUnits="userSpaceOnUse">
 <stop stop-color="white" stop-opacity="0"/>
