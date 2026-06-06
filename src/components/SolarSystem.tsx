@@ -14,7 +14,7 @@ function SolarSystem({
 }: SolarSystemProps) {
 
 	const [ planet, setPlanet ] = useState<SolarObject>("terra")
-	const [ planetName, setPlanetName ] = useState<string>("Luna")
+	const [ planetName, setPlanetName ] = useState<string>("World")
 
 	useEffect(() => {
 		const system = getSystem()

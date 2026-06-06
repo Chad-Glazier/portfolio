@@ -1,0 +1,32 @@
+.container {
+    background-image: url("../../assets/skyrim_ui/highlightBox.svg");
+    background-position: 0;
+    background-size: cover;
+    width: 260px;
+    height: 80px;
+    position: fixed;
+    right: 0px;
+    top: max(20vh, 100px);
+
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    transition: right 300ms ease-in-out;
+}
+
+.container.hidden {
+    right: -260px;
+}
+
+.container p {
+    /* 
+    The SVG background isn't perfectly centered, so this padding corrects
+    for it. 
+    */
+    padding-top: 3px;
+    font-size: 1rem;
+    text-align: center;
+}
