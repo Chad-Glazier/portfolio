@@ -1,0 +1,26 @@
+.container {
+    height: 100%;
+    width: 100%;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container img {
+    width: 100%;
+    height: auto;
+
+    top: 0;
+    left: 0;
+
+    transition: opacity 400ms ease;
+    opacity: 0;
+}
+
+.container img.active {
+    opacity: 1;
+}

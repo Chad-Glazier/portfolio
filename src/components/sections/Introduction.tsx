@@ -1,13 +1,22 @@
+import List from "../misc/List"
 import styles from "./Introduction.module.css"
 
 function Introduction() {
 
     return <section className={styles.container}>
-        <h1>
-            Bing Chilling.
+        <h1 className={styles.heading}>
+            Hello, World.
         </h1>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt eaque provident impedit, nobis laudantium, ducimus error, blanditiis nam explicabo amet ipsum voluptatibus excepturi numquam repellendus! Nemo culpa eaque molestiae alias error, voluptatem impedit distinctio quas voluptas suscipit fuga? Minus voluptas adipisci ratione error autem nesciunt perferendis et illo ex exercitationem.
+            My name is Chad and I write programs. 
+            I'm primarily interested in
+            <List 
+                items={[
+                    "full-stack websites,",
+                    "standalone web services, and",
+                    "performance-intensive systems."
+                ]}
+            />
         </p>
     </section>
 }

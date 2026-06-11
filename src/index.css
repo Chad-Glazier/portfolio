@@ -31,6 +31,7 @@ body {
 	--background-color: rgba(6, 12, 26, 0.6);
 	--main-text-color: #eee;
 	--border-color: #333;
+	--main-backdrop-filter: none;
 
 	--inactive-nav-item: #555;
 	--active-nav-item: #fff;
@@ -58,4 +59,8 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+img {
+	user-select: none;
 }

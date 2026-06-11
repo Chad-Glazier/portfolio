@@ -63,6 +63,15 @@
 	text-decoration-color: var(--heading-vivid);
 }
 
+@keyframes wave {
+	0% {
+		background-position: -300%;
+	}
+	100% {
+		background-position: 300%;
+	}
+}
+
 @media (orientation: portrait) {
 	.container {
 		flex-direction: column;

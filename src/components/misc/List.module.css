@@ -1,0 +1,57 @@
+.container {
+    position: relative;
+    margin: 10px;
+}
+
+.treeSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+.branch {
+    animation: draw 1600ms ease forwards;
+    animation-delay: 400ms;
+    stroke: #484848;
+}
+
+@keyframes draw {
+    from {
+        stroke-dashoffset: 100;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.list {
+    padding-top: 6px;
+}
+
+.item {
+    height: 32px;
+    padding-left: calc(24px + 8px);
+    list-style: none;
+    
+    animation: fadein 400ms ease-in forwards;
+    animation-delay: 0ms;
+    opacity: 0;
+    position: relative;
+    left: 16px;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        position: relative;
+        left: 16px;
+    }
+    to {
+        opacity: 1;
+        position: relative;
+        left: 0px;
+    }
+}

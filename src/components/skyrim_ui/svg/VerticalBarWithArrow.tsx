@@ -101,10 +101,10 @@ function VerticalBarWithArrow({
 				y2={height}
 				gradientUnits="userSpaceOnUse"
 			>
-				<stop stopColor="#888" stopOpacity={0} />
-				<stop offset={0.04} stopColor="#888" stopOpacity={1} />
-				<stop offset={0.954} stopColor="#888" stopOpacity={1} />
-				<stop offset={1} stopColor="#888" stopOpacity={0} />
+				<stop stopColor="#484848" stopOpacity={0} />
+				<stop offset={0.04} stopColor="#484848" stopOpacity={1} />
+				<stop offset={0.954} stopColor="#484848" stopOpacity={1} />
+				<stop offset={1} stopColor="#484848" stopOpacity={0} />
 			</linearGradient>
 		</defs>
 	</svg>

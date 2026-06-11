@@ -30,7 +30,7 @@ class State {
 		this.system = normalizeSystem(solarSystem(gl))
 		this.focus = "terra"
 		this.cameraOptions = {
-			distance: gl.canvas.width < gl.canvas.height ? 6 : 4,
+			distance: gl.canvas.width < gl.canvas.height ? 8 : 6,
 			horizontalAngle: Math.PI / 3,
 			verticalAngle: Math.PI / 12,
 			horizontalOffset: gl.canvas.width < gl.canvas.height ? 0 : 1,

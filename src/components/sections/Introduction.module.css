@@ -1,11 +1,13 @@
 .container {
-    width: min(800px, 90%);
+    min-width: min(600px, 90%);
 
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
 }
 
-.container p {
-    max-width: 80ch;
+.heading {
+    font-size: 2.4rem;
+    padding-bottom: 1rem;
 }

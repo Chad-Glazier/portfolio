@@ -123,7 +123,9 @@ function Main({
                <Background />
             </div>
             <div 
-                className={styles.section} 
+                className={
+                    styles.section + " " + styles.projects
+                } 
                 ref={projects} 
                 id="Projects"
             >
