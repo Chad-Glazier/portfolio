@@ -2,6 +2,7 @@
 .description {
 	width: 100%;
 	height: 100%;
+	padding: 2rem;
 
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -11,9 +12,6 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	gap: 1rem;
-	
-	padding: 2rem;
-	padding-left: 3rem;
 }
 
 .description h1 {

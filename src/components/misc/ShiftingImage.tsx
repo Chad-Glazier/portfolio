@@ -24,7 +24,10 @@ function ShiftingImage({ items, activeIdx, duration }: ShiftingImageProps) {
                 styles.active : ""
             }
             style={{
-                transition: `opacity ${duration}ms ease`
+                transition: `opacity ${duration}ms ease`,
+                position: idx > 0 ? "absolute" : undefined,
+                top: idx > 0 ? "50%" : undefined,
+                transform: idx > 0 ? "translateY(-50%)" : undefined,
             }}
         />)}
     </div>

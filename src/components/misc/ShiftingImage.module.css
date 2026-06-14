@@ -14,9 +14,6 @@
     width: 100%;
     height: auto;
 
-    top: 0;
-    left: 0;
-
     transition: opacity 400ms ease;
     opacity: 0;
 }

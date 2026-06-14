@@ -1,4 +1,4 @@
-import { useState, type JSX } from "react"
+import { useEffect, useState, type JSX } from "react"
 import styles from "./Carousel.module.css"
 import ShiftingImage from "./ShiftingImage"
 import { LeftArrow, RightArrow } from "../skyrim_ui"
@@ -31,6 +31,20 @@ function Carousel({ items }: CarouselProps) {
     
     const [activeIdx, setActiveIdx] = useState(0)
 
+
+    //
+    // We keep the links separate because, in order for the List to animate as
+    // expected, we need it to be "emptied" (i.e., set to `[]`) before being
+    // repopulated.
+    //
+    const [activeLinks, setActiveLinks] = useState(items[activeIdx].links)
+    useEffect(() => {
+        setActiveLinks([])
+        setTimeout(() => {
+            setActiveLinks([...items[activeIdx].links])
+        }, 100)
+    }, [activeIdx])
+
     return <div
         className={styles.container}
     >
@@ -48,7 +62,7 @@ function Carousel({ items }: CarouselProps) {
             />
         </div>
         <div className={styles.links}>
-            <List items={items[activeIdx].links.map(link =>
+            <List items={activeLinks.map(link =>
                 <Link 
                     text={link.text}
                     href={link.href}

@@ -1,10 +1,11 @@
 import styles from "./Projects.module.css"
 import Carousel from "../misc/Carousel"
 import evacuationGif from "../../assets/clips/evacuation_clip.gif"
+import ediGif from "../../assets/clips/edi_cli_clip.gif"
 import Evacuation from "./project_descriptions/Evacuation"
-import { faGlobe } from "@fortawesome/free-solid-svg-icons"
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import EDI from "./project_descriptions/EDI"
+import { faGlobe } from "@fortawesome/free-solid-svg-icons"
+import { faGithub, faGolang } from "@fortawesome/free-brands-svg-icons"
 
 function Projects() {
 
@@ -15,7 +16,7 @@ function Projects() {
                     heading: "Evacuation",
                     image: {
                         src: evacuationGif,
-                        alt: ""
+                        alt: "a short clip of Evacuation gameplay"
                     },
                     links: [
                         {
@@ -32,10 +33,24 @@ function Projects() {
                 }, {
                     heading: "EDI",
                     image: {
-                        src: "",
-                        alt: ""
+                        src: ediGif,
+                        alt: "a short clip of the EDI command-line tool"
                     },
-                    links: [],
+                    links: [
+                        {
+                            href: "https://ediproject.org/",
+                            icon: faGlobe,
+				            text: "Website"
+                        }, {
+                            href: "https://pkg.go.dev/github.com/Chad-Glazier/edi",
+                            icon: faGolang,
+				            text: "EDI Library"
+                        }, {
+                            href: "https://github.com/Chad-Glazier/edi_cli",
+                            icon: faGithub,
+                            text: "Command-line tool"
+                        }
+                    ],
                     description: <EDI />
                 }, {
                     heading: "OMR Service",
