@@ -28,9 +28,9 @@
 }
 
 .nav {
-	width: 320px;
+	width: 260px;
     min-width: 200px;
-    height: min(80%, calc(100% - 30px));
+    height: max(50vh, 300px);
 }
 
 @media (max-width: 1200px) {

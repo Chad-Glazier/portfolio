@@ -6,6 +6,7 @@ import Evacuation from "./project_descriptions/Evacuation"
 import EDI from "./project_descriptions/EDI"
 import { faGlobe } from "@fortawesome/free-solid-svg-icons"
 import { faGithub, faGolang } from "@fortawesome/free-brands-svg-icons"
+import ControlWard from "./project_descriptions/ControlWard"
 
 function Projects() {
 
@@ -13,7 +14,6 @@ function Projects() {
         <Carousel
             items={[
                 {
-                    heading: "Evacuation",
                     image: {
                         src: evacuationGif,
                         alt: "a short clip of Evacuation gameplay"
@@ -31,7 +31,6 @@ function Projects() {
                     ],
                     description: <Evacuation />
                 }, {
-                    heading: "EDI",
                     image: {
                         src: ediGif,
                         alt: "a short clip of the EDI command-line tool"
@@ -53,15 +52,13 @@ function Projects() {
                     ],
                     description: <EDI />
                 }, {
-                    heading: "OMR Service",
                     image: {
                         src: "",
                         alt: ""
                     },
                     links: [],
-                    description: <p>ello ol chap</p>
+                    description: <ControlWard />
                 }, {
-                    heading: "Control Ward",
                     image: {
                         src: "",
                         alt: ""

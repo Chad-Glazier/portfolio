@@ -19,13 +19,10 @@ function Beads({ length, activeIdx, onSelect }: BeadsProps) {
     return <div className={styles.container}>
         {repeat(length, (idx) => 
             <div 
-                className={styles.beadOuter}
+                className={styles.bead + " " +
+                    (activeIdx == idx ? styles.active : "")}
                 onClick={() => onSelect(idx)}    
             >
-                <div className={
-                    styles.beadInner + " " + 
-                        (activeIdx == idx ? styles.active : "")
-                }></div>
             </div>
         )}
     </div>

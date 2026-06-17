@@ -8,9 +8,8 @@ import List from "./List"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
 import Link from "./Link"
 
-type CarouselProps = {
+export type CarouselProps = {
     items: {
-        heading: string
         image: {
             src: string
             alt: string
