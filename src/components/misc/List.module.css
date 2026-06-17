@@ -13,8 +13,8 @@
 }
 
 .branch {
-    animation: draw 1600ms ease forwards;
-    animation-delay: 400ms;
+    animation: draw 600ms ease forwards;
+    animation-delay: 200ms;
     stroke: #484848;
 }
 
@@ -36,8 +36,7 @@
     padding-left: calc(24px + 8px);
     list-style: none;
     
-    animation: fadein 400ms ease-in forwards;
-    animation-delay: 0ms;
+    animation: fadein 200ms ease-in forwards;
     opacity: 0;
     position: relative;
     left: 16px;
@@ -47,7 +46,7 @@
     from {
         opacity: 0;
         position: relative;
-        left: 16px;
+        left: 6px;
     }
     to {
         opacity: 1;

@@ -58,7 +58,7 @@ function List({
                         strokeDasharray="100"
                         strokeDashoffset="100"
                         className={styles.branch}
-                        style={{ animationDelay: `${(idx + 1) * 300}ms` }}
+                        style={{ animationDelay: `${(idx + 1) * 200}ms` }}
                     />
                 ))}
             </svg>
@@ -68,7 +68,7 @@ function List({
                     <li
                         key={idx}
                         className={styles.item}
-                        style={{ animationDelay: `${(idx + 1) * 300}ms` }}
+                        style={{ animationDelay: `${(idx + 1) * 200}ms` }}
                     >
                         {item}
                     </li>

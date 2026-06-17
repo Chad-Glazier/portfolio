@@ -1,0 +1,19 @@
+.svg {
+    --size: 1em;
+
+    height: var(--size);
+    width: var(--size);
+    vertical-align: calc(var(--size) * -0.14);
+}
+
+.mainPath {
+    transition: stroke-dashoffset 400ms ease-in-out;
+    
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0.70;
+    stroke-width: calc(var(--size) * 0.20);
+}
+
+.mainPath.hidden {
+    stroke-dashoffset: 1;
+}
