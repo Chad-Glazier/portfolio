@@ -1,6 +1,10 @@
 import Link from "../../misc/Link";
 import ProjectDescription from "./ProjectDescription";
 
+//
+// Use passive voice?
+//
+
 function EDI() {
     return <ProjectDescription>
         <h1>EDI</h1>
@@ -12,8 +16,8 @@ function EDI() {
             of the approaches I didn't have time to fully investigate. 
         </p>
         <p>
-            The <Link text="EDI Project" href="https://ediproject.org" /> was created to satisfy that curiosity. 
-            It's an ongoing project of mine with no clear endpoint, but I've made a few cool things for it: a Go 
+            I made <Link text="EDI" href="https://ediproject.org" /> as a project to satisfy that curiosity. 
+            It's an ongoing project with no clear endpoint, but I've made a few cool things for it: a Go 
             library for implementing Amazons programs, a command-line tool to analyze such programs, a lightweight 
             implementation that compiles to WebAssembly, and a website where you can play against that version.
         </p>

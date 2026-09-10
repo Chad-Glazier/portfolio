@@ -55,6 +55,8 @@ body {
     --button-border-active: #888;
     --button-background-inactive: #111;
     --button-background-active: #111;
+
+	--nav-width: 260px;
 }
 
 * {

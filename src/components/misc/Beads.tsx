@@ -18,7 +18,8 @@ function repeat(n: number, fn: (idx: number) => JSX.Element) {
 function Beads({ length, activeIdx, onSelect }: BeadsProps) {
     return <div className={styles.container}>
         {repeat(length, (idx) => 
-            <div 
+            <div
+                key={idx}
                 className={styles.bead + " " +
                     (activeIdx == idx ? styles.active : "")}
                 onClick={() => onSelect(idx)}    

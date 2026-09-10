@@ -21,21 +21,24 @@ export type CarouselProps = {
         }[]
         description: JSX.Element
     }[]
+    duration?: number
 }
 
 // NOTE: Controls should have the dots thing to show which "slide" is active,
 // since there isn't really any visual cue.
 
-function Carousel({ items }: CarouselProps) {
+function Carousel({ items, duration }: CarouselProps) {
+
+    duration ??= 400
     
     const [activeIdx, setActiveIdx] = useState(0)
-
 
     //
     // We keep the links separate because, in order for the List to animate as
     // expected, we need it to be "emptied" (i.e., set to `[]`) before being
     // repopulated.
     //
+
     const [activeLinks, setActiveLinks] = useState(items[activeIdx].links)
     useEffect(() => {
         setActiveLinks([])
@@ -51,7 +54,6 @@ function Carousel({ items }: CarouselProps) {
             <ShiftingImage 
                 items={items.map(({ image }) => image)}
                 activeIdx={activeIdx}
-                duration={400}
             />            
         </div>
         <div className={styles.body}>

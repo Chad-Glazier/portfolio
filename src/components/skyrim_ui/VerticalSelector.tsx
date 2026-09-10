@@ -7,14 +7,14 @@ type VerticalSelectorProps<T extends string> = {
     // The items that the user can select from.
     items: T[]
     // When the user selects an item, this callback will be invoked.
-    onSelect: (item: T) => void
+    onSelect: (index: number) => void
     // Determines the style of the vertical bar displayed next to the items.
     style?: "normal" | "thick"
     // This class will be passed down the the underlying component, allowing
     // you to set the styles for it.
     className?: string
-    // The currently-selected item.
-    selected: T
+    // The currently-selected index.
+    selected: number
 }
 
 /**
@@ -55,7 +55,7 @@ function VerticalSelector<T extends string>({
         // to the center of the currently-selected element.
         const selectedItem = container
             .current
-            .querySelector(`.${selected}`)!
+            .querySelector(`.${items[selected]}`)!
         const height = selectedItem.getBoundingClientRect().top -
             container.current.getBoundingClientRect().top +
             selectedItem.clientHeight / 2
@@ -77,16 +77,16 @@ function VerticalSelector<T extends string>({
         <nav className={styles.nav}>
             {items.map((item, idx) =>
                 <div
-                    key={idx}
+                    key={item}
                     onClick={() => {
-                        onSelect(item)
+                        onSelect(idx)
                     }}
                     // The `item` className here is just used for the query
                     // selector. I'm aware that it's semantically wrong.
                     className={
                         item + " " 
                         + styles.navItem + " " +
-                        (item == selected ?
+                        (idx == selected ?
                             styles.selected : "")
                     }
                 >

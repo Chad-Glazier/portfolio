@@ -9,9 +9,7 @@ type ShiftingImageProps = {
     duration?: number
 }
 
-function ShiftingImage({ items, activeIdx, duration }: ShiftingImageProps) {
-
-    duration ??= 400
+function ShiftingImage({ items, activeIdx }: ShiftingImageProps) {
 
     return <div
         className={styles.container}
@@ -24,7 +22,7 @@ function ShiftingImage({ items, activeIdx, duration }: ShiftingImageProps) {
                 styles.active : ""
             }
             style={{
-                transition: `opacity ${duration}ms ease`,
+                transition: `opacity ${400}ms ease`,
                 position: idx > 0 ? "absolute" : undefined,
                 top: idx > 0 ? "50%" : undefined,
                 transform: idx > 0 ? "translateY(-50%)" : undefined,

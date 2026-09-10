@@ -1,6 +1,6 @@
 .container {
-    --size: 12px;
-    --border-size: 2px;
+    --size: 10px;
+    --border-size: 1.8px;
     --inactive-color: #aaa;
     --active-color: var(--accent-color);
 

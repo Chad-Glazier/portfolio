@@ -1,4 +1,10 @@
-.container {
+/**********************************************************
+*
+* Main container
+*
+**********************************************************/
+
+.main {
 	width: 100%;
 	height: 100%;
 
@@ -19,18 +25,23 @@
     align-items: center;
 }
 
-.container.hidden {
+.main.hidden {
 	opacity: 0;
 }
 
-.container.hidden {
+.main.hidden {
     user-select: none;
 }
 
 .nav {
-	width: 260px;
-    min-width: 200px;
+    transition: transform 400ms ease;
+
+    min-width: var(--nav-width);
     height: max(50vh, 300px);
+}
+
+.nav.hidden {
+    transform: translateX(-100%);
 }
 
 @media (max-width: 1200px) {
@@ -39,40 +50,169 @@
     }
 }
 
-.article {
-    align-self: flex-start;
-    width: 100%;
-    height: 100%;
+/**********************************************************
+*
+* Section wrapper
+*
+**********************************************************/
 
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+.sections {
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+
 }
 
 .section {
-    width: min(90%, 800px);
-    min-height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
 
-    margin: 0 auto;
-    padding-top: 30vh;
-    padding-bottom: 40vh;
-    
-    scroll-snap-align: start;
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.section.projects {
-    width: min(90%, 1200px);
-    height: 100vh;
-    padding-top: 0px;
-    padding-bottom: 0px;
+.section.hidden {
+	display: none;
+	animation: fadeOut 400 ease;
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		display: none;
+	}
+}
+
+.logoWrapper {
+	padding-left: 2rem;
+}
+
+/**********************************************************
+*
+* Next Buttons
+*
+**********************************************************/
+
+.nextButton {
+	background: none;
+	border: none;
+
+	color: var(--link-color);
+	font-size: 1rem;
+	font-family: var(--main-font);
+
+	transition: color 400ms ease;
+
+	position: relative;
+}
+
+.nextButton:hover {
+	cursor: pointer;
+
+	color: var(--link-background-color);
+}
+
+.nextButton .underline {
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+
+	width: calc(100% - 1em);
+	height: 1px;
+	background-color: white;
+
+	transition: 
+		background-color 400ms ease,
+		width 400ms ease;
+}
+
+.nextButton:hover .underline {
+	background-color: var(--link-background-color);
+	width: 100%;
+}
+
+/**********************************************************
+*
+* Introduction section
+*
+**********************************************************/
+
+.introOuter {
+    width: 100%;
+    height: 100%;
+    padding-top: 24vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
 }
 
-.section:last-of-type {
-    padding-bottom: 0px;
+.introInner {
+    padding-left: calc(var(--nav-width)/-2);
+    width: min(90%, 800px);
 }
+
+.introInner .heading {
+    font-size: 2.4rem;
+    padding-bottom: 1rem;
+}
+
+.introInner .nextButtonContainer {
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+/**********************************************************
+*
+* Projects section
+*
+**********************************************************/
+
+.projectsOuter {
+    width: min(1200px, 100%);
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.projectsOuter p {
+    max-width: 80ch;
+}
+
+.projectsDescription {
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+
+.projectsDescription h1 {
+	font-size: 3rem;
+	padding-bottom: 1rem;
+}
+
