@@ -1,14 +1,19 @@
 import styles from "./Main.module.css"
-import Carousel from "./misc/Carousel"
 import { LeftArrow, RightArrow, VerticalSelector } from "./skyrim_ui"
 import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from "react"
 import evacuationGif from "../assets/clips/evacuation_clip.gif"
 import ediGif from "../assets/clips/edi_cli_clip.gif"
 import apertureGif from "../assets/clips/aperture_clip.gif"
-import { faGlobe } from "@fortawesome/free-solid-svg-icons"
-import { faGithub, faGolang } from "@fortawesome/free-brands-svg-icons"
+import headshot from "../assets/headshot.jpg"
+import { faEnvelope, faGlobe, type IconDefinition } from "@fortawesome/free-solid-svg-icons"
+import { faGit, faGithub, faGolang, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import Link from "./misc/Link"
 import ApertureLogo from "./misc/ApertureLogo"
+import EDILogo from "./misc/EDILogo"
+import EvacuationLogo from "./misc/EvacuationLogo"
+import ClipboardLink from "./misc/ClipboardLink"
+import List from "./misc/List"
+import ControlWardLogo from "./misc/ControlWardLogo"
 
 const sections = [
     "Introduction",
@@ -66,7 +71,9 @@ function Main({
         <Sections 
             sections={[
                 <Introduction onNext={() => { setActiveIdx(x => x+1) }} />,
-                <Projects />
+                <Projects onNextSection={() => { setActiveIdx(x => x+1) }}/>,
+                <Background />,
+                <Contact />
             ]}
             activeIdx={activeIdx}
         />        
@@ -193,151 +200,275 @@ function Introduction({ onNext }: IntroductionProps) {
 // Projects section
 //
 
-function Projects() {
-    return <div className={styles.projectsOuter}>
-        <Carousel
-            items={[
-                {
-                    image: {
-                        src: apertureGif,
-                        alt: "a short clip of the Aperture OMR web interface",
-                    },
-                    links: [
-                        {
-                            href: "https://github.com/Chad-Glazier/aperture-omr",
-                            icon: faGithub,
-                            text: "Active Repository"
-                        },
-                        {
-                            href: "https://github.com/UBCO-COSC499-S2026/capstone-team-15",
-                            icon: faGithub,
-                            text: "Original Proof-of-Concept",
-                        }
-                    ],
-                    description: <ApertureOMR />
-                },
-                {
-                    image: {
-                        src: evacuationGif,
-                        alt: "a short clip of Evacuation gameplay"
-                    },
-                    links: [
-                        {
-                            href: "https://chad-glazier.github.io/evacuation/",
-                            icon: faGlobe,
-				            text: "Play Online"
-                        }, {
-                            href: "https://github.com/Chad-Glazier/evacuation/",
-                            icon: faGithub,
-				            text: "Repository"
-                        }
-                    ],
-                    description: <Evacuation />
-                }, {
-                    image: {
-                        src: ediGif,
-                        alt: "a short clip of the EDI command-line tool"
-                    },
-                    links: [
-                        {
-                            href: "https://ediproject.org/",
-                            icon: faGlobe,
-				            text: "Website"
-                        }, {
-                            href: "https://pkg.go.dev/github.com/Chad-Glazier/edi",
-                            icon: faGolang,
-				            text: "EDI Library"
-                        }, {
-                            href: "https://github.com/Chad-Glazier/edi_cli",
-                            icon: faGithub,
-                            text: "Command-line tool"
-                        }
-                    ],
-                    description: <EDI />
-                }, {
-                    image: {
-                        src: "",
-                        alt: ""
-                    },
-                    links: [],
-                    description: <ControlWard />
-                },
-            ]}
-        />
-    </div>
+const projectArticles = [
+    {
+        label: "Evacuation",
+        image: evacuationGif,
+        header: <EvacuationLogo />,
+        links: [
+            {
+                href: "https://chad-glazier.github.io/evacuation/",
+                text: "Play",
+                icon: faGlobe,
+            },
+            {
+                href: "https://github.com/Chad-Glazier/evacuation",
+                text: "Repository",
+                icon: faGithub
+            }
+        ],
+        body: <>
+            <img src={evacuationGif} alt="thumbnail" />
+            <p>
+                Evacuation is a simple, zero-dependency browser game. The project's internals include basic shaders, procedures for generating simple meshes, affine transformations for vertices, game state management, the mapping of browser inputs to game actions, and collision detection. I only had to dip my toe into each of these areas to complete the project, but it was nonetheless a good learning experience.
+            </p>
+            <p>
+                Handling the math for Evacuation also motivated me to create a <Link href="https://jsr.io/@min-webgl/matrices" text="small library" /> for matrix algebra carefully written for performance. That package is used to render the graphics you see in the background of this page.
+            </p>
+        </>
+    },
+    {
+        label: "Aperture OMR",
+        image: apertureGif,
+        header: <ApertureLogo size={100} />,
+        links: [
+            {
+                href: "https://github.com/Chad-Glazier/aperture-omr",
+                text: "Repository",
+                icon: faGithub,
+            },
+            {
+                href: "https://github.com/UBCO-COSC499-S2026/capstone-team-15",
+                text: "Proof-of-Concept",
+                icon: faGithub,
+            }
+        ],
+        body: <>
+            <p>
+                Aperture is an Optical Mark Recognition (OMR) program. Generally, OMR software is used to analyze uploaded scans of filled-in bubble sheets for automatic grading. The main selling point for Aperture specifically is its speed: ad hoc benchmarks and manual testing have shown it to run about an order of magnitude faster than <Link text="other popular alternatives" href="https://github.com/Udayraj123/OMRChecker" />. 
+            </p>
+            <img src={apertureGif} alt="thumbnail" />
+            <p>
+                The first version of Aperture was developed by myself and five other team members as a proof-of-concept. The project included a complete web app split into three parts: a Python back-end for the website, a front-end written with Angular, and a core OMR server written in Go. Since then, I have continued to maintain and improve the OMR server as a standalone web service.
+            </p>        
+        </>
+    },
+    {
+        label: "EDI",
+        image: ediGif,
+        header: <EDILogo />,
+        links: [
+            {
+                href: "https://github.com/Chad-Glazier/edi",
+                text: "Repository",
+                icon: faGithub,
+            },
+            { 
+                href: "https://ediproject.org", 
+                text: "Website",
+                icon: faGlobe,
+            }
+        ],
+        body: <>
+            <p>
+                The <Link href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" text="Game of Amazons" /> is a relatively new board game that gained popularity in the 2000's as a research subject in the field of AI. It lies somewhere between Chess and Go in terms of complexity, which makes it uniquely well-suited to a variety of different game tree search strategies.
+            </p>
+            <img src={ediGif} alt="thumbnail" />
+            <p>
+                <Link href="https://raw.githubusercontent.com/Chad-Glazier/edi/main/docs/EDI_Report.pdf" text="EDI" /> (&ldquo;ee-dee&rdquo;) is a program I developed to participate in a computer Amazons tournament at UBC in early 2026. After EDI went undefeated at the event&mdash;winning me a Starbucks gift card&mdash;I felt motivated to investigate more historically successful Amazons programs to see how mine could be improved further. This led to the development of a library containing the general components of an Amazons program and a command-line tool to help analyze such programs.
+            </p>
+        </>
+    },
+    {
+        label: "Control Ward",
+        header: <ControlWardLogo height={"100px"} />,
+        links: [
+            {
+                href: "https://controlward.com/",
+                text: "Visit",
+                icon: faGlobe,
+            },
+            {
+                href: "https://github.com/Chad-Glazier/controlward",
+                text: "Repository",
+                icon: faGithub,
+            }
+        ],
+        body: <>
+            <p>
+                League of Legends is an immensely popular competitive game. Many of its players are interested in statistics that can tell them how well they're doing, how teams look going into a game, and what strategies are most effective in the current patch. Several popular websites have been developed to meet this demand&mdash;OP.GG, U.GG, League of Graphs, and Porofessor, to name a few. 
+            </p>
+            <p>
+                Personally, I have found most of these websites to have a sub-par user experience. They include ads, strange quirks like requiring manual refreshes, and clutter the display with unimportant details. My goal with <Link href="https://controlward.com" text="controlward.com" /> is to provide an alternative that respects its users a little more. At the time of writing, the project is still in the early stages of development.
+            </p>
+        </>
+    }
+]
+
+type ProjectsProps = {
+    onNextSection: () => void
 }
 
-function ProjectDescription({ children }: PropsWithChildren) {
-    return <article className={styles.projectsDescription}>
-        {children}
+function Projects({ onNextSection }: ProjectsProps) {
+
+    const [activeIdx, setActiveIdx] = useState(0)
+
+    let articles: JSX.Element[] = projectArticles.map((p, i) => {
+
+        let nextSectionLabel = sections[sections.indexOf("Projects") + 1]
+
+        let nextLabel: string
+        let nextIdx = i + 1
+        if (nextIdx < projectArticles.length) {
+            nextLabel = projectArticles[nextIdx].label
+        } else {
+            nextLabel = nextSectionLabel
+        }
+
+        return <>
+            <ProjectArticle 
+                label={p.label}
+                image={p.image}
+                links={p.links} 
+                header={p.header} 
+                body={p.body}
+                nextLabel={nextLabel}      
+                onNext={() => {
+                    if (nextIdx < projectArticles.length) {
+                        setActiveIdx(x => x+1)
+                    } else {
+                        setTimeout(() => {
+                            setActiveIdx(0)
+                        }, 800)
+                        onNextSection()
+                    }
+                }}
+            />
+        </>
+    })
+
+    useEffect(() => {
+        setActiveIdx(1)
+        setTimeout(() => {
+            setActiveIdx(0)
+        }, 100)
+    }, [])
+
+    return <>
+        <Sections
+            sections={articles}
+            activeIdx={activeIdx}
+        />   
+        <VerticalSelector 
+            items={projectArticles.map(x => x.label)} 
+            onSelect={setActiveIdx} 
+            selected={activeIdx}  
+            className={styles.projectsMenu}    
+            style="flat"
+        /> 
+    </>
+}
+
+type ProjectArticleProps = {
+    label: string
+    image?: string
+    links: {    
+        href: string
+        text: string
+        icon: IconDefinition
+    }[] 
+    header: JSX.Element
+    body: JSX.Element
+    nextLabel: string
+    onNext: () => void
+}
+
+function ProjectArticle({
+    links,
+    header,
+    body,
+    nextLabel,
+    onNext
+}: ProjectArticleProps) {
+    return <article className={styles.projectArticle}>
+        <div className={styles.header}>
+            {header}
+        </div>
+        <article className={styles.projectsDescription}>
+            {body}
+            <List 
+                className={styles.links}
+                items={links.map(({ href, text, icon }) => 
+                    <Link href={href} text={text} icon={icon} />
+                )}
+            />
+            <NextButton 
+                text={nextLabel} 
+                onClick={onNext} 
+                arrowDirection="right"
+                className={styles.nextButton}
+            />
+        </article>
     </article>
 }
 
-function ApertureOMR() {
+//
+// Contact Section
+//
 
-    return <ProjectDescription>
-        <div className={styles.logoWrapper}>
-            <ApertureLogo size={100} />
+function Contact() {
+    return <section className={styles.contactContainer}>
+        <img
+            src={headshot}
+            alt="A portrait of me."
+            className={styles.portrait}
+        />
+
+        <div className={styles.contactInfo}>
+            <p>
+                If you want to hire me so I can afford more Magic: the Gathering cards, feel free to reach out.
+            </p>
+            <ul className={styles.list}>
+                <li>
+                    <ClipboardLink 
+                        icon={faEnvelope}
+                        string="chadglazier@outlook.com" 
+                        text="Email" 
+                    /> 
+                </li>
+                <li>
+                    <Link 
+                        icon={faGithub}
+                        href={"https://github.com/Chad-Glazier"}
+                        text="Github"
+                    />
+                </li>
+                <li>
+                    <Link 
+                        icon={faLinkedin}
+                        href="https://www.linkedin.com/in/chad-glazier-4b585a257/"
+                        text="LinkedIn"
+                    />                    
+                </li>
+            </ul>
         </div>
-        <p>
-            Aperture is an Optical Mark Recognition (OMR) program. Generally, OMR software is used to analyze uploaded scans of filled-in bubble sheets for automatic grading. The main selling point for Aperture specifically is its speed: ad hoc benchmarks and manual testing have shown it to run at about four times the speed of <Link text="other popular alternatives" href="https://github.com/Udayraj123/OMRChecker" />. 
-        </p>
-        <p>
-            The first version of Aperture was developed by myself and five other team members as a proof-of-concept. Since then, I have continued to maintain and improve the core service responsible the PDF rendering, document preprocessing, and marking.
-        </p>
-    </ProjectDescription>
-}
-
-function EDI() {
-    return <ProjectDescription>
-        <h1>EDI</h1>
-        <p>
-            In one course I took, the culminating project was to design a program that plays a variant
-            of Chess called <Link href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" text="Amazons" />. My program, which I dubbed &ldquo;EDI,&rdquo; managed to win a tournament at UBC (for which I was awarded a Starbucks giftcard 🎉), but after the course ended I found myself still curious about some of the approaches I didn't have time to fully investigate. 
-        </p>
-        <p>
-            I made <Link text="EDI" href="https://ediproject.org" /> as a project to satisfy that curiosity. It's an ongoing project with no clear endpoint, but I've made a few cool things for it: a Go library for implementing Amazons programs, a command-line tool to analyze such programs, a lightweight implementation that compiles to WebAssembly, and a website where you can play against that version.
-        </p>
-    </ProjectDescription>
-}
-
-function Evacuation() {
-	return <ProjectDescription>
-		<h1>Evacuation</h1>
-		<p>
-			Evacuation is a simple, zero-dependency browser-based game. The project's internals include basic shaders, procedures for generating simple meshes, affine transformations for vertices, game state management, the mapping of browser inputs to game actions, and collision detection. I only had to dip my toe into each of these areas to complete the project, but it was nonetheless a good learning experience.
-		</p>
-		<p>
-			Handling the math for Evacuation also motivated me to create 
-			a <Link href="https://jsr.io/@min-webgl/matrices" text="small library" /> for matrix algebra
-			carefully written for performance. That package is used to render the graphics you
-			see in the background of this page.
-		</p>
-	</ProjectDescription>
-}
-
-function ControlWard() {
-    return <ProjectDescription>
-        <h1>Control Ward</h1>
-        <p>
-            League of Legends is an immensely popular competitive game. Many of the players
-            are interested in statistics that can tell them how well they're doing, how teams look going 
-            into a game, and what strategies are most effective in the current patch. Several popular 
-            websites have been developed to meet this demand&mdash;OP.GG, U.GG, League of Graphs, and 
-            Porofessor, to name a few. 
-        </p>
-        <p>
-            Personally, I have found most of these websites to have a pretty poor user experience. They  usually include ads, have strange quirks like requiring manual refreshes, and clutter the display with unimportant details. My goal with <Link href="https://controlward.com" text="controlward.com" /> is to provide an alternative that respects its users a little more.
-        </p>
-        <p>
-            At the time of writing, this project is still in the early stages of development. I am currently working on developing a proof-of-concept which will hopefully be approved for Riot Games' developer program.
-        </p>
-    </ProjectDescription>
+    </section>
 }
 
 //
-// 
+// Background Section
 //
+
+function Background() {
+    return <section className={styles.backgroundContainer}>
+        <h1>
+            Lorem, ipsum.
+        </h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt eaque provident impedit, nobis laudantium, ducimus error, blanditiis nam explicabo amet ipsum voluptatibus excepturi numquam repellendus! Nemo culpa eaque molestiae alias error, voluptatem impedit distinctio quas voluptas suscipit fuga? Minus voluptas adipisci ratione error autem nesciunt perferendis et illo ex exercitationem.
+        </p>
+    </section>
+}
 
 //
 // Miscellaneous stuff
@@ -347,13 +478,19 @@ type NextButtonProps = {
     text: string
     onClick: () => void
     arrowDirection: "left" | "right"
+    className?: string
 }
 
-function NextButton({ text, onClick, arrowDirection }: NextButtonProps) {
+function NextButton({ 
+    text, 
+    onClick, 
+    arrowDirection, 
+    className,
+}: NextButtonProps) {
     const [showArrow, setShowArrow] = useState(false)
 
     return <button
-        className={styles.nextButton}
+        className={styles.nextButton + " " + (className ?? "")}
         onClick={onClick}
         onMouseEnter={() => setShowArrow(true)}
         onMouseLeave={() => setShowArrow(false)}

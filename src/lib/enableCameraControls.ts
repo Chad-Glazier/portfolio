@@ -51,7 +51,7 @@ function mousemove({ movementX, movementY }: MouseEvent) {
 	)
 	if (magnitude === 0) return
 
-	const rotations = SENSIVITY_FACTOR * magnitude / windowLength
+	const rotations = SENSIVITY_FACTOR * magnitude / windowLength / 3
 
 	// The axis of rotation ought to be orthogonal to the displacement
 	// of the mouse in order to feel natural. It's magnitude is irrelevant.

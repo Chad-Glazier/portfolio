@@ -56,7 +56,8 @@ body {
     --button-background-inactive: #111;
     --button-background-active: #111;
 
-	--nav-width: 260px;
+	--nav-height: max(60vh, 400px);
+	--nav-width: 200px;
 }
 
 * {

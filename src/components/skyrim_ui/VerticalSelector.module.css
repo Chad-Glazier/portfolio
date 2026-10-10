@@ -28,3 +28,17 @@
 .navItem.selected, .navItem:hover {
     color: var(--active-nav-item);
 }
+
+.flat {
+    border-image: linear-gradient(rgba(0, 0, 0, 0), #484848, #484848, #484848, rgba(0, 0, 0, 0)) 27;
+    border-right-width: 2px;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-style: solid;
+}
+
+
+.flat .navItem.selected {
+    color: var(--vivid-text);
+}

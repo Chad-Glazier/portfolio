@@ -9,7 +9,7 @@ type VerticalSelectorProps<T extends string> = {
     // When the user selects an item, this callback will be invoked.
     onSelect: (index: number) => void
     // Determines the style of the vertical bar displayed next to the items.
-    style?: "normal" | "thick"
+    style?: "normal" | "thick" | "nobar" | "flat" 
     // This class will be passed down the the underlying component, allowing
     // you to set the styles for it.
     className?: string
@@ -42,11 +42,13 @@ function VerticalSelector<T extends string>({
     style ??= "normal"
     className ??= ""
 
+    let selectorNames = items.map(s => s.replaceAll(" ", "-"))
+
     const container = useRef<null | HTMLElement>(null)
     const [barHeight, setBarHeight] = useState(0)
     const [arrowTop, setArrowTop] = useState(0)
 
-    useLayoutEffect(() => {
+    const updateBar = () => {
         if (!container.current) return
 
         setBarHeight(container.current.clientHeight)
@@ -55,12 +57,24 @@ function VerticalSelector<T extends string>({
         // to the center of the currently-selected element.
         const selectedItem = container
             .current
-            .querySelector(`.${items[selected]}`)!
+            .querySelector(`.${selectorNames[selected]}`)!
         const height = selectedItem.getBoundingClientRect().top -
             container.current.getBoundingClientRect().top +
             selectedItem.clientHeight / 2
-        setArrowTop(height)
-    }, [selected])
+        setArrowTop(height)        
+    }
+
+    useLayoutEffect(updateBar, [selected])
+
+    const interval = useRef(setInterval(() => {
+        if (barHeight == 0) {
+            updateBar
+        } else {
+            clearInterval(interval.current)
+        }
+    }, 50))
+
+    let containerClassName = styles.container + " " + className
 
     let RightBar: typeof VerticalBarWithArrow
     switch (style) {
@@ -69,9 +83,16 @@ function VerticalSelector<T extends string>({
         break
     case "thick":
         RightBar = VerticalBarWithArrowThick
+        break
+    case "nobar":
+        RightBar = VerticalBarWithArrow
+        break
+    case "flat":
+        RightBar = VerticalBarWithArrow
+        containerClassName += " " + styles.flat
+        break
     }
 
-    const containerClassName = styles.container + " " + className
 
     return <aside ref={container} className={containerClassName}>
         <nav className={styles.nav}>
@@ -84,7 +105,7 @@ function VerticalSelector<T extends string>({
                     // The `item` className here is just used for the query
                     // selector. I'm aware that it's semantically wrong.
                     className={
-                        item + " " 
+                        selectorNames[idx] + " " 
                         + styles.navItem + " " +
                         (idx == selected ?
                             styles.selected : "")
@@ -94,11 +115,10 @@ function VerticalSelector<T extends string>({
                 </div>
             )}
         </nav>
-        {barHeight != 0 && <RightBar
+        {barHeight != 0 && (style == "normal" || style == "thick") && <RightBar
             height={barHeight}
             arrowYPx={arrowTop}
         />}
-        
     </aside>
 }
 
