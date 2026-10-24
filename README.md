@@ -7,14 +7,11 @@ This is a static website meant to serve as my portfolio.
 For the solar system model, I can add the following:
 - Give Saturn his ring.
 
-For the main section:
-- Implement the main sections
-    - Include the scroll detection (i.e., when a section is scrolled into view, with some minimum margin).
-    - Use simple headers for now.
+Make boxes for articles; like a Skyrim popup thing. Can `position: absolute` the corners and have normal CSS borders that match the color? If not, a background image should work.
 
-For the Projects section:
-- Implement some kind of carousel.
+Make buttons. The "next" and the "close" buttons should be buttons, now just link-style things. They don't stand out enough as it is.
+
+Make focus-able images. Maybe they can expand out to an embedded youtube video?
 
 Later:
-- Implement animated SVG headers.
 - Implement the background section as an animated (SVG) timeline.

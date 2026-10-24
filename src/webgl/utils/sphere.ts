@@ -1,3 +1,13 @@
+
+//
+// DISCLAIMER
+//
+// If you're reading this and thinking, "why is this so excessive, all we need
+// is a spherical mesh," you're right! This was originally written for my tiny
+// "Evacuation" game, which also needed cones and stuff. I just copied it over,
+// hence the extra fluff.
+//
+
 /**
  * Creates the vertices for a spherical surface, as well as an array of indices
  * that refer to the vertex array and define triangles that cover the surface.

@@ -185,7 +185,7 @@
 	min-height: 90vh;
 }
 
-.projectArticle img {
+.projectsDescription img {
 	width: min(100%, 600px);
 	height: auto;
 	align-self: center;
@@ -221,21 +221,22 @@
 		flex-direction: column;
 
 		align-items: center;
+		justify-content: center;
 
 		gap: 2rem;
-		margin: 10vh 30px 5vh 30px;
+		margin: 2.5vh 30px 2.5vh 30px;
 
 		height: 90vh;
-		width: min(100%, 70ch);
+		width: min(100%, 80ch);
 	}
 
-	.projectArticle img {
+	.projectsDescription img {
 		width: min(100%, 360px);
 		height: auto;
 	}
 
 	.projectArticle .header {
-		width: min(100%, 70ch);
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -282,12 +283,24 @@
 *
 **********************************************************/
 
+.contactOuterContainer {
+	width: 100%;
+	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 .contactContainer {
-    max-width: 80ch;
 
     display: flex;
     flex-direction: row;
+	align-items: center;
+	justify-content: center;
     gap: 40px;
+
+	position: relative;
 }
 
 .portrait {

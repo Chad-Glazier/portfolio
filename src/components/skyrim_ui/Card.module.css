@@ -1,0 +1,103 @@
+/*
+
+All corners reuse the top-right corner image. Thus, all 
+corners except the top-right one must be transformed. 
+Similarly, the vertical borders both use the right border,
+and the horizontal borders use the top border.
+
+The corners are all squares; the outer container will pass
+down a "--length" variable specifying the length of each 
+side. The length also specifies the width of the borders.
+
+*/
+
+.outer {
+    padding: var(--length);
+}
+
+.inner {
+    position: relative;
+    background-color: black;
+}
+
+.topLeftCorner {
+    width: var(--length);
+    height: var(--length);
+
+    position: absolute;
+    left: calc(-1 * var(--length));
+    top: calc(-1 * var(--length));
+
+    transform: scaleX(-1);
+}
+
+.topRightCorner {
+    width: var(--length);
+    height: var(--length);
+
+    position: absolute;
+    right: calc(-1 * var(--length));
+    top: calc(-1 * var(--length));
+}
+
+.bottomLeftCorner {
+    width: var(--length);
+    height: var(--length);
+
+    position: absolute;
+    bottom: calc(-1 * var(--length));
+    left: calc(-1 * var(--length));
+
+    transform: scale(-1, -1);
+}
+
+.bottomRightCorner {
+    width: var(--length);
+    height: var(--length);
+
+    position: absolute;
+    right: calc(-1 * var(--length));
+    bottom: calc(-1 * var(--length));
+
+    transform: scaleY(-1);
+}
+
+.leftBorder {
+    width: var(--length);
+    height: 100%;
+
+    position: absolute;
+    left: calc(-1 * var(--length));
+    top: 0;
+
+    transform: scaleX(-1);
+}
+
+.rightBorder {
+    width: var(--length);
+    height: 100%;
+
+    position: absolute;
+    right: calc(-1 * var(--length));
+    top: 0;
+}
+
+.topBorder {
+    width: 100%;
+    height: var(--length);
+
+    position: absolute;
+    left: 0;
+    top: calc(-1 * var(--length))
+}
+
+.bottomBorder {
+    width: 100%;
+    height: var(--length);
+
+    position: absolute;
+    left: 0;
+    bottom: calc(-1 * var(--length));
+
+    transform: scaleY(-1);
+}

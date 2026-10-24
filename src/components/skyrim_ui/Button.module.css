@@ -1,0 +1,36 @@
+.button {
+    padding: 4px;
+    border: 2px solid #484848;
+    border-radius: 8px;
+    background-color: #000;
+    color: #aaa;
+    transition: 
+        color 400ms ease,
+        border-color 400ms ease;    
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.button:hover {
+    color: #fff;
+    border-color: #aaa;
+}
+
+.leftTick, .rightTick {
+    height: 1em;
+    width: auto;
+    transition: 400ms ease;
+    opacity: 0;
+}
+
+.rightTick {
+    transform: scaleX(-1);
+}
+
+.button:hover .leftTick, .button:hover .rightTick {
+    opacity: 1;
+}

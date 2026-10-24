@@ -1,23 +1,20 @@
-import { useState } from "react"
-import { RightArrow } from "../skyrim_ui"
+import { useEffect, useState } from "react"
+import leaveArrow from "../../assets/skyrim_ui/leave.png"
+import returnArrow from "../../assets/skyrim_ui/return.png"
 import styles from "./ToggleButton.module.css"
 
 type ToggleButtonProps = {
     onClick: () => void
-    text: string
+    toggle: boolean
 }
 
-function ToggleButton({ text, onClick }: ToggleButtonProps) {
-
-    const [showArrow, setShowArrow] = useState(false)
-
+function ToggleButton({ toggle, onClick }: ToggleButtonProps) {
     return <button
         className={styles.button}
         onClick={onClick}
-        onMouseEnter={() => setShowArrow(true)}
-        onMouseLeave={() => setShowArrow(false)}
     >
-        {text} <RightArrow hidden={!showArrow} />
+        <img className={styles.arrow} src={toggle ? leaveArrow : returnArrow} />
+        <p className={styles.text}>{toggle ? "Leave" : "Return"}</p>
     </button>
 }
 

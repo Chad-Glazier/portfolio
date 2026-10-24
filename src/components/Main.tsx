@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from "r
 import evacuationGif from "../assets/clips/evacuation_clip.gif"
 import ediGif from "../assets/clips/edi_cli_clip.gif"
 import apertureGif from "../assets/clips/aperture_clip.gif"
+import cardLarge from "../assets/skyrim_original_ui_elements/Boxes/Card Contact.png"
 import headshot from "../assets/headshot.jpg"
 import { faEnvelope, faGlobe, type IconDefinition } from "@fortawesome/free-solid-svg-icons"
 import { faGit, faGithub, faGolang, faLinkedin } from "@fortawesome/free-brands-svg-icons"
@@ -14,6 +15,8 @@ import EvacuationLogo from "./misc/EvacuationLogo"
 import ClipboardLink from "./misc/ClipboardLink"
 import List from "./misc/List"
 import ControlWardLogo from "./misc/ControlWardLogo"
+import Card from "./skyrim_ui/Card"
+import Button from "./skyrim_ui/Button"
 
 const sections = [
     "Introduction",
@@ -228,7 +231,7 @@ const projectArticles = [
         </>
     },
     {
-        label: "Aperture OMR",
+        label: "Aperture",
         image: apertureGif,
         header: <ApertureLogo size={100} />,
         links: [
@@ -402,13 +405,12 @@ function ProjectArticle({
                     <Link href={href} text={text} icon={icon} />
                 )}
             />
-            <NextButton 
-                text={nextLabel} 
-                onClick={onNext} 
-                arrowDirection="right"
-                className={styles.nextButton}
-            />
         </article>
+        <Button 
+            text={nextLabel} 
+            onClick={onNext} 
+            className={styles.nextButton}
+        />
     </article>
 }
 
@@ -417,42 +419,40 @@ function ProjectArticle({
 //
 
 function Contact() {
-    return <section className={styles.contactContainer}>
-        <img
-            src={headshot}
-            alt="A portrait of me."
-            className={styles.portrait}
-        />
-
-        <div className={styles.contactInfo}>
-            <p>
-                If you want to hire me so I can afford more Magic: the Gathering cards, feel free to reach out.
-            </p>
-            <ul className={styles.list}>
-                <li>
-                    <ClipboardLink 
-                        icon={faEnvelope}
-                        string="chadglazier@outlook.com" 
-                        text="Email" 
-                    /> 
-                </li>
-                <li>
-                    <Link 
-                        icon={faGithub}
-                        href={"https://github.com/Chad-Glazier"}
-                        text="Github"
+    return <div className={styles.contactOuterContainer}>
+        <Card>
+            <section className={styles.contactContainer}>
+                <img
+                    src={headshot}
+                    alt="A portrait of me."
+                    className={styles.portrait}
+                />
+                <div className={styles.contactInfo}>
+                    <p>
+                        If you want to hire me so I can afford more Magic: the Gathering cards, feel free to reach out.
+                    </p>
+                    <List items={[
+                        <ClipboardLink 
+                            icon={faEnvelope}
+                            string="chadglazier@outlook.com" 
+                            text="Email" 
+                        />,
+                        <Link 
+                            icon={faGithub}
+                            href={"https://github.com/Chad-Glazier"}
+                            text="Github"
+                        />,
+                        <Link 
+                            icon={faLinkedin}
+                            href="https://www.linkedin.com/in/chad-glazier-4b585a257/"
+                            text="LinkedIn"
+                        />,
+                    ]}            
                     />
-                </li>
-                <li>
-                    <Link 
-                        icon={faLinkedin}
-                        href="https://www.linkedin.com/in/chad-glazier-4b585a257/"
-                        text="LinkedIn"
-                    />                    
-                </li>
-            </ul>
-        </div>
-    </section>
+                </div>
+            </section>            
+        </Card>
+    </div>
 }
 
 //
@@ -489,15 +489,17 @@ function NextButton({
 }: NextButtonProps) {
     const [showArrow, setShowArrow] = useState(false)
 
-    return <button
-        className={styles.nextButton + " " + (className ?? "")}
-        onClick={onClick}
-        onMouseEnter={() => setShowArrow(true)}
-        onMouseLeave={() => setShowArrow(false)}
-    >
-        {arrowDirection == "left"
-            ? <><LeftArrow hidden={!showArrow} /> {text}</>
-            : <>{text} <RightArrow hidden={!showArrow} /></>}
-        <div className={styles.underline}></div>
-    </button>
+    return <Card thickness={16}>
+        <button
+            className={styles.nextButton + " " + (className ?? "")}
+            onClick={onClick}
+            onMouseEnter={() => setShowArrow(true)}
+            onMouseLeave={() => setShowArrow(false)}
+        >
+            {arrowDirection == "left"
+                ? <><LeftArrow hidden={!showArrow} /> {text}</>
+                : <>{text} <RightArrow hidden={!showArrow} /></>}
+            <div className={styles.underline}></div>
+        </button>        
+    </Card>
 }

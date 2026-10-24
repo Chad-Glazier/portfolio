@@ -28,10 +28,10 @@ function App() {
                 hidden={hideMain}
             />
             <ToggleButton
-                text={toggleButtonText}
                 onClick={() => {
                     setHideMain(prev => !prev)
                 }}
+                toggle={!hideMain}
             />
         </>
     )
