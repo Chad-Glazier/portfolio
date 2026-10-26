@@ -16,7 +16,7 @@ import ClipboardLink from "./misc/ClipboardLink"
 import List from "./misc/List"
 import ControlWardLogo from "./misc/ControlWardLogo"
 import Card from "./skyrim_ui/Card"
-import Button from "./skyrim_ui/Button"
+import Button, { RightButton } from "./skyrim_ui/Button"
 
 const sections = [
     "Introduction",
@@ -406,7 +406,7 @@ function ProjectArticle({
                 )}
             />
         </article>
-        <Button 
+        <RightButton 
             text={nextLabel} 
             onClick={onNext} 
             className={styles.nextButton}
@@ -489,8 +489,7 @@ function NextButton({
 }: NextButtonProps) {
     const [showArrow, setShowArrow] = useState(false)
 
-    return <Card thickness={16}>
-        <button
+    return <button
             className={styles.nextButton + " " + (className ?? "")}
             onClick={onClick}
             onMouseEnter={() => setShowArrow(true)}
@@ -501,5 +500,4 @@ function NextButton({
                 : <>{text} <RightArrow hidden={!showArrow} /></>}
             <div className={styles.underline}></div>
         </button>        
-    </Card>
 }
