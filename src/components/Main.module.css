@@ -130,7 +130,6 @@
 
 .nextButton:hover .underline {
 	background-color: var(--link-background-color);
-	width: 100%;
 }
 
 /**********************************************************
@@ -231,7 +230,7 @@
 	}
 
 	.projectsDescription img {
-		width: min(100%, 360px);
+		width: min(100%, 400px);
 		height: auto;
 	}
 
@@ -335,7 +334,9 @@
 
 .backgroundContainer {
     width: min(800px, 90%);
-	height: 100%;
+	padding: 10px 30px;
+
+	margin-top: 20vh;
 
     display: flex;
     flex-direction: column;

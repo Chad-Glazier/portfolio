@@ -69,3 +69,13 @@ body {
 img {
 	user-select: none;
 }
+
+/*
+	Fonts.
+*/
+
+@font-face {
+	font-family: "Balgruf";
+	font-style: normal;
+	src: url("./assets/fonts/balgruf-font/Balgruf-JRye7.ttf") format("truetype");
+}

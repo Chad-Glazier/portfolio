@@ -6,7 +6,7 @@ import ediGif from "../assets/clips/edi_cli_clip.gif"
 import apertureGif from "../assets/clips/aperture_clip.gif"
 import cardLarge from "../assets/skyrim_original_ui_elements/Boxes/Card Contact.png"
 import headshot from "../assets/headshot.jpg"
-import { faEnvelope, faGlobe, type IconDefinition } from "@fortawesome/free-solid-svg-icons"
+import { faEnvelope, faFilePdf, faGlobe, type IconDefinition } from "@fortawesome/free-solid-svg-icons"
 import { faGit, faGithub, faGolang, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import Link from "./misc/Link"
 import ApertureLogo from "./misc/ApertureLogo"
@@ -17,6 +17,7 @@ import List from "./misc/List"
 import ControlWardLogo from "./misc/ControlWardLogo"
 import Card from "./skyrim_ui/Card"
 import Button, { RightButton } from "./skyrim_ui/Button"
+import Heading from "./skyrim_ui/Heading"
 
 const sections = [
     "Introduction",
@@ -221,12 +222,12 @@ const projectArticles = [
             }
         ],
         body: <>
+            <p>
+                Evacuation is a simple 3D browser game with no external dependencies. The project includes OpenGL shaders, procedures for generating simple meshes, collision detection, game state management, and all of the necessary math to go with it. I only had to lightly touch on each of these subjects to get it working, but it was a very good learning experience.
+            </p>
             <img src={evacuationGif} alt="thumbnail" />
             <p>
-                Evacuation is a simple, zero-dependency browser game. The project's internals include basic shaders, procedures for generating simple meshes, affine transformations for vertices, game state management, the mapping of browser inputs to game actions, and collision detection. I only had to dip my toe into each of these areas to complete the project, but it was nonetheless a good learning experience.
-            </p>
-            <p>
-                Handling the math for Evacuation also motivated me to create a <Link href="https://jsr.io/@min-webgl/matrices" text="small library" /> for matrix algebra carefully written for performance. That package is used to render the graphics you see in the background of this page.
+                Handling the math for Evacuation also motivated me to create a <Link href="https://jsr.io/@min-webgl/matrices" text="small library" /> for matrix algebra. That package is used for the graphics you see in the background of this page.
             </p>
         </>
     },
@@ -240,17 +241,11 @@ const projectArticles = [
                 text: "Repository",
                 icon: faGithub,
             },
-            {
-                href: "https://github.com/UBCO-COSC499-S2026/capstone-team-15",
-                text: "Proof-of-Concept",
-                icon: faGithub,
-            }
         ],
         body: <>
             <p>
-                Aperture is an Optical Mark Recognition (OMR) program. Generally, OMR software is used to analyze uploaded scans of filled-in bubble sheets for automatic grading. The main selling point for Aperture specifically is its speed: ad hoc benchmarks and manual testing have shown it to run about an order of magnitude faster than <Link text="other popular alternatives" href="https://github.com/Udayraj123/OMRChecker" />. 
+                Aperture is an Optical Mark Recognition (OMR) program, meaning that it is used to automatically grade scans of filled-in bubble sheets. The main selling point for Aperture in particular is its speed: ad hoc benchmarks and manual testing have shown it to run about an order of magnitude faster than <Link text="other popular alternatives" href="https://github.com/Udayraj123/OMRChecker" />. Additionally, unlike the typical licensed software that most schools use, Aperture is free and can be configured to work with virtually any kind of bubble sheet.
             </p>
-            <img src={apertureGif} alt="thumbnail" />
             <p>
                 The first version of Aperture was developed by myself and five other team members as a proof-of-concept. The project included a complete web app split into three parts: a Python back-end for the website, a front-end written with Angular, and a core OMR server written in Go. Since then, I have continued to maintain and improve the OMR server as a standalone web service.
             </p>        
@@ -266,20 +261,23 @@ const projectArticles = [
                 text: "Repository",
                 icon: faGithub,
             },
+            {
+                href: "https://raw.githubusercontent.com/Chad-Glazier/edi/main/docs/EDI_Report.pdf",
+                text: "Report",
+                icon: faFilePdf
+            },
             { 
                 href: "https://ediproject.org", 
                 text: "Website",
                 icon: faGlobe,
-            }
+            },
+            
         ],
         body: <>
             <p>
-                The <Link href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" text="Game of Amazons" /> is a relatively new board game that gained popularity in the 2000's as a research subject in the field of AI. It lies somewhere between Chess and Go in terms of complexity, which makes it uniquely well-suited to a variety of different game tree search strategies.
+                The <Link href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" text="Game of Amazons" /> is a relatively new board game that gained popularity in the 2000's as a research subject in the field of artificial intelligence. In early 2026, UBC held a computer Amazons tournament. The program I designed for the event, named EDI (&ldquo;ee-dee&rdquo;), managed to go undefeated and earn me the highly sought-after prize&mdash;a Starbucks giftcard. Since then, I have continued developing the project and have expanded it to include a library of generalized components and a command-line tool to help analyze Amazons programs.
             </p>
             <img src={ediGif} alt="thumbnail" />
-            <p>
-                <Link href="https://raw.githubusercontent.com/Chad-Glazier/edi/main/docs/EDI_Report.pdf" text="EDI" /> (&ldquo;ee-dee&rdquo;) is a program I developed to participate in a computer Amazons tournament at UBC in early 2026. After EDI went undefeated at the event&mdash;winning me a Starbucks gift card&mdash;I felt motivated to investigate more historically successful Amazons programs to see how mine could be improved further. This led to the development of a library containing the general components of an Amazons program and a command-line tool to help analyze such programs.
-            </p>
         </>
     },
     {
@@ -299,10 +297,10 @@ const projectArticles = [
         ],
         body: <>
             <p>
-                League of Legends is an immensely popular competitive game. Many of its players are interested in statistics that can tell them how well they're doing, how teams look going into a game, and what strategies are most effective in the current patch. Several popular websites have been developed to meet this demand&mdash;OP.GG, U.GG, League of Graphs, and Porofessor, to name a few. 
+                League of Legends is an immensely popular competitive game. Many of its players are interested in statistics that can tell them how well they're doing, how teams look going into a game, and what strategies are most effective in the current patch. Several popular websites have been developed to meet this demand&mdash;OP.GG, U.GG, League of Graphs, and Porofessor, to name a few. Personally, I have found most of these websites to have a sub-par user experience. My goal with <Link href="https://controlward.com" text="controlward.com" /> is to provide an alternative that's a little more convenient.
             </p>
             <p>
-                Personally, I have found most of these websites to have a sub-par user experience. They include ads, strange quirks like requiring manual refreshes, and clutter the display with unimportant details. My goal with <Link href="https://controlward.com" text="controlward.com" /> is to provide an alternative that respects its users a little more. At the time of writing, the project is still in the early stages of development.
+                At the time of writing, the project is still in the early stages of development.
             </p>
         </>
     }
@@ -405,12 +403,12 @@ function ProjectArticle({
                     <Link href={href} text={text} icon={icon} />
                 )}
             />
+            <RightButton 
+                text={nextLabel} 
+                onClick={onNext} 
+                className={styles.nextButton}
+            />
         </article>
-        <RightButton 
-            text={nextLabel} 
-            onClick={onNext} 
-            className={styles.nextButton}
-        />
     </article>
 }
 
@@ -460,14 +458,18 @@ function Contact() {
 //
 
 function Background() {
-    return <section className={styles.backgroundContainer}>
-        <h1>
-            Lorem, ipsum.
-        </h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt eaque provident impedit, nobis laudantium, ducimus error, blanditiis nam explicabo amet ipsum voluptatibus excepturi numquam repellendus! Nemo culpa eaque molestiae alias error, voluptatem impedit distinctio quas voluptas suscipit fuga? Minus voluptas adipisci ratione error autem nesciunt perferendis et illo ex exercitationem.
-        </p>
-    </section>
+
+    // - Computer Science degree
+    // - Computer Information Systems Diploma
+    // - The Cube School (Python Instructor)
+    // - Contract Web Developer for Vernon Museum
+
+    return <div className={styles.backgroundContainer}>
+        <Heading className={styles.sectionHeader} text="Education" style="college" />
+        <Card>
+            asdf
+        </Card>
+    </div>
 }
 
 //
@@ -490,14 +492,14 @@ function NextButton({
     const [showArrow, setShowArrow] = useState(false)
 
     return <button
-            className={styles.nextButton + " " + (className ?? "")}
-            onClick={onClick}
-            onMouseEnter={() => setShowArrow(true)}
-            onMouseLeave={() => setShowArrow(false)}
-        >
-            {arrowDirection == "left"
-                ? <><LeftArrow hidden={!showArrow} /> {text}</>
-                : <>{text} <RightArrow hidden={!showArrow} /></>}
-            <div className={styles.underline}></div>
-        </button>        
+        className={styles.nextButton + " " + (className ?? "")}
+        onClick={onClick}
+        onMouseEnter={() => setShowArrow(true)}
+        onMouseLeave={() => setShowArrow(false)}
+    >
+        {arrowDirection == "left"
+            ? <><LeftArrow hidden={!showArrow} /> {text}</>
+            : <>{text} <RightArrow hidden={!showArrow} /></>}
+        <div className={styles.underline}></div>
+    </button>        
 }

@@ -1,0 +1,32 @@
+.container {
+    min-width: max(100%, fit-content);
+    padding: 1ch;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2ch;
+
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-family: "Balgruf";
+    letter-spacing: 2px;
+    font-variant: small-caps;
+}
+
+.left, .right {
+    width: min(16ch, 400px);
+    height: auto;
+    /* The source images are (153, 153, 153). To get them
+       whiter, so they blend better with the text, we just
+       increase the brightness. */
+    filter: brightness(140%);
+}
+
+.right {
+    /* The images are all set to be on the left side,
+       so we have to mirror the right-side one. */
+    transform: scaleX(-1);
+}
