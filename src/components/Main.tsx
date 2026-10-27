@@ -4,10 +4,9 @@ import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from "r
 import evacuationGif from "../assets/clips/evacuation_clip.gif"
 import ediGif from "../assets/clips/edi_cli_clip.gif"
 import apertureGif from "../assets/clips/aperture_clip.gif"
-import cardLarge from "../assets/skyrim_original_ui_elements/Boxes/Card Contact.png"
 import headshot from "../assets/headshot.jpg"
 import { faEnvelope, faFilePdf, faGlobe, type IconDefinition } from "@fortawesome/free-solid-svg-icons"
-import { faGit, faGithub, faGolang, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import Link from "./misc/Link"
 import ApertureLogo from "./misc/ApertureLogo"
 import EDILogo from "./misc/EDILogo"
@@ -16,8 +15,10 @@ import ClipboardLink from "./misc/ClipboardLink"
 import List from "./misc/List"
 import ControlWardLogo from "./misc/ControlWardLogo"
 import Card from "./skyrim_ui/Card"
-import Button, { RightButton } from "./skyrim_ui/Button"
+import { RightButton } from "./skyrim_ui/Button"
 import Heading from "./skyrim_ui/Heading"
+import IconList from "./skyrim_ui/IconList"
+import ShiftingElements from "./misc/ShiftingElements"
 
 const sections = [
     "Introduction",
@@ -148,7 +149,7 @@ function Sections({ sections, activeIdx }: SectionsProps) {
 
     return <div className={styles.sections}>
         {sections.map((el, idx) =>
-            <Section opacity={opacity[idx]} hidden={opacity[idx] === 0}>
+            <Section key={idx} opacity={opacity[idx]} hidden={opacity[idx] === 0}>
                 {el}
             </Section>
         )}
@@ -348,17 +349,11 @@ function Projects({ onNextSection }: ProjectsProps) {
         </>
     })
 
-    useEffect(() => {
-        setActiveIdx(1)
-        setTimeout(() => {
-            setActiveIdx(0)
-        }, 100)
-    }, [])
-
     return <>
-        <Sections
-            sections={articles}
-            activeIdx={activeIdx}
+        <ShiftingElements
+            className={styles.projects}
+            items={articles}
+            activeIndex={activeIdx}
         />   
         <VerticalSelector 
             items={projectArticles.map(x => x.label)} 
@@ -466,8 +461,55 @@ function Background() {
 
     return <div className={styles.backgroundContainer}>
         <Heading className={styles.sectionHeader} text="Education" style="college" />
-        <Card>
-            asdf
+        <Card className={styles.card} thickness={20}>
+            <div className={styles.cardInner}>
+                <h2>Bachelor of Science in Computer Science</h2>
+                <List
+                    items={[
+                        <>University of British Columbia &mdash; 2026</>,
+                    ]}
+                />
+                <h2>Computer Information Systems Diploma</h2>
+                <List
+                    items={[
+                        <>Okanagan College &mdash; 2023</>,
+                    ]}
+                />                
+            </div>
+        </Card>
+        <Heading className={styles.sectionHeader} text="Work Experience" style="hearthfire" />
+        <Card className={styles.card} thickness={20}>
+            <div className={styles.cardInner}>
+                <h2>Python Programming Instructor</h2>
+                <IconList 
+                    row
+                    items={[
+                        { icon: "college", text: "The Cube School" },
+                        { icon: "quest", text: "Summer 2023" },
+                        
+                    ]}
+                    className={styles.list}
+                />
+                <p>
+                    Worked 
+                </p>
+            </div>
+        </Card>
+        <Card className={styles.card} thickness={20}>
+            <div className={styles.cardInner}>
+                <h2>Web Developer</h2>
+                <IconList
+                    row
+                    items={[
+                        { icon: "college", text: "The Museum & Archives of Vernon" },
+                        { icon: "quest", text: "Spring 2023" },
+                        { icon: "mine", text: "Contract" },
+                    ]}
+                />
+                <p>
+                    In early 2023, I was part of a group of three students from Okanagan College that were asked by the Vernon Museum to develop a website to display &ldquo;virtual exhibits.&rdquo; The project took a few months to complete and included both an administrative page for creating exhibits and a public-facing page to view those exhibits. The technologies used included React (Next.js with TypeScript), MySQL, and S3. 
+                </p>
+            </div>
         </Card>
     </div>
 }

@@ -7,18 +7,19 @@ import type { PropsWithChildren } from "react"
 type CardProps = PropsWithChildren<{
     thickness?: number
     className?: string
+    padding?: number
 }>
 
-function Card({ children, thickness, className }: CardProps) {
+function Card({ children, thickness, className, padding }: CardProps) {
     thickness ??= 24
 
     return <div 
-        className={styles.outer} 
+        className={styles.outer + " " + (className ?? "")} 
         style={{
             "--length": `${thickness}px`
-        } as any}    
+        } as any}
     >
-        <div className={styles.inner + " " + (className ?? "")}>
+        <div className={styles.inner}>
      
             <img className={styles.topLeftCorner} src={topRightCorner} />
             <img className={styles.topRightCorner} src={topRightCorner} />

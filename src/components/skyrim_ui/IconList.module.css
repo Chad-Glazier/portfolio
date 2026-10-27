@@ -1,0 +1,30 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 1rem 0px 1rem 1rem;
+}
+
+.list.row {
+    flex-direction: row;
+    gap: 2ch;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.list.row .item {
+    gap: 6px;
+}
+
+.icon {
+    height: 1.6em;
+}

@@ -4,6 +4,7 @@ import styles from "./ShiftingElements.module.css"
 type ShiftingElementsProps = {
     items: JSX.Element[]
     activeIndex: number
+    className?: string
 }
 
 // Maps each index to a className (left, right, or nothing) based on its
@@ -19,9 +20,11 @@ function positionalClassName(idx: number, activeIdx: number) {
     return styles.item
 }
 
-function ShiftingElements({ items, activeIndex }: ShiftingElementsProps) {
+function ShiftingElements({ 
+    items, activeIndex, className,
+}: ShiftingElementsProps) {
 
-    return <div className={styles.container}>
+    return <div className={styles.container + " " + (className ?? "")}>
         {items.map((item, idx) =>
             <div 
                 key={idx}
