@@ -7,10 +7,9 @@ import type { PropsWithChildren } from "react"
 type CardProps = PropsWithChildren<{
     thickness?: number
     className?: string
-    padding?: number
 }>
 
-function Card({ children, thickness, className, padding }: CardProps) {
+function Card({ children, thickness, className }: CardProps) {
     thickness ??= 24
 
     return <div 

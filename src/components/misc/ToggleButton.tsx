@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import leaveArrow from "../../assets/skyrim_ui/leave.png"
 import returnArrow from "../../assets/skyrim_ui/return.png"
 import styles from "./ToggleButton.module.css"

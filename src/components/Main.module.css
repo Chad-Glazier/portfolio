@@ -184,7 +184,7 @@
 	justify-content: center;
 
 	gap: 2rem;
-	margin: 2.5vmin 0px;
+	margin-top: 10vmin;
 
 	width: min(100%, 80ch);
 }
