@@ -1,6 +1,6 @@
 # Portfolio Site
 
-This repository holds the code for my personal website, [chadglazier.com](chadglazier.com). 
+This repository holds the code for my personal website, [chadglazier.com](https://chadglazier.com). 
 
 ## Acknowledgements
 
