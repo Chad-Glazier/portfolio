@@ -17,7 +17,6 @@ import ControlWardLogo from "./misc/ControlWardLogo"
 import Card from "./skyrim_ui/Card"
 import { RightButton } from "./skyrim_ui/Button"
 import Heading from "./skyrim_ui/Heading"
-import IconList from "./skyrim_ui/IconList"
 import ShiftingElements from "./misc/ShiftingElements"
 
 const sections = [
@@ -185,7 +184,7 @@ function Introduction({ onNext }: IntroductionProps) {
                 Hello, World.
             </h1>
             <p>
-                My name is Chad Glazier and I write programs. I'm primarily 
+                My name is Chad Glazier and I develop software both professionally and recreationally. I recently completed my Bachelor's degree in Computer Science and I'm looking for more professional opportunities. I'm primarily 
                 interested in performance-intensive systems, interfaces that
                 prioritize the user, and software that doesn't have to be 
                 rewritten. 
@@ -276,7 +275,7 @@ const projectArticles = [
         ],
         body: <>
             <p>
-                The <Link href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" text="Game of Amazons" /> is a relatively new board game that gained popularity in the 2000's as a research subject in the field of artificial intelligence. In early 2026, UBC held a computer Amazons tournament. The program I designed for the event, named EDI (&ldquo;ee-dee&rdquo;), managed to go undefeated and earn me the highly sought-after prize&mdash;a Starbucks giftcard. Since then, I have continued developing the project and have expanded it to include a library of generalized components and a command-line tool to help analyze Amazons programs.
+                <Link href="https://en.wikipedia.org/wiki/Game_of_the_Amazons" text="Amazons" /> is a relatively new board game that gained popularity in the 2000's as a research subject in the field of artificial intelligence. In early 2026, UBC held a computer Amazons tournament. The program I designed for the event, named EDI (&ldquo;ee-dee&rdquo;), managed to go undefeated and earn me the highly sought-after prize (a Starbucks giftcard). Since then, I have continued developing the project and have expanded it to include a library of generalized components and a command-line tool to help analyze Amazons programs.
             </p>
             <img src={ediGif} alt="thumbnail" />
         </>
@@ -291,7 +290,7 @@ const projectArticles = [
                 icon: faGlobe,
             },
             {
-                href: "https://github.com/Chad-Glazier/controlward",
+                href: "https://github.com/Chad-Glazier/controlward/tree/development",
                 text: "Repository",
                 icon: faGithub,
             }
@@ -428,7 +427,7 @@ function Contact() {
                         <ClipboardLink 
                             icon={faEnvelope}
                             string="chadglazier@outlook.com" 
-                            text="Email" 
+                            text="chadglazier@outlook.com" 
                         />,
                         <Link 
                             icon={faGithub}
@@ -460,50 +459,50 @@ function Background() {
     // - Contract Web Developer for Vernon Museum
 
     return <div className={styles.backgroundContainer}>
-        <Heading className={styles.sectionHeader} text="Education" style="college" />
         <Card className={styles.card} thickness={20}>
+            <Heading className={styles.sectionHeader} text="Education" style="college" />
+            <br />
             <div className={styles.cardInner}>
                 <h2>Bachelor of Science in Computer Science</h2>
                 <List
                     items={[
-                        <>University of British Columbia &mdash; 2026</>,
+                        "University of British Columbia",
+                        "Completed in Summer 2026",
                     ]}
                 />
+                <br />
                 <h2>Computer Information Systems Diploma</h2>
                 <List
                     items={[
-                        <>Okanagan College &mdash; 2023</>,
+                        "Okanagan College",
+                        "Completed in Spring 2023",
                     ]}
                 />                
             </div>
         </Card>
-        <Heading className={styles.sectionHeader} text="Work Experience" style="hearthfire" />
         <Card className={styles.card} thickness={20}>
+            <Heading className={styles.sectionHeader} text="Work Experience" style="hearthfire" />
+            <br />
             <div className={styles.cardInner}>
                 <h2>Python Programming Instructor</h2>
-                <IconList 
-                    row
+                <List 
                     items={[
-                        { icon: "college", text: "The Cube School" },
-                        { icon: "quest", text: "Summer 2023" },
-                        
+                        "The Cube School",
+                        "Summer 2023",
                     ]}
-                    className={styles.list}
                 />
                 <p>
                     Worked 
                 </p>
             </div>
-        </Card>
-        <Card className={styles.card} thickness={20}>
+            <br />
+            <br />
             <div className={styles.cardInner}>
-                <h2>Web Developer</h2>
-                <IconList
-                    row
+                <h2>Web Developer (Contract)</h2>
+                <List
                     items={[
-                        { icon: "college", text: "The Museum & Archives of Vernon" },
-                        { icon: "quest", text: "Spring 2023" },
-                        { icon: "mine", text: "Contract" },
+                        "The Museum & Archives of Vernon",
+                        "Spring 2023",
                     ]}
                 />
                 <p>
