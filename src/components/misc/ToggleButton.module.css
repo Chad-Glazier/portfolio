@@ -3,14 +3,18 @@
 	border: none;
 
 	position: fixed;
-	top: 20px;
-	right: 20px;
+	top: 16px;
+	right: 38px;
 	
 	color: var(--return-button-inactive);
 	font-size: 1.2rem;
 	font-family: var(--main-font);
 
 	transition: color 400ms ease;
+
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
 .button:hover {
@@ -34,8 +38,6 @@
 
 	opacity: 0;
 	transition: opacity 400ms ease;
-
-	transform: translateY(-4px);
 }
 
 .button:hover .text {

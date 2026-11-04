@@ -1,5 +1,6 @@
 import leaveArrow from "../../assets/skyrim_ui/leave.png"
 import returnArrow from "../../assets/skyrim_ui/return.png"
+import ShiftingElements from "./ShiftingElements"
 import styles from "./ToggleButton.module.css"
 
 type ToggleButtonProps = {
@@ -12,8 +13,19 @@ function ToggleButton({ toggle, onClick }: ToggleButtonProps) {
         className={styles.button}
         onClick={onClick}
     >
-        <img className={styles.arrow} src={toggle ? leaveArrow : returnArrow} />
-        <p className={styles.text}>{toggle ? "Leave" : "Return"}</p>
+        <ShiftingElements 
+            items={[
+                <>
+                    <img className={styles.arrow} src={leaveArrow} />
+                    <p className={styles.text}>Leave</p>
+                </>,
+                <>
+                    <img className={styles.arrow} src={returnArrow} />
+                    <p className={styles.text}>Return</p>
+                </>
+            ]} 
+            activeIndex={toggle ? 0 : 1}        
+        />
     </button>
 }
 

@@ -26,6 +26,9 @@ const sections = [
     "Contact",
 ]
 
+// Resume link:
+// https://raw.githubusercontent.com/Chad-Glazier/portfolio/main/Resume.pdf
+
 //
 // Main component
 //
@@ -184,17 +187,19 @@ function Introduction({ onNext }: IntroductionProps) {
                 Hello, World.
             </h1>
             <p>
-                My name is Chad Glazier and I develop software both professionally and recreationally. I recently completed my Bachelor's degree in Computer Science and I'm looking for more professional opportunities. I'm primarily 
-                interested in performance-intensive systems, interfaces that
-                prioritize the user, and software that doesn't have to be 
-                rewritten. 
+                My name is Chad Glazier and I develop software both professionally and as a hobby. I'm primarily interested in performance-intensive systems and apps that respect the user.
             </p>
             <p className={styles.nextButtonContainer}>
                 <NextButton 
-                    text="See what I'm working on"
+                    text="Check out my personal projects"
                     onClick={onNext}
                     arrowDirection="right"
                 />       
+                <NextButton 
+                    text="Read my resume"
+                    onClick={onNext}
+                    arrowDirection="right"
+                />
             </p>
         </div>
     </div>
@@ -297,7 +302,7 @@ const projectArticles = [
         ],
         body: <>
             <p>
-                League of Legends is an immensely popular competitive game. Many of its players are interested in statistics that can tell them how well they're doing, how teams look going into a game, and what strategies are most effective in the current patch. Several popular websites have been developed to meet this demand&mdash;OP.GG, U.GG, League of Graphs, and Porofessor, to name a few. Personally, I have found most of these websites to have a sub-par user experience. My goal with <Link href="https://controlward.com" text="controlward.com" /> is to provide an alternative that's a little more convenient.
+                League of Legends is an immensely popular competitive game. Many of its players are interested in statistics that can tell them how well they're doing, how teams look going into a game, and what strategies are most effective in the current patch. Several popular websites have been developed to meet this demand&mdash;OP.GG, U.GG, League of Graphs, and Porofessor, to name a few. My goal with <Link href="https://controlward.com" text="controlward.com" /> is to provide a simpler alternative that's more convenient to use.
             </p>
             <p>
                 At the time of writing, the project is still in the early stages of development.
@@ -459,7 +464,7 @@ function Background() {
     // - Contract Web Developer for Vernon Museum
 
     return <div className={styles.backgroundContainer}>
-        <Card className={styles.card} thickness={20}>
+        <div className={styles.card}>
             <Heading className={styles.sectionHeader} text="Education" style="college" />
             <br />
             <div className={styles.cardInner}>
@@ -479,9 +484,11 @@ function Background() {
                     ]}
                 />                
             </div>
-        </Card>
-        <Card className={styles.card} thickness={20}>
-            <Heading className={styles.sectionHeader} text="Work Experience" style="hearthfire" />
+            <br />
+            <br />
+        {/* </Card>
+        <Card className={styles.card} thickness={20}> */}
+            <Heading className={styles.sectionHeader} text="Experience" style="hearthfire" />
             <br />
             <div className={styles.cardInner}>
                 <h2>Python Programming Instructor</h2>
@@ -509,7 +516,7 @@ function Background() {
                     In early 2023, I was part of a group of three students from Okanagan College that were asked by the Vernon Museum to develop a website to display &ldquo;virtual exhibits.&rdquo; The project took a few months to complete and included both an administrative page for creating exhibits and a public-facing page to view those exhibits. The technologies used included React (Next.js with TypeScript), MySQL, and S3. 
                 </p>
             </div>
-        </Card>
+        </div>
     </div>
 }
 
