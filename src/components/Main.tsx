@@ -21,8 +21,8 @@ import ShiftingElements from "./misc/ShiftingElements"
 
 const sections = [
     "Introduction",
-    "Projects",
     "Background",
+    "Projects",
     "Contact",
 ]
 
@@ -78,8 +78,8 @@ function Main({
         <Sections 
             sections={[
                 <Introduction onNext={() => { setActiveIdx(x => x+1) }} />,
+                <Background onNext={() => { setActiveIdx(x => x+1) }}/>,
                 <Projects onNextSection={() => { setActiveIdx(x => x+1) }}/>,
-                <Background />,
                 <Contact />
             ]}
             activeIdx={activeIdx}
@@ -187,16 +187,11 @@ function Introduction({ onNext }: IntroductionProps) {
                 Hello, World.
             </h1>
             <p>
-                My name is Chad Glazier and I develop software both professionally and as a hobby. I'm primarily interested in performance-intensive systems and apps that respect the user.
+                My name is Chad Glazier and I develop software both professionally and as a hobby. I'm primarily interested in performance-intensive systems and user-friendly apps.
             </p>
             <p className={styles.nextButtonContainer}>
                 <NextButton 
-                    text="Check out my personal projects"
-                    onClick={onNext}
-                    arrowDirection="right"
-                />       
-                <NextButton 
-                    text="Read my resume"
+                    text="Read about my background"
                     onClick={onNext}
                     arrowDirection="right"
                 />
@@ -210,6 +205,26 @@ function Introduction({ onNext }: IntroductionProps) {
 //
 
 const projectArticles = [
+    {
+        label: "Aperture",
+        image: apertureGif,
+        header: <ApertureLogo size={100} />,
+        links: [
+            {
+                href: "https://github.com/Chad-Glazier/aperture-omr",
+                text: "Repository",
+                icon: faGithub,
+            },
+        ],
+        body: <>
+            <p>
+                Aperture is an Optical Mark Recognition (OMR) program, meaning that it is used to automatically grade scans of filled-in bubble sheets. The main selling point for Aperture in particular is its speed: ad hoc benchmarks and manual testing have shown it to run about an order of magnitude faster than <Link text="other popular alternatives" href="https://github.com/Udayraj123/OMRChecker" />. Additionally, unlike the typical licensed software that most schools use, Aperture is free and can be configured to work with virtually any kind of bubble sheet.
+            </p>
+            <p>
+                The first version of Aperture was developed by myself and five other team members as a proof-of-concept. The project included a complete web app split into three parts: a Python back-end for the website, a front-end written with Angular, and a core OMR server written in Go. Since then, I have continued to maintain and improve the OMR server as a standalone web service.
+            </p>        
+        </>
+    },
     {
         label: "Evacuation",
         image: evacuationGif,
@@ -234,26 +249,6 @@ const projectArticles = [
             <p>
                 Handling the math for Evacuation also motivated me to create a <Link href="https://jsr.io/@min-webgl/matrices" text="small library" /> for matrix algebra. That package is used for the graphics you see in the background of this page.
             </p>
-        </>
-    },
-    {
-        label: "Aperture",
-        image: apertureGif,
-        header: <ApertureLogo size={100} />,
-        links: [
-            {
-                href: "https://github.com/Chad-Glazier/aperture-omr",
-                text: "Repository",
-                icon: faGithub,
-            },
-        ],
-        body: <>
-            <p>
-                Aperture is an Optical Mark Recognition (OMR) program, meaning that it is used to automatically grade scans of filled-in bubble sheets. The main selling point for Aperture in particular is its speed: ad hoc benchmarks and manual testing have shown it to run about an order of magnitude faster than <Link text="other popular alternatives" href="https://github.com/Udayraj123/OMRChecker" />. Additionally, unlike the typical licensed software that most schools use, Aperture is free and can be configured to work with virtually any kind of bubble sheet.
-            </p>
-            <p>
-                The first version of Aperture was developed by myself and five other team members as a proof-of-concept. The project included a complete web app split into three parts: a Python back-end for the website, a front-end written with Angular, and a core OMR server written in Go. Since then, I have continued to maintain and improve the OMR server as a standalone web service.
-            </p>        
         </>
     },
     {
@@ -426,7 +421,7 @@ function Contact() {
                 />
                 <div className={styles.contactInfo}>
                     <p>
-                        If you want to hire me so I can afford more Magic: the Gathering cards, feel free to reach out.
+                        If you want to work with me, feel free to reach out. I'm currently located in Kelowna, BC but I'm also open to remote positions.
                     </p>
                     <List items={[
                         <ClipboardLink 
@@ -456,7 +451,11 @@ function Contact() {
 // Background Section
 //
 
-function Background() {
+type BackgroundProps = {
+    onNext: () => void
+}
+
+function Background({ onNext }: BackgroundProps) {
 
     // - Computer Science degree
     // - Computer Information Systems Diploma
@@ -488,7 +487,7 @@ function Background() {
             <br />
         {/* </Card>
         <Card className={styles.card} thickness={20}> */}
-            <Heading className={styles.sectionHeader} text="Experience" style="hearthfire" />
+            <Heading className={styles.sectionHeader} text="Experience" style="misc" />
             <br />
             <div className={styles.cardInner}>
                 <h2>Python Programming Instructor</h2>
@@ -499,7 +498,7 @@ function Background() {
                     ]}
                 />
                 <p>
-                    Worked 
+                    Taught a class of international students, roughly highschool-aged, the basics of web programming during a Summer class. I planned and delivered lectures that covered HTML, CSS, JavaScript, and Python, and helped students work through exercises. 
                 </p>
             </div>
             <br />
@@ -513,10 +512,17 @@ function Background() {
                     ]}
                 />
                 <p>
-                    In early 2023, I was part of a group of three students from Okanagan College that were asked by the Vernon Museum to develop a website to display &ldquo;virtual exhibits.&rdquo; The project took a few months to complete and included both an administrative page for creating exhibits and a public-facing page to view those exhibits. The technologies used included React (Next.js with TypeScript), MySQL, and S3. 
+                    Worked with three other students from Okanagan College to develop a website to display &ldquo;virtual exhibits&rdquo; for the Vernon Museum. The project took four months to complete and included both an administrative website for creating exhibits and public-facing pages to view those exhibits. The technologies used included Next.js/React, MySQL, and S3. 
                 </p>
             </div>
         </div>
+        <p className={styles.nextButtonContainer}>
+            <NextButton 
+                text="Check out my hobby projects"
+                onClick={onNext}
+                arrowDirection="right"
+            />
+        </p>
     </div>
 }
 
