@@ -191,7 +191,7 @@ function Introduction({ onNext }: IntroductionProps) {
             </p>
             <br />
             <p>
-                This website is meant to catalogue some of long-term personal projects. I try to publish most of my code on GitHub, so you can <Link text="check there" href="https://github.com/Chad-Glazier" /> for a more comprehensive list of things I've worked on. If, instead, you're only interested in my professional history, you can read about it in <Link href="https://raw.githubusercontent.com/Chad-Glazier/portfolio/main/Resume.pdf" text="my resume" />.
+                This website is meant to catalogue some of my long-term personal projects. I try to publish most of my code on GitHub, so you can <Link text="check there" href="https://github.com/Chad-Glazier" /> for a more comprehensive list of things I've worked on. If, instead, you're only interested in my professional history, you can read about it in <Link href="https://raw.githubusercontent.com/Chad-Glazier/portfolio/main/Resume.pdf" text="my resume" />.
             </p>
             <br />
             <p className={styles.nextButtonContainer}>
