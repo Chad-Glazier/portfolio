@@ -21,7 +21,7 @@ import ShiftingElements from "./misc/ShiftingElements"
 
 const sections = [
     "Introduction",
-    "Background",
+    // "Background",
     "Projects",
     "Contact",
 ]
@@ -78,7 +78,7 @@ function Main({
         <Sections 
             sections={[
                 <Introduction onNext={() => { setActiveIdx(x => x+1) }} />,
-                <Background onNext={() => { setActiveIdx(x => x+1) }}/>,
+                // <Background onNext={() => { setActiveIdx(x => x+1) }}/>,
                 <Projects onNextSection={() => { setActiveIdx(x => x+1) }}/>,
                 <Contact />
             ]}
@@ -189,9 +189,14 @@ function Introduction({ onNext }: IntroductionProps) {
             <p>
                 My name is Chad Glazier and I develop software both professionally and as a hobby. I'm primarily interested in performance-intensive systems and user-friendly apps.
             </p>
+            <br />
+            <p>
+                This website is meant to catalogue some of long-term personal projects. I try to publish most of my code on GitHub, so you can <Link text="check there" href="https://github.com/Chad-Glazier" /> for a more comprehensive list of things I've worked on. If, instead, you're only interested in my professional history, you can read about it in <Link href="https://raw.githubusercontent.com/Chad-Glazier/portfolio/main/Resume.pdf" text="my resume" />.
+            </p>
+            <br />
             <p className={styles.nextButtonContainer}>
                 <NextButton 
-                    text="Read about my background"
+                    text="Check out some of my projects"
                     onClick={onNext}
                     arrowDirection="right"
                 />
