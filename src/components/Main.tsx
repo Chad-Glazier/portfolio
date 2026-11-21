@@ -16,7 +16,7 @@ import List from "./misc/List"
 import ControlWardLogo from "./misc/ControlWardLogo"
 import Card from "./skyrim_ui/Card"
 import { RightButton } from "./skyrim_ui/Button"
-import Heading from "./skyrim_ui/Heading"
+// import Heading from "./skyrim_ui/Heading"
 import ShiftingElements from "./misc/ShiftingElements"
 
 const sections = [
@@ -456,80 +456,80 @@ function Contact() {
 // Background Section
 //
 
-type BackgroundProps = {
-    onNext: () => void
-}
+// type BackgroundProps = {
+//     onNext: () => void
+// }
 
-function Background({ onNext }: BackgroundProps) {
+// function Background({ onNext }: BackgroundProps) {
 
-    // - Computer Science degree
-    // - Computer Information Systems Diploma
-    // - The Cube School (Python Instructor)
-    // - Contract Web Developer for Vernon Museum
+//     // - Computer Science degree
+//     // - Computer Information Systems Diploma
+//     // - The Cube School (Python Instructor)
+//     // - Contract Web Developer for Vernon Museum
 
-    return <div className={styles.backgroundContainer}>
-        <div className={styles.card}>
-            <Heading className={styles.sectionHeader} text="Education" style="college" />
-            <br />
-            <div className={styles.cardInner}>
-                <h2>Bachelor of Science in Computer Science</h2>
-                <List
-                    items={[
-                        "University of British Columbia",
-                        "Completed in Summer 2026",
-                    ]}
-                />
-                <br />
-                <h2>Computer Information Systems Diploma</h2>
-                <List
-                    items={[
-                        "Okanagan College",
-                        "Completed in Spring 2023",
-                    ]}
-                />                
-            </div>
-            <br />
-            <br />
-        {/* </Card>
-        <Card className={styles.card} thickness={20}> */}
-            <Heading className={styles.sectionHeader} text="Experience" style="misc" />
-            <br />
-            <div className={styles.cardInner}>
-                <h2>Python Programming Instructor</h2>
-                <List 
-                    items={[
-                        "The Cube School",
-                        "Summer 2023",
-                    ]}
-                />
-                <p>
-                    Taught a class of international students, roughly highschool-aged, the basics of web programming during a Summer class. I planned and delivered lectures that covered HTML, CSS, JavaScript, and Python, and helped students work through exercises. 
-                </p>
-            </div>
-            <br />
-            <br />
-            <div className={styles.cardInner}>
-                <h2>Web Developer (Contract)</h2>
-                <List
-                    items={[
-                        "The Museum & Archives of Vernon",
-                        "Spring 2023",
-                    ]}
-                />
-                <p>
-                    Worked with three other students from Okanagan College to develop a website to display &ldquo;virtual exhibits&rdquo; for the Vernon Museum. The project took four months to complete and included both an administrative website for creating exhibits and public-facing pages to view those exhibits. The technologies used included Next.js/React, MySQL, and S3. 
-                </p>
-            </div>
-        </div>
-        <p className={styles.nextButtonContainer}>
-            <NextButton 
-                text="Check out my hobby projects"
-                onClick={onNext}
-                arrowDirection="right"
-            />
-        </p>
-    </div>
-}
+//     return <div className={styles.backgroundContainer}>
+//         <div className={styles.card}>
+//             <Heading className={styles.sectionHeader} text="Education" style="college" />
+//             <br />
+//             <div className={styles.cardInner}>
+//                 <h2>Bachelor of Science in Computer Science</h2>
+//                 <List
+//                     items={[
+//                         "University of British Columbia",
+//                         "Completed in Summer 2026",
+//                     ]}
+//                 />
+//                 <br />
+//                 <h2>Computer Information Systems Diploma</h2>
+//                 <List
+//                     items={[
+//                         "Okanagan College",
+//                         "Completed in Spring 2023",
+//                     ]}
+//                 />                
+//             </div>
+//             <br />
+//             <br />
+//         {/* </Card>
+//         <Card className={styles.card} thickness={20}> */}
+//             <Heading className={styles.sectionHeader} text="Experience" style="misc" />
+//             <br />
+//             <div className={styles.cardInner}>
+//                 <h2>Python Programming Instructor</h2>
+//                 <List 
+//                     items={[
+//                         "The Cube School",
+//                         "Summer 2023",
+//                     ]}
+//                 />
+//                 <p>
+//                     Taught a class of international students, roughly highschool-aged, the basics of web programming during a Summer class. I planned and delivered lectures that covered HTML, CSS, JavaScript, and Python, and helped students work through exercises. 
+//                 </p>
+//             </div>
+//             <br />
+//             <br />
+//             <div className={styles.cardInner}>
+//                 <h2>Web Developer (Contract)</h2>
+//                 <List
+//                     items={[
+//                         "The Museum & Archives of Vernon",
+//                         "Spring 2023",
+//                     ]}
+//                 />
+//                 <p>
+//                     Worked with three other students from Okanagan College to develop a website to display &ldquo;virtual exhibits&rdquo; for the Vernon Museum. The project took four months to complete and included both an administrative website for creating exhibits and public-facing pages to view those exhibits. The technologies used included Next.js/React, MySQL, and S3. 
+//                 </p>
+//             </div>
+//         </div>
+//         <p className={styles.nextButtonContainer}>
+//             <NextButton 
+//                 text="Check out my hobby projects"
+//                 onClick={onNext}
+//                 arrowDirection="right"
+//             />
+//         </p>
+//     </div>
+// }
 
 //
 // Miscellaneous stuff
